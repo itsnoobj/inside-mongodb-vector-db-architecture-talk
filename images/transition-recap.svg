@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <rect width="1200" height="600" fill="#1e1e2e"/>
+  <text x="600" y="300" text-anchor="middle" font-family="monospace" font-size="60" font-weight="bold" fill="#cdd6f4">First Principles</text>
+  <text x="600" y="374" text-anchor="middle" font-family="monospace" font-size="30" fill="#6c7086">meaning → numbers → nearest</text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <rect width="1200" height="600" fill="#1e1e2e"/>
+  <text x="600" y="310" text-anchor="middle" font-family="monospace" font-size="42" font-weight="bold" fill="#cdd6f4">So... do you still need</text>
+  <text x="600" y="370" text-anchor="middle" font-family="monospace" font-size="42" font-weight="bold" fill="#cdd6f4">a separate vector DB?</text>
+</svg>

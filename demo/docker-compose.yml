@@ -1,0 +1,9 @@
+# mongod + mongot in one container (local Atlas: supports $vectorSearch + createSearchIndex).
+# Start:  docker compose up -d
+# Stop:   docker compose down -v
+services:
+  mongodb:
+    image: mongodb/mongodb-atlas-local:latest
+    container_name: vsdemo
+    ports:
+      - "27017:27017"

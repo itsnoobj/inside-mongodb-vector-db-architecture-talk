@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 650" font-family="Inter, -apple-system, sans-serif">
+  <!-- Background -->
+  <rect width="1400" height="650" fill="#1a1a2e"/>
+  
+  <!-- LEFT: 2023 - Simple linear -->
+  <rect x="50" y="30" width="500" height="590" rx="12" fill="#222238" stroke="#6c7086" stroke-width="1.5"/>
+  <text x="300" y="70" text-anchor="middle" fill="#a6adc8" font-size="22" font-weight="bold">2023</text>
+  
+  <!-- Linear flow boxes -->
+  <rect x="150" y="110" width="300" height="50" rx="8" fill="#2a2a3c" stroke="#89b4fa" stroke-width="2"/>
+  <text x="300" y="141" text-anchor="middle" fill="#89b4fa" font-size="16">User Question</text>
+  
+  <path d="M300 160 L300 200" stroke="#6c7086" stroke-width="2.5" marker-end="url(#arw)"/>
+  
+  <rect x="150" y="200" width="300" height="50" rx="8" fill="#2a2a3c" stroke="#89b4fa" stroke-width="2"/>
+  <text x="300" y="231" text-anchor="middle" fill="#89b4fa" font-size="16">Embed + 1 Vector Search</text>
+  
+  <path d="M300 250 L300 290" stroke="#6c7086" stroke-width="2.5" marker-end="url(#arw)"/>
+  
+  <rect x="150" y="290" width="300" height="50" rx="8" fill="#2a2a3c" stroke="#89b4fa" stroke-width="2"/>
+  <text x="300" y="321" text-anchor="middle" fill="#89b4fa" font-size="16">Top-K → LLM Prompt</text>
+  
+  <path d="M300 340 L300 380" stroke="#6c7086" stroke-width="2.5" marker-end="url(#arw)"/>
+  
+  <rect x="150" y="380" width="300" height="50" rx="8" fill="#2a2a3c" stroke="#89b4fa" stroke-width="2"/>
+  <text x="300" y="411" text-anchor="middle" fill="#89b4fa" font-size="16">Answer (hope it's right)</text>
+  
+  <text x="300" y="500" text-anchor="middle" fill="#a6adc8" font-size="14">1 query. 1 search. No verification.</text>
+  <text x="300" y="525" text-anchor="middle" fill="#a6adc8" font-size="14">If retrieval misses → hallucination.</text>
+  
+  <!-- RIGHT: 2026 - Agentic loop with detail -->
+  <rect x="620" y="30" width="740" height="590" rx="12" fill="#222238" stroke="#a6e3a1" stroke-width="2.5"/>
+  <text x="990" y="70" text-anchor="middle" fill="#a6e3a1" font-size="22" font-weight="bold">2026 (Agentic RAG)</text>
+  
+  <!-- Step 1: Plan -->
+  <rect x="830" y="100" width="280" height="44" rx="8" fill="#2a2a3c" stroke="#a6e3a1" stroke-width="2"/>
+  <text x="970" y="127" text-anchor="middle" fill="#a6e3a1" font-size="14">Plan: decompose question</text>
+  
+  <path d="M970 144 L970 170" stroke="#6c7086" stroke-width="2" marker-end="url(#arw)"/>
+  
+  <!-- Step 2: Rewrite -->
+  <rect x="830" y="170" width="280" height="44" rx="8" fill="#2a2a3c" stroke="#f9e2af" stroke-width="2"/>
+  <text x="970" y="197" text-anchor="middle" fill="#f9e2af" font-size="14">Rewrite into sub-queries</text>
+  
+  <path d="M970 214 L970 240" stroke="#6c7086" stroke-width="2" marker-end="url(#arw)"/>
+  
+  <!-- Step 3: Multi-source search -->
+  <rect x="830" y="240" width="280" height="60" rx="8" fill="#2a2a3c" stroke="#a6e3a1" stroke-width="2"/>
+  <text x="970" y="265" text-anchor="middle" fill="#a6e3a1" font-size="14">Search (parallel, multi-source)</text>
+  <text x="970" y="285" text-anchor="middle" fill="#a6adc8" font-size="12">vector + BM25 + graph + metadata</text>
+  
+  <path d="M970 300 L970 326" stroke="#6c7086" stroke-width="2" marker-end="url(#arw)"/>
+  
+  <!-- Step 4: Rerank -->
+  <rect x="830" y="326" width="280" height="44" rx="8" fill="#2a2a3c" stroke="#89b4fa" stroke-width="2"/>
+  <text x="970" y="353" text-anchor="middle" fill="#89b4fa" font-size="14">Cross-encoder rerank</text>
+  
+  <path d="M970 370 L970 396" stroke="#6c7086" stroke-width="2" marker-end="url(#arw)"/>
+  
+  <!-- Step 5: Evaluate -->
+  <rect x="830" y="396" width="280" height="44" rx="8" fill="#2a2a3c" stroke="#f9e2af" stroke-width="2"/>
+  <text x="970" y="423" text-anchor="middle" fill="#f9e2af" font-size="14">Evaluate: sufficient context?</text>
+  
+  <!-- Loop arrow back to Rewrite -->
+  <path d="M1110 418 C1200 418 1200 190 1110 185" stroke="#f38ba8" stroke-width="2.5" stroke-dasharray="6,4" fill="none" marker-end="url(#arw-red)"/>
+  <text x="1230" y="285" fill="#f38ba8" font-size="13" font-weight="bold">No → refine</text>
+  <text x="1230" y="305" fill="#f38ba8" font-size="13">&amp; re-retrieve</text>
+  
+  <!-- Yes path -->
+  <text x="940" y="458" fill="#a6e3a1" font-size="12">Yes ↓</text>
+  <path d="M970 440 L970 476" stroke="#a6e3a1" stroke-width="2" marker-end="url(#arw-green)"/>
+  
+  <!-- Step 6: Generate -->
+  <rect x="830" y="476" width="280" height="44" rx="8" fill="#2a2a3c" stroke="#a6e3a1" stroke-width="2"/>
+  <text x="970" y="503" text-anchor="middle" fill="#a6e3a1" font-size="14">Generate + cite sources</text>
+  
+  <!-- Step 7: Verify -->
+  <path d="M970 520 L970 546" stroke="#6c7086" stroke-width="2" marker-end="url(#arw)"/>
+  <rect x="830" y="546" width="280" height="44" rx="8" fill="#2a2a3c" stroke="#a6e3a1" stroke-width="2"/>
+  <text x="970" y="573" text-anchor="middle" fill="#a6e3a1" font-size="14">Verify: no hallucination?</text>
+  
+  <!-- Left side: what's different callouts -->
+  <text x="660" y="140" fill="#a6adc8" font-size="12">3-5 queries</text>
+  <text x="660" y="155" fill="#a6adc8" font-size="12">per turn</text>
+  
+  <text x="660" y="270" fill="#a6adc8" font-size="12">hybrid +</text>
+  <text x="660" y="285" fill="#a6adc8" font-size="12">multi-hop</text>
+  
+  <text x="660" y="420" fill="#a6adc8" font-size="12">self-corrects</text>
+  <text x="660" y="435" fill="#a6adc8" font-size="12">bad retrieval</text>
+  
+  <text x="660" y="560" fill="#a6adc8" font-size="12">grounded,</text>
+  <text x="660" y="575" fill="#a6adc8" font-size="12">citable</text>
+  
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arw" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0 L10,3.5 L0,7" fill="none" stroke="#6c7086" stroke-width="1.5"/>
+    </marker>
+    <marker id="arw-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0 L10,3.5 L0,7" fill="none" stroke="#f38ba8" stroke-width="1.5"/>
+    </marker>
+    <marker id="arw-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <path d="M0,0 L10,3.5 L0,7" fill="none" stroke="#a6e3a1" stroke-width="1.5"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 380" font-family="Inter, -apple-system, sans-serif">
+  <!-- Background -->
+  <rect width="1400" height="550" fill="#1a1a2e"/>
+  
+  <!-- Left chart: p95 Latency -->
+  <text x="350" y="40" text-anchor="middle" fill="#cdd6f4" font-size="18" font-weight="bold">p95 Query Latency (ms) at 99% Recall</text>
+  <text x="350" y="62" text-anchor="middle" fill="#a6adc8" font-size="12">Dataset: 50M Cohere embeddings (768 dimensions) | Less is better</text>
+  
+  <!-- pgvectorscale bar -->
+  <text x="50" y="130" fill="#cdd6f4" font-size="12">PostgreSQL with pgvector</text>
+  <text x="50" y="147" fill="#cdd6f4" font-size="12">and pgvectorscale</text>
+  <rect x="200" y="115" width="95" height="40" rx="3" fill="#7c6fe0"/>
+  <text x="310" y="140" fill="#a6e3a1" font-size="14" font-weight="bold">62ms</text>
+  
+  <!-- Pinecone bar -->
+  <text x="50" y="220" fill="#cdd6f4" font-size="12">Pinecone s1</text>
+  <text x="50" y="237" fill="#cdd6f4" font-size="12">(Storage optimized)</text>
+  <rect x="200" y="205" width="480" height="40" rx="3" fill="#4a90d9"/>
+  <text x="695" y="230" fill="#f38ba8" font-size="14" font-weight="bold">1,763ms</text>
+  
+  <!-- Axis -->
+  <line x1="200" y1="270" x2="700" y2="270" stroke="#6c7086" stroke-width="1"/>
+  <text x="200" y="290" fill="#a6adc8" font-size="12">0</text>
+  <text x="325" y="290" fill="#a6adc8" font-size="12">500</text>
+  <text x="450" y="290" fill="#a6adc8" font-size="12">1000</text>
+  <text x="575" y="290" fill="#a6adc8" font-size="12">1500</text>
+  <text x="680" y="290" fill="#a6adc8" font-size="12">2000</text>
+  
+  <!-- 28x callout -->
+  <rect x="250" y="310" width="150" height="35" rx="6" fill="#a6e3a1" opacity="0.15" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="325" y="333" text-anchor="middle" fill="#a6e3a1" font-size="16" font-weight="bold">28x lower</text>
+  
+  <!-- Right chart: QPS -->
+  <text x="1050" y="40" text-anchor="middle" fill="#cdd6f4" font-size="18" font-weight="bold">Queries Per Second at 99% Recall</text>
+  <text x="1050" y="62" text-anchor="middle" fill="#a6adc8" font-size="12">Dataset: 50M Cohere embeddings (768 dimensions) | More is better</text>
+  
+  <!-- pgvectorscale bar -->
+  <text x="750" y="130" fill="#cdd6f4" font-size="12">PostgreSQL with pgvector</text>
+  <text x="750" y="147" fill="#cdd6f4" font-size="12">and pgvectorscale</text>
+  <rect x="900" y="115" width="420" height="40" rx="3" fill="#7c6fe0"/>
+  <text x="1335" y="140" fill="#a6e3a1" font-size="14" font-weight="bold">460 QPS</text>
+  
+  <!-- Pinecone bar -->
+  <text x="750" y="220" fill="#cdd6f4" font-size="12">Pinecone s1</text>
+  <text x="750" y="237" fill="#cdd6f4" font-size="12">(Storage optimized)</text>
+  <rect x="900" y="205" width="26" height="40" rx="3" fill="#4a90d9"/>
+  <text x="940" y="230" fill="#f38ba8" font-size="14" font-weight="bold">28 QPS</text>
+  
+  <!-- Axis -->
+  <line x1="900" y1="270" x2="1350" y2="270" stroke="#6c7086" stroke-width="1"/>
+  <text x="900" y="290" fill="#a6adc8" font-size="12">0</text>
+  <text x="1012" y="290" fill="#a6adc8" font-size="12">100</text>
+  <text x="1125" y="290" fill="#a6adc8" font-size="12">200</text>
+  <text x="1237" y="290" fill="#a6adc8" font-size="12">300</text>
+  <text x="1340" y="290" fill="#a6adc8" font-size="12">500</text>
+  
+  <!-- 16x callout -->
+  <rect x="950" y="310" width="150" height="35" rx="6" fill="#a6e3a1" opacity="0.15" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="1025" y="333" text-anchor="middle" fill="#a6e3a1" font-size="16" font-weight="bold">16x higher</text>
+  
+  <!-- Divider -->
+  <line x1="700" y1="80" x2="700" y2="350" stroke="#3a3750" stroke-width="1" stroke-dasharray="4,3"/>
+</svg>

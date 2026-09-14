@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" font-family="Inter, -apple-system, sans-serif">
+  <rect width="1600" height="700" fill="#1a1a2e"/>
+  <text x="800" y="40" text-anchor="middle" fill="#cdd6f4" font-size="22" font-weight="bold">Detecting Drift: Two Monitoring Flows</text>
+  
+  <!-- LEFT: Canary - Distance drift -->
+  <rect x="50" y="70" width="720" height="560" rx="12" fill="#313244" stroke="#a6e3a1" stroke-width="2"/>
+  <text x="410" y="105" text-anchor="middle" fill="#a6e3a1" font-size="16" font-weight="bold">Canary: Mean Distance to Results</text>
+  <text x="410" y="130" text-anchor="middle" fill="#a6adc8" font-size="12">Metric: mean cosine distance | Farther = less relevant</text>
+  
+  <!-- Chart axes -->
+  <line x1="130" y1="470" x2="700" y2="470" stroke="#6c7086" stroke-width="1"/>
+  <line x1="130" y1="180" x2="130" y2="470" stroke="#6c7086" stroke-width="1"/>
+  
+  <!-- Y axis labels -->
+  <text x="115" y="470" text-anchor="end" fill="#a6adc8" font-size="12">0.10</text>
+  <text x="115" y="373" text-anchor="end" fill="#a6adc8" font-size="12">0.20</text>
+  <text x="115" y="276" text-anchor="end" fill="#a6adc8" font-size="12">0.30</text>
+  <text x="115" y="180" text-anchor="end" fill="#f38ba8" font-size="12">0.40</text>
+  
+  <!-- X axis labels -->
+  <text x="200" y="490" text-anchor="middle" fill="#a6adc8" font-size="12">Week 1</text>
+  <text x="330" y="490" text-anchor="middle" fill="#a6adc8" font-size="12">Week 4</text>
+  <text x="460" y="490" text-anchor="middle" fill="#a6adc8" font-size="12">Week 8</text>
+  <text x="590" y="490" text-anchor="middle" fill="#a6adc8" font-size="12">Week 12</text>
+  
+  <!-- Threshold line -->
+  <line x1="130" y1="325" x2="700" y2="325" stroke="#f38ba8" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="710" y="330" fill="#f38ba8" font-size="12">⚠️ threshold</text>
+  
+  <!-- Line chart trending UP (bad) -->
+  <polyline points="200,445 280,430 330,405 390,380 460,340 530,310 590,280 650,260" fill="none" stroke="#a6e3a1" stroke-width="3"/>
+  <circle cx="200" cy="445" r="5" fill="#a6e3a1"/>
+  <circle cx="330" cy="405" r="5" fill="#a6e3a1"/>
+  <circle cx="460" cy="340" r="5" fill="#f9e2af"/>
+  <circle cx="590" cy="280" r="6" fill="#f38ba8"/>
+  
+  <!-- Annotations -->
+  <text x="200" y="525" text-anchor="middle" fill="#a6e3a1" font-size="12">0.15 ✅</text>
+  <text x="330" y="525" text-anchor="middle" fill="#a6e3a1" font-size="12">0.21</text>
+  <text x="460" y="525" text-anchor="middle" fill="#f9e2af" font-size="12">0.29 ⚠️</text>
+  <text x="590" y="525" text-anchor="middle" fill="#f38ba8" font-size="12">0.35 🚨</text>
+  
+  <text x="410" y="580" text-anchor="middle" fill="#cdd6f4" font-size="13" font-weight="bold">Results drifting away from queries.</text>
+  <text x="410" y="605" text-anchor="middle" fill="#a6adc8" font-size="12">Log on every search. No ground truth needed.</text>
+  
+  <!-- RIGHT: Audit - Recall declining -->
+  <rect x="830" y="70" width="720" height="560" rx="12" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
+  <text x="1190" y="105" text-anchor="middle" fill="#89b4fa" font-size="16" font-weight="bold">Audit: Recall@10 Over Time</text>
+  <text x="1190" y="130" text-anchor="middle" fill="#a6adc8" font-size="12">Metric: recall@10 | 200 questions with known answers</text>
+  
+  <!-- Chart axes -->
+  <line x1="910" y1="470" x2="1480" y2="470" stroke="#6c7086" stroke-width="1"/>
+  <line x1="910" y1="180" x2="910" y2="470" stroke="#6c7086" stroke-width="1"/>
+  
+  <!-- Y axis labels -->
+  <text x="895" y="180" text-anchor="end" fill="#a6e3a1" font-size="12">100%</text>
+  <text x="895" y="253" text-anchor="end" fill="#a6e3a1" font-size="12">95%</text>
+  <text x="895" y="325" text-anchor="end" fill="#f9e2af" font-size="12">90%</text>
+  <text x="895" y="397" text-anchor="end" fill="#f38ba8" font-size="12">85%</text>
+  <text x="895" y="470" text-anchor="end" fill="#f38ba8" font-size="12">80%</text>
+  
+  <!-- X axis labels -->
+  <text x="980" y="490" text-anchor="middle" fill="#a6adc8" font-size="12">Week 1</text>
+  <text x="1110" y="490" text-anchor="middle" fill="#a6adc8" font-size="12">Week 4</text>
+  <text x="1240" y="490" text-anchor="middle" fill="#a6adc8" font-size="12">Week 8</text>
+  <text x="1370" y="490" text-anchor="middle" fill="#a6adc8" font-size="12">Week 12</text>
+  
+  <!-- Threshold line -->
+  <line x1="910" y1="253" x2="1480" y2="253" stroke="#a6e3a1" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="1490" y="258" fill="#a6e3a1" font-size="12">95% target</text>
+  
+  <!-- Line chart trending DOWN (bad) -->
+  <polyline points="980,195 1050,210 1110,260 1170,290 1240,350 1310,380 1370,400 1430,415" fill="none" stroke="#89b4fa" stroke-width="3"/>
+  <circle cx="980" cy="195" r="5" fill="#a6e3a1"/>
+  <circle cx="1110" cy="260" r="5" fill="#f9e2af"/>
+  <circle cx="1240" cy="350" r="6" fill="#f38ba8"/>
+  <circle cx="1370" cy="400" r="6" fill="#f38ba8"/>
+  
+  <!-- Annotations -->
+  <text x="980" y="525" text-anchor="middle" fill="#a6e3a1" font-size="12">96% ✅</text>
+  <text x="1110" y="525" text-anchor="middle" fill="#f9e2af" font-size="12">92% ⚠️</text>
+  <text x="1240" y="525" text-anchor="middle" fill="#f38ba8" font-size="12">84% 🚨</text>
+  <text x="1370" y="525" text-anchor="middle" fill="#f38ba8" font-size="12">80% 💀</text>
+  
+  <text x="1190" y="580" text-anchor="middle" fill="#cdd6f4" font-size="13" font-weight="bold">Quality dropping silently.</text>
+  <text x="1190" y="605" text-anchor="middle" fill="#a6adc8" font-size="12">Run weekly. Definitive ground truth.</text>
+  
+  <!-- Bottom -->
+  <text x="800" y="670" text-anchor="middle" fill="#f9e2af" font-size="14" font-weight="bold">If you don't measure weekly, you're flying blind.</text>
+</svg>

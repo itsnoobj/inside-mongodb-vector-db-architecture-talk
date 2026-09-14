@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" font-family="Inter, -apple-system, sans-serif">
+  <!-- Background -->
+  <rect width="900" height="650" fill="#1e1e2e"/>
+  
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" fill="#cdd6f4" font-size="16" font-weight="bold">A RAG System: Every Box Is a Decision</text>
+  
+  <!-- DATA SOURCES - Left side -->
+  <rect x="30" y="55" width="140" height="130" rx="6" fill="#313244" stroke="#6c7086" stroke-width="1"/>
+  <text x="100" y="75" text-anchor="middle" fill="#89b4fa" font-size="10" font-weight="bold">DATA SOURCES</text>
+  <text x="100" y="93" text-anchor="middle" fill="#a6adc8" font-size="9">Documents</text>
+  <text x="100" y="107" text-anchor="middle" fill="#a6adc8" font-size="9">APIs</text>
+  <text x="100" y="121" text-anchor="middle" fill="#a6adc8" font-size="9">Databases</text>
+  <text x="100" y="135" text-anchor="middle" fill="#a6adc8" font-size="9">Wikis</text>
+  <text x="100" y="149" text-anchor="middle" fill="#a6adc8" font-size="9">Emails</text>
+  <text x="100" y="163" text-anchor="middle" fill="#a6adc8" font-size="9">Code repos</text>
+  <text x="100" y="177" text-anchor="middle" fill="#6c7086" font-size="8">§1-4</text>
+  
+  <!-- INGESTION PIPELINE -->
+  <path d="M170 120 L195 120" stroke="#6c7086" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="195" y="55" width="160" height="130" rx="6" fill="#313244" stroke="#6c7086" stroke-width="1"/>
+  <text x="275" y="75" text-anchor="middle" fill="#89b4fa" font-size="10" font-weight="bold">INGESTION</text>
+  <text x="275" y="93" text-anchor="middle" fill="#a6adc8" font-size="9">Parsing / OCR</text>
+  <text x="275" y="107" text-anchor="middle" fill="#a6adc8" font-size="9">Chunking strategy</text>
+  <text x="275" y="121" text-anchor="middle" fill="#a6adc8" font-size="9">Metadata extraction</text>
+  <text x="275" y="135" text-anchor="middle" fill="#a6adc8" font-size="9">Deduplication</text>
+  <text x="275" y="149" text-anchor="middle" fill="#a6adc8" font-size="9">Permissions / ACL</text>
+  <text x="275" y="163" text-anchor="middle" fill="#a6adc8" font-size="9">Change detection</text>
+  <text x="275" y="177" text-anchor="middle" fill="#6c7086" font-size="8">§5-9</text>
+  
+  <!-- Arrow to storage -->
+  <path d="M355 120 L380 120" stroke="#6c7086" stroke-width="1" marker-end="url(#arrow)"/>
+  
+  <!-- RETRIEVAL AND STORAGE - Highlighted -->
+  <rect x="380" y="48" width="500" height="145" rx="8" fill="#1e1e2e" stroke="#f9e2af" stroke-width="2.5"/>
+  <rect x="395" y="55" width="110" height="18" rx="4" fill="#f9e2af"/>
+  <text x="450" y="67" text-anchor="middle" fill="#1e1e2e" font-size="9" font-weight="bold">TODAY'S FOCUS</text>
+  
+  <!-- Sub-boxes inside highlighted area -->
+  <rect x="395" y="80" width="115" height="55" rx="4" fill="#2a2a3c" stroke="#a6e3a1" stroke-width="1"/>
+  <text x="452" y="95" text-anchor="middle" fill="#a6e3a1" font-size="9" font-weight="bold">EMBEDDINGS</text>
+  <text x="452" y="109" text-anchor="middle" fill="#a6adc8" font-size="8">Model choice</text>
+  <text x="452" y="121" text-anchor="middle" fill="#a6adc8" font-size="8">Dimensions (MRL)</text>
+  <text x="452" y="133" text-anchor="middle" fill="#a6adc8" font-size="8">Distance metric</text>
+  
+  <rect x="520" y="80" width="115" height="55" rx="4" fill="#2a2a3c" stroke="#a6e3a1" stroke-width="1"/>
+  <text x="577" y="95" text-anchor="middle" fill="#a6e3a1" font-size="9" font-weight="bold">INDEX</text>
+  <text x="577" y="109" text-anchor="middle" fill="#a6adc8" font-size="8">HNSW / DiskANN</text>
+  <text x="577" y="121" text-anchor="middle" fill="#a6adc8" font-size="8">Quantization</text>
+  <text x="577" y="133" text-anchor="middle" fill="#a6adc8" font-size="8">RAM vs Disk</text>
+  
+  <rect x="645" y="80" width="115" height="55" rx="4" fill="#2a2a3c" stroke="#a6e3a1" stroke-width="1"/>
+  <text x="702" y="95" text-anchor="middle" fill="#a6e3a1" font-size="9" font-weight="bold">RETRIEVAL</text>
+  <text x="702" y="109" text-anchor="middle" fill="#a6adc8" font-size="8">Filtered search</text>
+  <text x="702" y="121" text-anchor="middle" fill="#a6adc8" font-size="8">Hybrid BM25+vec</text>
+  <text x="702" y="133" text-anchor="middle" fill="#a6adc8" font-size="8">Multi-hop</text>
+  
+  <rect x="770" y="80" width="100" height="55" rx="4" fill="#2a2a3c" stroke="#a6e3a1" stroke-width="1"/>
+  <text x="820" y="95" text-anchor="middle" fill="#a6e3a1" font-size="9" font-weight="bold">SCALE</text>
+  <text x="820" y="109" text-anchor="middle" fill="#a6adc8" font-size="8">Partitioning</text>
+  <text x="820" y="121" text-anchor="middle" fill="#a6adc8" font-size="8">Sharding</text>
+  <text x="820" y="133" text-anchor="middle" fill="#a6adc8" font-size="8">Cost mgmt</text>
+
+  <!-- Architecture decision bar inside highlighted -->
+  <rect x="395" y="145" width="475" height="38" rx="4" fill="#2a2a3c" stroke="#89b4fa" stroke-width="1"/>
+  <text x="632" y="162" text-anchor="middle" fill="#89b4fa" font-size="9" font-weight="bold">ARCHITECTURE DECISION</text>
+  <text x="632" y="177" text-anchor="middle" fill="#a6adc8" font-size="8">pgvector (OSS) vs dedicated vector DB | single DB vs polyglot | managed vs self-hosted</text>
+
+  <!-- Section reference -->
+  <text x="860" y="188" text-anchor="end" fill="#6c7086" font-size="8">§10-13, 27</text>
+  
+  <!-- USER QUERY - center -->
+  <rect x="300" y="215" width="300" height="35" rx="6" fill="#313244" stroke="#cdd6f4" stroke-width="1.5"/>
+  <text x="450" y="237" text-anchor="middle" fill="#cdd6f4" font-size="12" font-weight="bold">User Query</text>
+  
+  <!-- Arrow down -->
+  <path d="M450 250 L450 270" stroke="#6c7086" stroke-width="1.5" marker-end="url(#arrow)"/>
+  
+  <!-- Query Understanding -->
+  <rect x="150" y="270" width="600" height="50" rx="6" fill="#313244" stroke="#6c7086" stroke-width="1"/>
+  <text x="450" y="290" text-anchor="middle" fill="#89b4fa" font-size="10" font-weight="bold">QUERY UNDERSTANDING</text>
+  <text x="450" y="307" text-anchor="middle" fill="#a6adc8" font-size="9">Intent routing | Rewrite (HyDE, step-back) | Decomposition | Translation</text>
+  <text x="740" y="315" text-anchor="end" fill="#6c7086" font-size="8">§12</text>
+  
+  <!-- Arrow down -->
+  <path d="M450 320 L450 340" stroke="#6c7086" stroke-width="1.5" marker-end="url(#arrow)"/>
+  
+  <!-- Retrieval execution -->
+  <rect x="150" y="340" width="600" height="50" rx="6" fill="#313244" stroke="#6c7086" stroke-width="1"/>
+  <text x="450" y="360" text-anchor="middle" fill="#89b4fa" font-size="10" font-weight="bold">RETRIEVAL EXECUTION</text>
+  <text x="450" y="377" text-anchor="middle" fill="#a6adc8" font-size="9">Dense ANN | Sparse BM25 | Hybrid RRF | Metadata filters | Graph traversal</text>
+  <text x="740" y="385" text-anchor="end" fill="#6c7086" font-size="8">§13</text>
+
+  <!-- Arrow down -->
+  <path d="M450 390 L450 410" stroke="#6c7086" stroke-width="1.5" marker-end="url(#arrow)"/>
+  
+  <!-- Re-ranking -->
+  <rect x="150" y="410" width="600" height="50" rx="6" fill="#313244" stroke="#6c7086" stroke-width="1"/>
+  <text x="450" y="430" text-anchor="middle" fill="#89b4fa" font-size="10" font-weight="bold">RANKING &amp; CONTEXT ASSEMBLY</text>
+  <text x="450" y="447" text-anchor="middle" fill="#a6adc8" font-size="9">Cross-encoder rerank | Diversity | Dedup | Token budget | Context ordering</text>
+  <text x="740" y="455" text-anchor="end" fill="#6c7086" font-size="8">§14-15</text>
+  
+  <!-- Arrow down -->
+  <path d="M450 460 L450 480" stroke="#6c7086" stroke-width="1.5" marker-end="url(#arrow)"/>
+  
+  <!-- Generation -->
+  <rect x="150" y="480" width="600" height="50" rx="6" fill="#313244" stroke="#6c7086" stroke-width="1"/>
+  <text x="450" y="500" text-anchor="middle" fill="#89b4fa" font-size="10" font-weight="bold">GENERATION</text>
+  <text x="450" y="517" text-anchor="middle" fill="#a6adc8" font-size="9">Grounding | Citations | Safety | Streaming | Abstention policy</text>
+  <text x="740" y="525" text-anchor="end" fill="#6c7086" font-size="8">§16-18</text>
+  
+  <!-- Arrow down -->
+  <path d="M450 530 L450 550" stroke="#6c7086" stroke-width="1.5" marker-end="url(#arrow)"/>
+  
+  <!-- Answer -->
+  <rect x="300" y="550" width="300" height="35" rx="6" fill="#313244" stroke="#cdd6f4" stroke-width="1.5"/>
+  <text x="450" y="572" text-anchor="middle" fill="#cdd6f4" font-size="12" font-weight="bold">Answer + Citations</text>
+  
+  <!-- OBSERVABILITY - Right side bar -->
+  <rect x="780" y="215" width="100" height="370" rx="6" fill="#313244" stroke="#6c7086" stroke-width="1"/>
+  <text x="830" y="240" text-anchor="middle" fill="#89b4fa" font-size="9" font-weight="bold">OBSERVE</text>
+  <text x="830" y="280" text-anchor="middle" fill="#a6adc8" font-size="8">Tracing</text>
+  <text x="830" y="310" text-anchor="middle" fill="#a6adc8" font-size="8">Recall</text>
+  <text x="830" y="330" text-anchor="middle" fill="#a6adc8" font-size="8">tracking</text>
+  <text x="830" y="370" text-anchor="middle" fill="#a6adc8" font-size="8">Drift</text>
+  <text x="830" y="390" text-anchor="middle" fill="#a6adc8" font-size="8">detection</text>
+  <text x="830" y="430" text-anchor="middle" fill="#a6adc8" font-size="8">Golden</text>
+  <text x="830" y="450" text-anchor="middle" fill="#a6adc8" font-size="8">eval set</text>
+  <text x="830" y="490" text-anchor="middle" fill="#a6adc8" font-size="8">CI/CD</text>
+  <text x="830" y="510" text-anchor="middle" fill="#a6adc8" font-size="8">gates</text>
+  <text x="830" y="550" text-anchor="middle" fill="#a6adc8" font-size="8">Alerts</text>
+  <text x="830" y="578" text-anchor="middle" fill="#6c7086" font-size="8">§24-26</text>
+  
+  <!-- SAFETY - Left side bar -->
+  <rect x="20" y="215" width="100" height="370" rx="6" fill="#313244" stroke="#6c7086" stroke-width="1"/>
+  <text x="70" y="240" text-anchor="middle" fill="#89b4fa" font-size="9" font-weight="bold">SAFETY</text>
+  <text x="70" y="280" text-anchor="middle" fill="#a6adc8" font-size="8">Prompt</text>
+  <text x="70" y="300" text-anchor="middle" fill="#a6adc8" font-size="8">injection</text>
+  <text x="70" y="340" text-anchor="middle" fill="#a6adc8" font-size="8">PII</text>
+  <text x="70" y="360" text-anchor="middle" fill="#a6adc8" font-size="8">redaction</text>
+  <text x="70" y="400" text-anchor="middle" fill="#a6adc8" font-size="8">Access</text>
+  <text x="70" y="420" text-anchor="middle" fill="#a6adc8" font-size="8">control</text>
+  <text x="70" y="460" text-anchor="middle" fill="#a6adc8" font-size="8">Content</text>
+  <text x="70" y="480" text-anchor="middle" fill="#a6adc8" font-size="8">moderation</text>
+  <text x="70" y="520" text-anchor="middle" fill="#a6adc8" font-size="8">Trust</text>
+  <text x="70" y="540" text-anchor="middle" fill="#a6adc8" font-size="8">labels</text>
+  <text x="70" y="578" text-anchor="middle" fill="#6c7086" font-size="8">§21</text>
+  
+  <!-- Agentic loop arrow -->
+  <path d="M600 565 Q650 600 680 560 Q700 510 680 460 Q660 420 630 395" stroke="#f9e2af" stroke-width="1.5" stroke-dasharray="4,3" fill="none" marker-end="url(#arrow-gold)"/>
+  <text x="700" y="500" fill="#f9e2af" font-size="8" font-style="italic">agentic</text>
+  <text x="700" y="512" fill="#f9e2af" font-size="8" font-style="italic">re-retrieval</text>
+  
+  <!-- Handout note -->
+  <text x="450" y="640" text-anchor="middle" fill="#6c7086" font-size="9" font-style="italic">Full 30-section decision checklist available as handout</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#6c7086" stroke-width="1"/>
+    </marker>
+    <marker id="arrow-gold" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#f9e2af" stroke-width="1"/>
+    </marker>
+  </defs>
+</svg>

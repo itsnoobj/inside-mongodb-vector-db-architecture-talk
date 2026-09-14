@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="400" viewBox="0 0 1120 400" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4ea1ff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#39d98a"/>
+    </marker>
+    <marker id="dotRed" markerWidth="8" markerHeight="8" refX="4" refY="4">
+      <circle cx="4" cy="4" r="3" fill="#ff5470"/>
+    </marker>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="1120" height="400" fill="#1a1a2e"/>
+
+  <!-- ===== LEFT: long arrow (long document) ===== -->
+  <!-- origin (120,300) angle 30deg up, length 360 -> tip (431.8,120) -->
+  <line x1="120" y1="300" x2="431.8" y2="120" stroke="#4ea1ff" stroke-width="14" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+  <text x="120" y="345" fill="#cfd8ff" font-size="20" font-weight="bold">10-page report on churn</text>
+
+  <!-- ===== RIGHT: short arrow (short message) ===== -->
+  <!-- origin (650,300) angle 30deg up, length 140 -> tip (771.2,230) -->
+  <line x1="650" y1="300" x2="771.2" y2="230" stroke="#4ea1ff" stroke-width="14" stroke-linecap="round" marker-end="url(#arrowBlue)"/>
+  <text x="620" y="345" fill="#cfd8ff" font-size="20" font-weight="bold">1-line Slack msg: users churning</text>
+
+  <!-- ===== RED measurement line between arrow tips ===== -->
+  <line x1="431.8" y1="120" x2="771.2" y2="230" stroke="#ff5470" stroke-width="3" stroke-dasharray="8 6" marker-start="url(#dotRed)" marker-end="url(#dotRed)"/>
+  <text x="600" y="90" fill="#ff5470" font-size="22" font-weight="bold" text-anchor="middle">Raw distance says: FAR APART ❌</text>
+
+  <!-- ===== GREEN angle / same-direction indicator ===== -->
+  <!-- small parallel green guide arrows showing identical 30deg direction -->
+  <g opacity="0.9">
+    <line x1="900" y1="300" x2="1030" y2="225" stroke="#39d98a" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowGreen)"/>
+    <line x1="900" y1="320" x2="985" y2="271" stroke="#39d98a" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowGreen)"/>
+    <!-- tiny angle arc at shared base -->
+    <path d="M 940 320 A 40 40 0 0 0 933 303" fill="none" stroke="#39d98a" stroke-width="2.5"/>
+    <text x="948" y="300" fill="#39d98a" font-size="14" font-weight="bold">0°</text>
+  </g>
+
+  <!-- bottom message -->
+  <text x="560" y="386" fill="#39d98a" font-size="22" font-weight="bold" text-anchor="middle">But same direction = SAME MEANING ✅</text>
+</svg>

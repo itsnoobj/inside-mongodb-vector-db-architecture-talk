@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 520" font-family="monospace" font-size="12">
+  <style>
+    .node { fill: #1e1e2e; stroke: #89b4fa; stroke-width: 2; rx: 6; }
+    .leaf { fill: #1e1e2e; stroke: #a6e3a1; stroke-width: 2; rx: 6; }
+    .edge { stroke: #6c7086; stroke-width: 1.5; fill: none; }
+    .txt  { fill: #cdd6f4; text-anchor: middle; dominant-baseline: central; }
+    .lbl  { fill: #6c7086; font-size: 11px; text-anchor: middle; }
+    .arrow { stroke: #a6e3a1; stroke-width: 1.5; stroke-dasharray: 5,4; fill: none; marker-end: url(#ah); }
+  </style>
+  <defs><marker id="ah" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#a6e3a1"/></marker></defs>
+
+  <!-- L0: Root -->
+  <rect class="node" x="175" y="20" width="110" height="30"/>
+  <text class="txt" x="230" y="35">50</text>
+
+  <line class="edge" x1="205" y1="50" x2="120" y2="100"/>
+  <line class="edge" x1="255" y1="50" x2="340" y2="100"/>
+
+  <!-- L1 -->
+  <rect class="node" x="65" y="100" width="110" height="30"/>
+  <text class="txt" x="120" y="115">25</text>
+
+  <rect class="node" x="285" y="100" width="110" height="30"/>
+  <text class="txt" x="340" y="115">75</text>
+
+  <line class="edge" x1="95" y1="130" x2="55" y2="190"/>
+  <line class="edge" x1="145" y1="130" x2="185" y2="190"/>
+
+  <line class="edge" x1="315" y1="130" x2="275" y2="190"/>
+  <line class="edge" x1="365" y1="130" x2="405" y2="190"/>
+
+  <!-- L2 -->
+  <rect class="node" x="10" y="190" width="90" height="30"/>
+  <text class="txt" x="55" y="205">10</text>
+
+  <rect class="node" x="140" y="190" width="90" height="30"/>
+  <text class="txt" x="185" y="205">35</text>
+
+  <rect class="node" x="230" y="190" width="90" height="30"/>
+  <text class="txt" x="275" y="205">60</text>
+
+  <rect class="node" x="360" y="190" width="90" height="30"/>
+  <text class="txt" x="405" y="205">90</text>
+
+  <line class="edge" x1="35" y1="220" x2="15" y2="290"/>
+  <line class="edge" x1="75" y1="220" x2="95" y2="290"/>
+
+  <line class="edge" x1="165" y1="220" x2="145" y2="290"/>
+  <line class="edge" x1="205" y1="220" x2="215" y2="290"/>
+
+  <line class="edge" x1="255" y1="220" x2="255" y2="290"/>
+  <line class="edge" x1="295" y1="220" x2="315" y2="290"/>
+
+  <line class="edge" x1="385" y1="220" x2="365" y2="290"/>
+  <line class="edge" x1="425" y1="220" x2="425" y2="290"/>
+
+  <!-- L3 -->
+  <rect class="node" x="0" y="290" width="70" height="28"/>
+  <text class="txt" x="35" y="304">5</text>
+
+  <rect class="node" x="75" y="290" width="70" height="28"/>
+  <text class="txt" x="110" y="304">15</text>
+
+  <rect class="node" x="125" y="290" width="70" height="28"/>
+  <text class="txt" x="160" y="304">28</text>
+
+  <rect class="node" x="200" y="290" width="70" height="28"/>
+  <text class="txt" x="235" y="304">40</text>
+
+  <rect class="node" x="240" y="290" width="70" height="28"/>
+  <text class="txt" x="275" y="304">55</text>
+
+  <rect class="node" x="300" y="290" width="70" height="28"/>
+  <text class="txt" x="335" y="304">65</text>
+
+  <rect class="node" x="350" y="290" width="70" height="28"/>
+  <text class="txt" x="385" y="304">82</text>
+
+  <rect class="node" x="410" y="290" width="48" height="28"/>
+  <text class="txt" x="434" y="304">95</text>
+
+  <!-- L3 → L4 edges -->
+  <line class="edge" x1="20" y1="318" x2="10" y2="385"/>
+  <line class="edge" x1="50" y1="318" x2="60" y2="385"/>
+
+  <line class="edge" x1="95" y1="318" x2="105" y2="385"/>
+  <line class="edge" x1="125" y1="318" x2="150" y2="385"/>
+
+  <line class="edge" x1="145" y1="318" x2="150" y2="385"/>
+  <line class="edge" x1="175" y1="318" x2="195" y2="385"/>
+
+  <line class="edge" x1="220" y1="318" x2="195" y2="385"/>
+  <line class="edge" x1="250" y1="318" x2="240" y2="385"/>
+
+  <line class="edge" x1="260" y1="318" x2="240" y2="385"/>
+  <line class="edge" x1="290" y1="318" x2="285" y2="385"/>
+
+  <line class="edge" x1="320" y1="318" x2="285" y2="385"/>
+  <line class="edge" x1="350" y1="318" x2="330" y2="385"/>
+
+  <line class="edge" x1="370" y1="318" x2="375" y2="385"/>
+  <line class="edge" x1="400" y1="318" x2="415" y2="385"/>
+
+  <line class="edge" x1="434" y1="318" x2="415" y2="385"/>
+
+  <!-- L4: Leaves -->
+  <rect class="leaf" x="0" y="385" width="48" height="26"/>
+  <text class="txt" x="24" y="398">2|3</text>
+
+  <rect class="leaf" x="52" y="385" width="48" height="26"/>
+  <text class="txt" x="76" y="398">7|8</text>
+
+  <rect class="leaf" x="104" y="385" width="48" height="26"/>
+  <text class="txt" x="128" y="398">12</text>
+
+  <rect class="leaf" x="156" y="385" width="48" height="26"/>
+  <text class="txt" x="180" y="398">20</text>
+
+  <rect class="leaf" x="208" y="385" width="48" height="26"/>
+  <text class="txt" x="232" y="398">30</text>
+
+  <rect class="leaf" x="260" y="385" width="48" height="26"/>
+  <text class="txt" x="284" y="398">42</text>
+
+  <rect class="leaf" x="312" y="385" width="48" height="26"/>
+  <text class="txt" x="336" y="398">58</text>
+
+  <rect class="leaf" x="364" y="385" width="48" height="26"/>
+  <text class="txt" x="388" y="398">68</text>
+
+  <rect class="leaf" x="416" y="385" width="42" height="26"/>
+  <text class="txt" x="437" y="398">97</text>
+
+  <!-- Leaf chain arrows -->
+  <line class="arrow" x1="48" y1="398" x2="52" y2="398"/>
+  <line class="arrow" x1="100" y1="398" x2="104" y2="398"/>
+  <line class="arrow" x1="152" y1="398" x2="156" y2="398"/>
+  <line class="arrow" x1="204" y1="398" x2="208" y2="398"/>
+  <line class="arrow" x1="256" y1="398" x2="260" y2="398"/>
+  <line class="arrow" x1="308" y1="398" x2="312" y2="398"/>
+  <line class="arrow" x1="360" y1="398" x2="364" y2="398"/>
+  <line class="arrow" x1="412" y1="398" x2="416" y2="398"/>
+
+  <!-- Labels -->
+  <text class="lbl" x="230" y="450">B+ Tree — sorted keys, O(log n) lookup</text>
+  <text class="lbl" x="230" y="468">Leaf-linked for range scans. Binary search works</text>
+  <text class="lbl" x="230" y="486">because there's a natural order.</text>
+</svg>

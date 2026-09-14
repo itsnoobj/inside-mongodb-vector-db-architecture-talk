@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="450" viewBox="0 0 1120 450">
+  <rect width="1120" height="450" fill="#1a1a2e"/>
+  <style>text { font-family: Arial, Helvetica, sans-serif; }</style>
+
+  <!-- Thermometer bar -->
+  <defs>
+    <linearGradient id="tg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3366ff"/>
+      <stop offset="50%" stop-color="#33cc77"/>
+      <stop offset="100%" stop-color="#ff3333"/>
+    </linearGradient>
+  </defs>
+  <rect x="100" y="50" width="920" height="50" rx="25" fill="url(#tg)" opacity="0.85"/>
+  
+  <!-- Markers -->
+  <text x="150" y="38" text-anchor="middle" fill="#3366ff" font-size="18" font-weight="bold">0</text>
+  <text x="560" y="38" text-anchor="middle" fill="#33cc77" font-size="18" font-weight="bold">0.7</text>
+  <text x="970" y="38" text-anchor="middle" fill="#ff3333" font-size="18" font-weight="bold">1.5</text>
+
+  <text x="150" y="125" text-anchor="middle" fill="#99bbff" font-size="14">Deterministic</text>
+  <text x="560" y="125" text-anchor="middle" fill="#88ddaa" font-size="14">Balanced</text>
+  <text x="970" y="125" text-anchor="middle" fill="#ff9999" font-size="14">Creative</text>
+
+  <!-- Left: temp 0 -->
+  <rect x="60" y="155" width="310" height="250" rx="10" fill="#0a0a2a" stroke="#3366ff" stroke-width="2"/>
+  <text x="215" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">🧊 Always "Paris"</text>
+  
+  <rect x="90" y="210" width="250" height="24" rx="4" fill="#3366ff"/>
+  <text x="100" y="228" fill="#fff" font-size="13">Paris                    100%</text>
+  
+  <rect x="90" y="240" width="4" height="24" rx="4" fill="#3366ff" opacity="0.3"/>
+  <text x="100" y="258" fill="#666" font-size="13">Lyon                       0%</text>
+
+  <text x="215" y="310" text-anchor="middle" fill="#99bbff" font-size="13">Same answer every time</text>
+  <text x="215" y="375" text-anchor="middle" fill="#99bbff" font-size="12">Facts, code, extraction</text>
+
+  <!-- Middle: temp 0.7 -->
+  <rect x="405" y="155" width="310" height="250" rx="10" fill="#0a1a0a" stroke="#33cc77" stroke-width="2"/>
+  <text x="560" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">🌡️ Mostly "Paris"</text>
+  
+  <rect x="435" y="210" width="210" height="24" rx="4" fill="#33cc77"/>
+  <text x="445" y="228" fill="#fff" font-size="13">Paris                 87%</text>
+  
+  <rect x="435" y="240" width="25" height="24" rx="4" fill="#33cc77" opacity="0.5"/>
+  <text x="445" y="258" fill="#aaa" font-size="13">Lyon                   8%</text>
+  
+  <rect x="435" y="270" width="12" height="24" rx="4" fill="#33cc77" opacity="0.3"/>
+  <text x="445" y="288" fill="#666" font-size="13">other                  5%</text>
+
+  <text x="560" y="330" text-anchor="middle" fill="#88ddaa" font-size="13">Some variety</text>
+  <text x="560" y="375" text-anchor="middle" fill="#88ddaa" font-size="12">Writing, chat, summaries</text>
+
+  <!-- Right: temp 1.5 -->
+  <rect x="750" y="155" width="310" height="250" rx="10" fill="#1a0a0a" stroke="#ff3333" stroke-width="2"/>
+  <text x="905" y="190" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">🔥 Anything goes</text>
+  
+  <rect x="780" y="210" width="110" height="24" rx="4" fill="#ff3333" opacity="0.7"/>
+  <text x="790" y="228" fill="#fff" font-size="13">Paris              40%</text>
+  
+  <rect x="780" y="240" width="60" height="24" rx="4" fill="#ff5533" opacity="0.5"/>
+  <text x="790" y="258" fill="#ccc" font-size="13">Lyon               20%</text>
+  
+  <rect x="780" y="270" width="45" height="24" rx="4" fill="#ff7733" opacity="0.4"/>
+  <text x="790" y="288" fill="#aaa" font-size="13">famous             15%</text>
+  
+  <rect x="780" y="300" width="35" height="24" rx="4" fill="#ff9933" opacity="0.3"/>
+  <text x="790" y="318" fill="#888" font-size="13">known              12%</text>
+
+  <text x="905" y="375" text-anchor="middle" fill="#ff9999" font-size="12">Brainstorming, ideas</text>
+
+  <!-- Bottom -->
+  <text x="560" y="435" text-anchor="middle" fill="#555" font-size="12">Higher temperature = flatter probability = more surprise</text>
+</svg>

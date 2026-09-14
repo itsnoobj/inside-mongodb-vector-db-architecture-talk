@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" font-family="Inter, -apple-system, sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="500" fill="#1a1a2e"/>
+  
+  <!-- Title -->
+  <text x="600" y="50" text-anchor="middle" fill="#ffffff" font-size="28" font-weight="bold">Every decision is a slider.</text>
+  <text x="600" y="82" text-anchor="middle" fill="#a6adc8" font-size="16">You can't max all of them.</text>
+
+  <!-- Slider 1: Recall vs Latency -->
+  <rect x="100" y="120" width="1000" height="70" rx="10" fill="#2a2a3c"/>
+  <text x="140" y="155" fill="#a6e3a1" font-size="18" font-weight="bold">RECALL</text>
+  <text x="140" y="175" fill="#a6adc8" font-size="12">Find the right results</text>
+  <rect x="360" y="148" width="480" height="14" rx="7" fill="#3a3750"/>
+  <rect x="360" y="148" width="480" height="14" rx="7" fill="#45475a"/>
+  <circle cx="600" cy="155" r="11" fill="#f9e2af" stroke="#ffffff" stroke-width="2"/>
+  <text x="1060" y="155" text-anchor="end" fill="#f38ba8" font-size="18" font-weight="bold">LATENCY</text>
+  <text x="1060" y="175" text-anchor="end" fill="#a6adc8" font-size="12">Find them fast</text>
+
+  <!-- Slider 2: Cost vs Accuracy -->
+  <rect x="100" y="210" width="1000" height="70" rx="10" fill="#2a2a3c"/>
+  <text x="140" y="245" fill="#a6e3a1" font-size="18" font-weight="bold">COST</text>
+  <text x="140" y="265" fill="#a6adc8" font-size="12">Stay within budget</text>
+  <rect x="360" y="238" width="480" height="14" rx="7" fill="#45475a"/>
+  <circle cx="520" cy="245" r="11" fill="#f9e2af" stroke="#ffffff" stroke-width="2"/>
+  <text x="1060" y="245" text-anchor="end" fill="#f38ba8" font-size="18" font-weight="bold">ACCURACY</text>
+  <text x="1060" y="265" text-anchor="end" fill="#a6adc8" font-size="12">Never wrong</text>
+
+  <!-- Slider 3: Simplicity vs Scale -->
+  <rect x="100" y="300" width="1000" height="70" rx="10" fill="#2a2a3c"/>
+  <text x="140" y="335" fill="#a6e3a1" font-size="18" font-weight="bold">SIMPLICITY</text>
+  <text x="140" y="355" fill="#a6adc8" font-size="12">One DB, easy ops</text>
+  <rect x="360" y="328" width="480" height="14" rx="7" fill="#45475a"/>
+  <circle cx="680" cy="335" r="11" fill="#f9e2af" stroke="#ffffff" stroke-width="2"/>
+  <text x="1060" y="335" text-anchor="end" fill="#f38ba8" font-size="18" font-weight="bold">SCALE</text>
+  <text x="1060" y="355" text-anchor="end" fill="#a6adc8" font-size="12">Handle 1B vectors</text>
+
+  <!-- Slider 4: Freshness vs Consistency -->
+  <rect x="100" y="390" width="1000" height="70" rx="10" fill="#2a2a3c"/>
+  <text x="140" y="425" fill="#a6e3a1" font-size="18" font-weight="bold">FRESHNESS</text>
+  <text x="140" y="445" fill="#a6adc8" font-size="12">Latest data, now</text>
+  <rect x="360" y="418" width="480" height="14" rx="7" fill="#45475a"/>
+  <circle cx="550" cy="425" r="11" fill="#f9e2af" stroke="#ffffff" stroke-width="2"/>
+  <text x="1060" y="425" text-anchor="end" fill="#f38ba8" font-size="18" font-weight="bold">CONSISTENCY</text>
+  <text x="1060" y="445" text-anchor="end" fill="#a6adc8" font-size="12">Never stale results</text>
+</svg>

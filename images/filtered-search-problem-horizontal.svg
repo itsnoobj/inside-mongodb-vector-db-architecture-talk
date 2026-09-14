@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 600" font-family="'Courier New', monospace">
+  <!-- Background -->
+  <rect width="1400" height="600" fill="#1a1a2e"/>
+  
+  <!-- LEFT SIDE: Post-Filter -->
+  <text x="300" y="45" text-anchor="middle" fill="#f7a8c4" font-size="22" font-weight="bold">Post-Filter (ANN → then filter)</text>
+  <text x="300" y="72" text-anchor="middle" fill="#a6adc8" font-size="14">HNSW graph (50K docs)</text>
+  
+  <!-- HNSW circle - left -->
+  <circle cx="300" cy="220" r="130" fill="none" stroke="#6a6680" stroke-width="1.5" stroke-dasharray="8,4"/>
+  
+  <!-- Pink dots (don't match) -->
+  <circle cx="255" cy="135" r="16" fill="#f7a8c4"/><text x="255" y="140" text-anchor="middle" fill="#2d2b3d" font-size="12">✗</text>
+  <circle cx="310" cy="130" r="16" fill="#f7a8c4"/><text x="310" y="135" text-anchor="middle" fill="#2d2b3d" font-size="12">✗</text>
+  <circle cx="220" cy="180" r="16" fill="#f7a8c4"/><text x="220" y="185" text-anchor="middle" fill="#2d2b3d" font-size="12">✗</text>
+  <circle cx="290" cy="185" r="16" fill="#f7a8c4"/><text x="290" y="190" text-anchor="middle" fill="#2d2b3d" font-size="12">✗</text>
+  <circle cx="345" cy="175" r="16" fill="#f7a8c4"/><text x="345" y="180" text-anchor="middle" fill="#2d2b3d" font-size="12">✗</text>
+  <circle cx="380" cy="210" r="16" fill="#f7a8c4"/><text x="380" y="215" text-anchor="middle" fill="#2d2b3d" font-size="12">✗</text>
+  <circle cx="310" cy="240" r="16" fill="#f7a8c4"/><text x="310" y="245" text-anchor="middle" fill="#2d2b3d" font-size="12">✗</text>
+  <circle cx="255" cy="270" r="16" fill="#f7a8c4"/><text x="255" y="275" text-anchor="middle" fill="#2d2b3d" font-size="12">✗</text>
+  <circle cx="360" cy="275" r="16" fill="#f7a8c4"/><text x="360" y="280" text-anchor="middle" fill="#2d2b3d" font-size="12">✗</text>
+  <circle cx="290" cy="300" r="16" fill="#f7a8c4"/><text x="290" y="305" text-anchor="middle" fill="#2d2b3d" font-size="12">✗</text>
+  
+  <!-- Green dots (match filter) -->
+  <circle cx="350" cy="140" r="16" fill="#a6e3a1"/><text x="350" y="145" text-anchor="middle" fill="#2d2b3d" font-size="12">✓</text>
+  <circle cx="230" cy="240" r="16" fill="#a6e3a1"/><text x="230" y="245" text-anchor="middle" fill="#2d2b3d" font-size="12">✓</text>
+  
+  <!-- Legend -->
+  <circle cx="180" cy="380" r="10" fill="#a6e3a1"/>
+  <text x="200" y="385" fill="#cdd6f4" font-size="13">matches filter</text>
+  <circle cx="340" cy="380" r="10" fill="#f7a8c4"/>
+  <text x="360" y="385" fill="#cdd6f4" font-size="13">doesn't match</text>
+  
+  <!-- Explanation -->
+  <text x="300" y="430" text-anchor="middle" fill="#a6adc8" font-size="14">ANN returns top 10 nearest</text>
+  <text x="300" y="452" text-anchor="middle" fill="#a6adc8" font-size="14">→ filter: only 2 match tenant_id=42</text>
+  
+  <!-- Big red X result -->
+  <text x="260" y="500" fill="#f7a8c4" font-size="26" font-weight="bold">✗</text>
+  <text x="290" y="500" fill="#f7a8c4" font-size="20" font-weight="bold">Asked for 10, got 2</text>
+  
+  <!-- DIVIDER -->
+  <line x1="620" y1="30" x2="620" y2="570" stroke="#6a6680" stroke-width="1.5" stroke-dasharray="6,4"/>
+  
+  <!-- RIGHT SIDE: Pre-Filter -->
+  <text x="1000" y="45" text-anchor="middle" fill="#f5d6a0" font-size="22" font-weight="bold">Pre-Filter (filter → then ANN)</text>
+  <text x="1000" y="72" text-anchor="middle" fill="#a6adc8" font-size="14">HNSW graph (50K docs)</text>
+  
+  <!-- HNSW circle - right -->
+  <circle cx="1000" cy="220" r="130" fill="none" stroke="#6a6680" stroke-width="1.5" stroke-dasharray="8,4"/>
+  
+  <!-- Scattered yellow dots (filtered results, sparse in graph) -->
+  <circle cx="930" cy="130" r="14" fill="#f5d6a0"/>
+  <circle cx="1090" cy="155" r="14" fill="#f5d6a0"/>
+  <circle cx="980" cy="210" r="14" fill="#f5d6a0"/>
+  <circle cx="1060" cy="260" r="14" fill="#f5d6a0"/>
+  <circle cx="920" cy="290" r="14" fill="#f5d6a0"/>
+  <circle cx="1000" cy="310" r="14" fill="#f5d6a0"/>
+  
+  <!-- Dashed lines showing scattered traversal -->
+  <line x1="930" y1="130" x2="1090" y2="155" stroke="#6a6680" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="1090" y1="155" x2="980" y2="210" stroke="#6a6680" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="980" y1="210" x2="1060" y2="260" stroke="#6a6680" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="1060" y1="260" x2="920" y2="290" stroke="#6a6680" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="920" y1="290" x2="1000" y2="310" stroke="#6a6680" stroke-width="1" stroke-dasharray="4,3"/>
+  
+  <!-- Explanation -->
+  <text x="1000" y="400" text-anchor="middle" fill="#a6adc8" font-size="14">200 docs match tenant_id=42</text>
+  <text x="1000" y="425" text-anchor="middle" fill="#a6adc8" font-size="14">→ scattered across graph</text>
+  
+  <!-- Big X result -->
+  <text x="960" y="490" fill="#f5d6a0" font-size="26" font-weight="bold">✗</text>
+  <text x="990" y="490" fill="#f5d6a0" font-size="20" font-weight="bold">Falls back to sequential scan</text>
+  
+  <!-- Bottom verdict -->
+  <text x="700" y="570" text-anchor="middle" fill="#cdd6f4" font-size="18" font-weight="bold">Both approaches break. You need adaptive filtered search.</text>
+</svg>

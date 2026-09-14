@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="350" viewBox="0 0 1120 350">
+  <rect width="1120" height="350" fill="#1a1a2e"/>
+  <style>text { font-family: Arial, Helvetica, sans-serif; }</style>
+
+  <!-- AGENT outer box -->
+  <rect x="60" y="30" width="1000" height="290" rx="16" fill="none" stroke="#bb88ff" stroke-width="3" stroke-dasharray="10"/>
+  <text x="560" y="25" text-anchor="middle" fill="#bb88ff" font-size="20" font-weight="bold">AGENT</text>
+
+  <!-- MODEL box -->
+  <rect x="120" y="80" width="350" height="200" rx="12" fill="#1e3a5f" stroke="#4a9eff" stroke-width="2"/>
+  <text x="295" y="120" text-anchor="middle" fill="#4a9eff" font-size="18" font-weight="bold">MODEL</text>
+  <text x="295" y="150" text-anchor="middle" fill="#aaccff" font-size="13">(the LLM)</text>
+  <text x="295" y="185" text-anchor="middle" fill="#88bbff" font-size="12">• Predicts next token</text>
+  <text x="295" y="210" text-anchor="middle" fill="#88bbff" font-size="12">• Generates text</text>
+  <text x="295" y="235" text-anchor="middle" fill="#88bbff" font-size="12">• Can be wrong</text>
+  <text x="295" y="260" text-anchor="middle" fill="#88bbff" font-size="12">• No memory of rules</text>
+
+  <!-- + sign -->
+  <text x="520" y="190" text-anchor="middle" fill="#ffffff" font-size="40" font-weight="bold">+</text>
+
+  <!-- HARNESS box -->
+  <rect x="580" y="80" width="430" height="200" rx="12" fill="#1a3a1a" stroke="#66ff66" stroke-width="2"/>
+  <text x="795" y="120" text-anchor="middle" fill="#66ff66" font-size="18" font-weight="bold">HARNESS</text>
+  <text x="795" y="150" text-anchor="middle" fill="#aaffaa" font-size="13">(the orchestration layer)</text>
+  <text x="795" y="185" text-anchor="middle" fill="#88dd88" font-size="12">• Validates outputs between steps</text>
+  <text x="795" y="210" text-anchor="middle" fill="#88dd88" font-size="12">• Retries on failure</text>
+  <text x="795" y="235" text-anchor="middle" fill="#88dd88" font-size="12">• Routes to human when unsure</text>
+  <text x="795" y="260" text-anchor="middle" fill="#88dd88" font-size="12">• Enforces guardrails &amp; policies</text>
+
+  <!-- Bottom -->
+  <text x="560" y="340" text-anchor="middle" fill="#aaa" font-size="13">Model alone = guess machine. Model + Harness = reliable agent.</text>
+</svg>

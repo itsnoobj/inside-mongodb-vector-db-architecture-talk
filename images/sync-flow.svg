@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1010 520" font-family="monospace">
+  <rect width="1010" height="520" fill="#1e1e2e"/>
+
+  <!-- ===== top: horizontal async flow ===== -->
+
+  <!-- writes -->
+  <text x="55" y="148" fill="#a6adc8" font-size="22" text-anchor="middle">writes</text>
+  <line x1="100" y1="140" x2="212" y2="140" stroke="#a6adc8" stroke-width="3"/>
+  <polygon points="224,140 210,133 210,147" fill="#a6adc8"/>
+
+  <!-- mongod box (green) -->
+  <rect x="232" y="80" width="228" height="120" fill="#313244" rx="12" stroke="#a6e3a1" stroke-width="2.5"/>
+  <text x="346" y="132" fill="#a6e3a1" font-size="30" text-anchor="middle" font-weight="bold">mongod</text>
+  <text x="346" y="170" fill="#a6adc8" font-size="18" text-anchor="middle">oplog</text>
+
+  <!-- change stream arrow (async, accent, double line) -->
+  <line x1="474" y1="134" x2="726" y2="134" stroke="#f9e2af" stroke-width="3"/>
+  <line x1="474" y1="146" x2="726" y2="146" stroke="#f9e2af" stroke-width="3"/>
+  <polygon points="738,140 722,131 722,149" fill="#f9e2af"/>
+  <text x="600" y="106" fill="#f9e2af" font-size="18" text-anchor="middle">change stream</text>
+  <text x="600" y="178" fill="#f9e2af" font-size="16" text-anchor="middle">async · off the write path</text>
+
+  <!-- mongot box (teal) -->
+  <rect x="740" y="80" width="228" height="120" fill="#313244" rx="12" stroke="#4EC9B0" stroke-width="2.5"/>
+  <text x="854" y="122" fill="#4EC9B0" font-size="30" text-anchor="middle" font-weight="bold">mongot</text>
+  <text x="854" y="156" fill="#a6adc8" font-size="16" text-anchor="middle">builds Lucene</text>
+  <text x="854" y="180" fill="#a6adc8" font-size="16" text-anchor="middle">HNSW index</text>
+
+  <!-- ===== bottom: two-phase strip ===== -->
+
+  <!-- phase 1 (initial sync) -->
+  <rect x="55" y="285" width="415" height="175" fill="#313244" rx="12" stroke="#585b70" stroke-width="2"/>
+  <text x="262" y="335" fill="#f9e2af" font-size="24" text-anchor="middle" font-weight="bold">① initial sync</text>
+  <text x="262" y="382" fill="#a6adc8" font-size="20" text-anchor="middle">full collection scan</text>
+  <text x="262" y="418" fill="#585b70" font-size="17" text-anchor="middle">build the index from scratch</text>
+
+  <!-- then arrow -->
+  <line x1="478" y1="372" x2="530" y2="372" stroke="#a6adc8" stroke-width="3"/>
+  <polygon points="540,372 526,365 526,379" fill="#a6adc8"/>
+  <text x="509" y="352" fill="#585b70" font-size="15" text-anchor="middle">then</text>
+
+  <!-- phase 2 (steady state) -->
+  <rect x="548" y="285" width="415" height="175" fill="#313244" rx="12" stroke="#585b70" stroke-width="2"/>
+  <text x="755" y="335" fill="#f9e2af" font-size="24" text-anchor="middle" font-weight="bold">② steady state</text>
+  <text x="755" y="382" fill="#a6adc8" font-size="20" text-anchor="middle">tail the change stream</text>
+  <text x="755" y="418" fill="#585b70" font-size="17" text-anchor="middle">apply deltas as they commit</text>
+</svg>

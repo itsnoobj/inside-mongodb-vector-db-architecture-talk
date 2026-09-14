@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#0f1419"/>
+  <text x="400" y="50" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">Why LLMs Get Things Wrong</text>
+
+  <!-- Row 1 -->
+  <g>
+    <rect x="40" y="90" width="230" height="180" rx="16" fill="#161d26" stroke="#ff5a5a" stroke-width="3"/>
+    <text x="155" y="160" font-family="Helvetica, Arial, sans-serif" font-size="40" text-anchor="middle">&#127917;</text>
+    <text x="155" y="205" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="bold" fill="#ffffff" text-anchor="middle">Hallucinations</text>
+    <text x="155" y="235" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#8a94a6" text-anchor="middle">Confident nonsense</text>
+  </g>
+  <g>
+    <rect x="285" y="90" width="230" height="180" rx="16" fill="#161d26" stroke="#ffa94d" stroke-width="3"/>
+    <text x="400" y="160" font-family="Helvetica, Arial, sans-serif" font-size="40" text-anchor="middle">&#128197;</text>
+    <text x="400" y="205" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="bold" fill="#ffffff" text-anchor="middle">Knowledge Cutoff</text>
+    <text x="400" y="235" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#8a94a6" text-anchor="middle">Stuck in the past</text>
+  </g>
+  <g>
+    <rect x="530" y="90" width="230" height="180" rx="16" fill="#161d26" stroke="#ffd166" stroke-width="3"/>
+    <text x="645" y="160" font-family="Helvetica, Arial, sans-serif" font-size="40" text-anchor="middle">&#128290;</text>
+    <text x="645" y="205" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="bold" fill="#ffffff" text-anchor="middle">Math Errors</text>
+    <text x="645" y="235" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#8a94a6" text-anchor="middle">Pattern &#8800; calculation</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g>
+    <rect x="40" y="300" width="230" height="180" rx="16" fill="#161d26" stroke="#3ddc84" stroke-width="3"/>
+    <text x="155" y="370" font-family="Helvetica, Arial, sans-serif" font-size="40" text-anchor="middle">&#9878;</text>
+    <text x="155" y="415" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="bold" fill="#ffffff" text-anchor="middle">Bias</text>
+    <text x="155" y="445" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#8a94a6" text-anchor="middle">Mirrors training data</text>
+  </g>
+  <g>
+    <rect x="285" y="300" width="230" height="180" rx="16" fill="#161d26" stroke="#4d9bff" stroke-width="3"/>
+    <text x="400" y="370" font-family="Helvetica, Arial, sans-serif" font-size="40" text-anchor="middle">&#129513;</text>
+    <text x="400" y="415" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="bold" fill="#ffffff" text-anchor="middle">Reasoning Gaps</text>
+    <text x="400" y="445" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#8a94a6" text-anchor="middle">Looks smart, sometimes isn't</text>
+  </g>
+  <g>
+    <rect x="530" y="300" width="230" height="180" rx="16" fill="#161d26" stroke="#9b7bff" stroke-width="3"/>
+    <text x="645" y="370" font-family="Helvetica, Arial, sans-serif" font-size="40" text-anchor="middle">&#128207;</text>
+    <text x="645" y="415" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="bold" fill="#ffffff" text-anchor="middle">Context Limits</text>
+    <text x="645" y="445" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#8a94a6" text-anchor="middle">Forgets long inputs</text>
+  </g>
+
+  <text x="400" y="540" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8a94a6" text-anchor="middle" font-style="italic">It predicts plausible text &#8212; it doesn't "know" facts</text>
+</svg>

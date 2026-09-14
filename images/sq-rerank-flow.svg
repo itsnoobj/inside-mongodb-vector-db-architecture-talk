@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 650" font-family="monospace">
+  <rect width="500" height="650" fill="#1e1e2e"/>
+  <defs>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <text x="250" y="25" fill="#cdd6f4" font-size="15" font-weight="bold" text-anchor="middle">Search Blurry, Re-rank Sharp</text>
+
+  <!-- STEP 1: Sharp vs Blurry -->
+  <text x="250" y="50" fill="#f9e2af" font-size="11" text-anchor="middle">Index time: store blurry in RAM, sharp on disk</text>
+
+  <!-- Sharp image -->
+  <rect x="30" y="65" width="130" height="80" fill="#313244" rx="6" stroke="#a6e3a1" stroke-width="2"/>
+  <rect x="40" y="75" width="24" height="24" fill="#f38ba8" rx="2"/>
+  <rect x="68" y="75" width="24" height="24" fill="#f9e2af" rx="2"/>
+  <rect x="96" y="75" width="24" height="24" fill="#a6e3a1" rx="2"/>
+  <rect x="124" y="75" width="24" height="24" fill="#89b4fa" rx="2"/>
+  <rect x="40" y="103" width="24" height="24" fill="#cba6f7" rx="2"/>
+  <rect x="68" y="103" width="24" height="24" fill="#fab387" rx="2"/>
+  <rect x="96" y="103" width="24" height="24" fill="#94e2d5" rx="2"/>
+  <rect x="124" y="103" width="24" height="24" fill="#f5c2e7" rx="2"/>
+  <text x="95" y="160" fill="#a6e3a1" font-size="10" text-anchor="middle">FP32 (sharp) · 6 KB</text>
+  <text x="95" y="174" fill="#585b70" font-size="10" text-anchor="middle">💾 stored on disk</text>
+
+  <!-- Arrow -->
+  <text x="195" y="110" fill="#585b70" font-size="22">→</text>
+
+  <!-- Blurry image -->
+  <rect x="230" y="65" width="130" height="80" fill="#313244" rx="6" stroke="#f9e2af" stroke-width="2"/>
+  <rect x="240" y="75" width="24" height="24" fill="#c06070" rx="2" filter="url(#blur)"/>
+  <rect x="268" y="75" width="24" height="24" fill="#c0a050" rx="2" filter="url(#blur)"/>
+  <rect x="296" y="75" width="24" height="24" fill="#70a070" rx="2" filter="url(#blur)"/>
+  <rect x="324" y="75" width="24" height="24" fill="#5080b0" rx="2" filter="url(#blur)"/>
+  <rect x="240" y="103" width="24" height="24" fill="#907090" rx="2" filter="url(#blur)"/>
+  <rect x="268" y="103" width="24" height="24" fill="#b08050" rx="2" filter="url(#blur)"/>
+  <rect x="296" y="103" width="24" height="24" fill="#609080" rx="2" filter="url(#blur)"/>
+  <rect x="324" y="103" width="24" height="24" fill="#c080a0" rx="2" filter="url(#blur)"/>
+  <text x="295" y="160" fill="#f9e2af" font-size="10" text-anchor="middle">INT8 (blurry) · 1.5 KB</text>
+  <text x="295" y="174" fill="#585b70" font-size="10" text-anchor="middle">🧠 lives in RAM</text>
+
+  <!-- STEP 2: Fast search -->
+  <text x="250" y="205" fill="#f9e2af" font-size="16" text-anchor="middle">↓</text>
+
+  <rect x="60" y="215" width="380" height="145" fill="#313244" rx="6"/>
+  <text x="250" y="237" fill="#f9e2af" font-size="12" text-anchor="middle" font-weight="bold">① Fast search (blurry, in RAM)</text>
+
+  <rect x="85" y="250" width="28" height="16" fill="#c06070" rx="2" filter="url(#blur)"/>
+  <text x="130" y="263" fill="#a6adc8" font-size="11">d = 0.12</text>
+  <rect x="85" y="272" width="28" height="16" fill="#70a070" rx="2" filter="url(#blur)"/>
+  <text x="130" y="285" fill="#a6adc8" font-size="11">d = 0.15</text>
+  <rect x="85" y="294" width="28" height="16" fill="#907090" rx="2" filter="url(#blur)"/>
+  <text x="130" y="307" fill="#a6adc8" font-size="11">d = 0.31</text>
+  <rect x="85" y="316" width="28" height="16" fill="#b08050" rx="2" filter="url(#blur)"/>
+  <text x="130" y="329" fill="#585b70" font-size="11">d = 0.89 ✗</text>
+
+  <text x="330" y="275" fill="#a6adc8" font-size="10" text-anchor="middle">Scans millions</text>
+  <text x="330" y="290" fill="#a6adc8" font-size="10" text-anchor="middle">in milliseconds</text>
+  <text x="330" y="315" fill="#a6e3a1" font-size="11" text-anchor="middle">→ top 200 candidates</text>
+
+  <!-- Arrow down -->
+  <text x="250" y="380" fill="#f9e2af" font-size="16" text-anchor="middle">↓</text>
+
+  <!-- STEP 3: Re-rank -->
+  <rect x="30" y="390" width="440" height="190" fill="#313244" rx="8" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="250" y="415" fill="#a6e3a1" font-size="12" text-anchor="middle" font-weight="bold">② Fetch sharp originals → re-rank top candidates</text>
+
+  <!-- Candidate 1 -->
+  <text x="100" y="440" fill="#a6adc8" font-size="10" text-anchor="middle">Candidate 1</text>
+  <rect x="55" y="448" width="32" height="22" fill="#c06070" rx="2" filter="url(#blur)"/>
+  <text x="98" y="464" fill="#585b70" font-size="14">→</text>
+  <rect x="110" y="448" width="32" height="22" fill="#f38ba8" rx="2"/>
+  <text x="100" y="490" fill="#a6e3a1" font-size="10" text-anchor="middle">d = 0.11 ✓</text>
+  <text x="100" y="503" fill="#585b70" font-size="9" text-anchor="middle">was 0.12</text>
+
+  <!-- Candidate 2 -->
+  <text x="250" y="440" fill="#a6adc8" font-size="10" text-anchor="middle">Candidate 2</text>
+  <rect x="205" y="448" width="32" height="22" fill="#70a070" rx="2" filter="url(#blur)"/>
+  <text x="248" y="464" fill="#585b70" font-size="14">→</text>
+  <rect x="260" y="448" width="32" height="22" fill="#a6e3a1" rx="2"/>
+  <text x="250" y="490" fill="#a6e3a1" font-size="10" text-anchor="middle">d = 0.14 ✓</text>
+  <text x="250" y="503" fill="#585b70" font-size="9" text-anchor="middle">was 0.15</text>
+
+  <!-- Candidate 3 -->
+  <text x="400" y="440" fill="#a6adc8" font-size="10" text-anchor="middle">Candidate 3</text>
+  <rect x="355" y="448" width="32" height="22" fill="#907090" rx="2" filter="url(#blur)"/>
+  <text x="398" y="464" fill="#585b70" font-size="14">→</text>
+  <rect x="410" y="448" width="32" height="22" fill="#cba6f7" rx="2"/>
+  <text x="400" y="490" fill="#f9e2af" font-size="10" text-anchor="middle">d = 0.35 ↑</text>
+  <text x="400" y="503" fill="#585b70" font-size="9" text-anchor="middle">was 0.31 — reordered!</text>
+
+  <!-- Divider line -->
+  <line x1="50" y1="520" x2="450" y2="520" stroke="#585b70" stroke-width="0.5" opacity="0.3"/>
+
+  <text x="250" y="545" fill="#a6adc8" font-size="10" text-anchor="middle">Sharp re-scoring corrects blurry approximations</text>
+  <text x="250" y="562" fill="#a6adc8" font-size="10" text-anchor="middle">and reorders results for better accuracy</text>
+
+  <!-- Bottom insight -->
+  <rect x="50" y="600" width="400" height="28" fill="#45475a" rx="4"/>
+  <text x="250" y="619" fill="#cdd6f4" font-size="13" text-anchor="middle" font-weight="bold">Blurry finds the neighborhood. Sharp picks the winner.</text>
+</svg>

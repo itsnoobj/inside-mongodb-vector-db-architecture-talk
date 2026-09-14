@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 500" font-family="Inter, -apple-system, sans-serif">
+  <rect width="1600" height="500" fill="#1a1a2e"/>
+  
+  <!-- Title -->
+  <text x="800" y="50" text-anchor="middle" fill="#cdd6f4" font-size="24" font-weight="bold">The Scaling Path</text>
+  <text x="800" y="80" text-anchor="middle" fill="#a6adc8" font-size="14">We start from first principles and build up.</text>
+  
+  <!-- Arrow connecting all -->
+  <line x1="100" y1="350" x2="1500" y2="350" stroke="#3a3750" stroke-width="3"/>
+  
+  <!-- Stage 1: 100K -->
+  <rect x="80" y="150" width="300" height="300" rx="16" fill="#313244" stroke="#a6e3a1" stroke-width="2.5"/>
+  <text x="230" y="200" text-anchor="middle" fill="#a6e3a1" font-size="22" font-weight="bold">100K vectors</text>
+  <text x="230" y="250" text-anchor="middle" fill="#cdd6f4" font-size="18">Everything works</text>
+  <text x="230" y="290" text-anchor="middle" fill="#a6adc8" font-size="16">Don't optimize.</text>
+  <text x="230" y="320" text-anchor="middle" fill="#a6adc8" font-size="16">Just ship.</text>
+  <text x="230" y="410" text-anchor="middle" fill="#a6e3a1" font-size="24" font-weight="bold">SHIP IT</text>
+  
+  <!-- Arrow -->
+  <text x="405" y="355" text-anchor="middle" fill="#a6adc8" font-size="28">→</text>
+  
+  <!-- Stage 2: 1-10M -->
+  <rect x="430" y="150" width="300" height="300" rx="16" fill="#313244" stroke="#89b4fa" stroke-width="2.5"/>
+  <text x="580" y="200" text-anchor="middle" fill="#89b4fa" font-size="22" font-weight="bold">1-10M</text>
+  <text x="580" y="250" text-anchor="middle" fill="#cdd6f4" font-size="18">Proper indexes</text>
+  <text x="580" y="290" text-anchor="middle" fill="#a6adc8" font-size="16">Need filters</text>
+  <text x="580" y="320" text-anchor="middle" fill="#a6adc8" font-size="16">Need MRL (256d)</text>
+  <text x="580" y="410" text-anchor="middle" fill="#f9e2af" font-size="24" font-weight="bold">GETTING REAL</text>
+  
+  <!-- Arrow -->
+  <text x="755" y="355" text-anchor="middle" fill="#a6adc8" font-size="28">→</text>
+  
+  <!-- Stage 3: 10-50M -->
+  <rect x="780" y="150" width="300" height="300" rx="16" fill="#313244" stroke="#f9e2af" stroke-width="2.5"/>
+  <text x="930" y="200" text-anchor="middle" fill="#f9e2af" font-size="22" font-weight="bold">10-50M</text>
+  <text x="930" y="250" text-anchor="middle" fill="#cdd6f4" font-size="18">RAM wall hits</text>
+  <text x="930" y="290" text-anchor="middle" fill="#a6adc8" font-size="16">Need compression</text>
+  <text x="930" y="320" text-anchor="middle" fill="#a6adc8" font-size="16">Need quantization</text>
+  <text x="930" y="410" text-anchor="middle" fill="#f9e2af" font-size="24" font-weight="bold">CFO NOTICED</text>
+  
+  <!-- Arrow -->
+  <text x="1105" y="355" text-anchor="middle" fill="#a6adc8" font-size="28">→</text>
+  
+  <!-- Stage 4: 50M+ -->
+  <rect x="1130" y="150" width="300" height="300" rx="16" fill="#313244" stroke="#f38ba8" stroke-width="2.5"/>
+  <text x="1280" y="200" text-anchor="middle" fill="#f38ba8" font-size="22" font-weight="bold">50M+</text>
+  <text x="1280" y="250" text-anchor="middle" fill="#cdd6f4" font-size="18">Disk indexes</text>
+  <text x="1280" y="290" text-anchor="middle" fill="#a6adc8" font-size="16">Need DiskANN</text>
+  <text x="1280" y="320" text-anchor="middle" fill="#a6adc8" font-size="16">Need observability</text>
+  <text x="1280" y="410" text-anchor="middle" fill="#f38ba8" font-size="24" font-weight="bold">SILENT FAILURES</text>
+  
+  <!-- Bottom -->
+</svg>

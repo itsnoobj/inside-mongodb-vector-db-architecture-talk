@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" font-family="Inter, -apple-system, sans-serif">
+  <rect width="800" height="900" fill="#1a1a2e"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" fill="#cdd6f4" font-size="28" font-weight="bold">DiskANN: How a Query Flows</text>
+  
+  <!-- RAM Section -->
+  <rect x="30" y="60" width="740" height="500" rx="10" fill="none" stroke="#94e2d5" stroke-width="2"/>
+  <text x="60" y="90" fill="#94e2d5" font-size="22" font-weight="bold">RAM (~25 GB)</text>
+  <text x="60" y="112" fill="#a6adc8" font-size="18">Compressed graph + codes</text>
+  
+  <rect x="60" y="130" width="320" height="38" rx="6" fill="#f9e2af" opacity="0.2" stroke="#f9e2af" stroke-width="1"/>
+  <text x="220" y="154" text-anchor="middle" fill="#f9e2af" font-size="20">① Query arrives</text>
+  
+  <text x="220" y="183" text-anchor="middle" fill="#a6adc8" font-size="20">↓</text>
+  
+  <rect x="60" y="190" width="320" height="38" rx="6" fill="#94e2d5" opacity="0.15" stroke="#94e2d5" stroke-width="1"/>
+  <text x="220" y="214" text-anchor="middle" fill="#94e2d5" font-size="20">② Start at center node</text>
+  
+  <text x="220" y="243" text-anchor="middle" fill="#a6adc8" font-size="20">↓</text>
+  
+  <rect x="60" y="250" width="320" height="38" rx="6" fill="#94e2d5" opacity="0.15" stroke="#94e2d5" stroke-width="1"/>
+  <text x="220" y="274" text-anchor="middle" fill="#94e2d5" font-size="20">③ Load compressed neighbors</text>
+  
+  <!-- PQ codes -->
+  <rect x="440" y="255" width="55" height="26" rx="4" fill="#313244" stroke="#6c7086" stroke-width="1"/>
+  <text x="467" y="272" text-anchor="middle" fill="#a6adc8" font-size="18">#42</text>
+  <rect x="505" y="255" width="55" height="26" rx="4" fill="#313244" stroke="#6c7086" stroke-width="1"/>
+  <text x="532" y="272" text-anchor="middle" fill="#a6adc8" font-size="18">#7</text>
+  <rect x="570" y="255" width="55" height="26" rx="4" fill="#313244" stroke="#6c7086" stroke-width="1"/>
+  <text x="597" y="272" text-anchor="middle" fill="#a6adc8" font-size="18">#91</text>
+  <rect x="635" y="255" width="55" height="26" rx="4" fill="#313244" stroke="#6c7086" stroke-width="1"/>
+  <text x="662" y="272" text-anchor="middle" fill="#a6adc8" font-size="18">#15</text>
+  
+  <text x="220" y="303" text-anchor="middle" fill="#a6adc8" font-size="20">↓</text>
+  
+  <rect x="60" y="310" width="320" height="38" rx="6" fill="#94e2d5" opacity="0.15" stroke="#94e2d5" stroke-width="1"/>
+  <text x="220" y="334" text-anchor="middle" fill="#94e2d5" font-size="20">④ Estimate distances fast</text>
+  
+  <text x="220" y="363" text-anchor="middle" fill="#a6adc8" font-size="20">↓</text>
+  
+  <rect x="60" y="370" width="320" height="38" rx="6" fill="#94e2d5" opacity="0.15" stroke="#94e2d5" stroke-width="1"/>
+  <text x="220" y="394" text-anchor="middle" fill="#94e2d5" font-size="20">⑤ Hop to best → repeat 10-20x</text>
+  
+  <!-- Hop chain -->
+  <circle cx="450" cy="389" r="7" fill="#f9e2af"/>
+  <line x1="457" y1="389" x2="493" y2="389" stroke="#f9e2af" stroke-width="2"/>
+  <circle cx="500" cy="389" r="7" fill="#f9e2af"/>
+  <line x1="507" y1="389" x2="543" y2="389" stroke="#f9e2af" stroke-width="2"/>
+  <circle cx="550" cy="389" r="7" fill="#f9e2af"/>
+  <line x1="557" y1="389" x2="593" y2="389" stroke="#f9e2af" stroke-width="2"/>
+  <circle cx="600" cy="389" r="7" fill="#f9e2af"/>
+  <line x1="607" y1="389" x2="643" y2="389" stroke="#f9e2af" stroke-width="2"/>
+  <circle cx="650" cy="389" r="9" fill="#a6e3a1"/>
+  <text x="680" y="393" fill="#a6e3a1" font-size="18">found!</text>
+  
+  <text x="220" y="423" text-anchor="middle" fill="#a6adc8" font-size="20">↓</text>
+  
+  <rect x="60" y="430" width="320" height="38" rx="6" fill="#89b4fa" opacity="0.2" stroke="#89b4fa" stroke-width="1"/>
+  <text x="220" y="454" text-anchor="middle" fill="#89b4fa" font-size="20">⑥ Top ~200 → fetch from SSD</text>
+  
+  <text x="400" y="510" text-anchor="middle" fill="#a6adc8" font-size="18">fetch full FP32 vectors ↓</text>
+  
+  <!-- Dashed line -->
+  <line x1="400" y1="520" x2="400" y2="580" stroke="#89b4fa" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- NVMe SSD Section -->
+  <rect x="30" y="590" width="740" height="200" rx="10" fill="none" stroke="#89b4fa" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="60" y="620" fill="#89b4fa" font-size="22" font-weight="bold">NVMe SSD (~600 GB)</text>
+  <text x="60" y="642" fill="#a6adc8" font-size="18">Full-precision vectors</text>
+  
+  <!-- Vector bars -->
+  <rect x="60" y="660" width="220" height="18" rx="3" fill="#6c7086" opacity="0.25"/>
+  <rect x="60" y="685" width="220" height="18" rx="3" fill="#6c7086" opacity="0.25"/>
+  <rect x="60" y="710" width="220" height="18" rx="3" fill="#6c7086" opacity="0.25"/>
+  <text x="60" y="750" fill="#a6adc8" font-size="18">millions stored</text>
+  
+  <rect x="350" y="660" width="180" height="18" rx="3" fill="#a6e3a1" opacity="0.4"/>
+  <rect x="350" y="685" width="180" height="18" rx="3" fill="#a6e3a1" opacity="0.4"/>
+  <rect x="350" y="710" width="180" height="18" rx="3" fill="#a6e3a1" opacity="0.4"/>
+  <text x="350" y="750" fill="#a6adc8" font-size="18">~200 fetched for re-rank</text>
+  
+  <text x="590" y="685" fill="#a6adc8" font-size="18">Only ~200</text>
+  <text x="590" y="705" fill="#a6adc8" font-size="18">SSD reads</text>
+  
+  <!-- Step 7 -->
+  <rect x="150" y="820" width="500" height="45" rx="8" fill="#a6e3a1" opacity="0.15" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="400" y="848" text-anchor="middle" fill="#a6e3a1" font-size="21">⑦ Re-rank with exact distances → return top-k</text>
+</svg>

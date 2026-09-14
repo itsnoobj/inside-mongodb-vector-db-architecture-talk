@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#0f1419"/>
+  <text x="400" y="46" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">Skills, Agents &amp; System Prompts</text>
+
+  <!-- Connecting dotted lines -->
+  <line x1="190" y1="110" x2="400" y2="110" stroke="#5a6478" stroke-width="2" stroke-dasharray="5,6"/>
+  <line x1="400" y1="110" x2="610" y2="110" stroke="#5a6478" stroke-width="2" stroke-dasharray="5,6"/>
+
+  <!-- Left: Skills -->
+  <g>
+    <rect x="40" y="80" width="220" height="360" rx="14" fill="#101a14" stroke="#3ddc84" stroke-width="2.5"/>
+    <text x="150" y="120" font-family="Helvetica, Arial, sans-serif" font-size="30" text-anchor="middle">&#128295;</text>
+    <text x="150" y="158" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="bold" fill="#3ddc84" text-anchor="middle">Skills = Recipes</text>
+    <rect x="70" y="185" width="160" height="60" rx="8" fill="#16241b" stroke="#3ddc84" stroke-width="1.5"/>
+    <text x="150" y="220" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cfd6e0" text-anchor="middle">Summarize a PDF</text>
+    <rect x="70" y="258" width="160" height="60" rx="8" fill="#16241b" stroke="#3ddc84" stroke-width="1.5"/>
+    <text x="150" y="293" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cfd6e0" text-anchor="middle">Write a SQL query</text>
+    <rect x="70" y="331" width="160" height="60" rx="8" fill="#16241b" stroke="#3ddc84" stroke-width="1.5"/>
+    <text x="150" y="366" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cfd6e0" text-anchor="middle">Format a report</text>
+  </g>
+
+  <!-- Middle: Agents -->
+  <g>
+    <rect x="290" y="80" width="220" height="360" rx="14" fill="#15131f" stroke="#9b7bff" stroke-width="2.5"/>
+    <text x="400" y="120" font-family="Helvetica, Arial, sans-serif" font-size="30" text-anchor="middle">&#129302;</text>
+    <text x="400" y="158" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="bold" fill="#9b7bff" text-anchor="middle">Agents = Assistants</text>
+    <rect x="320" y="185" width="160" height="55" rx="8" fill="#211b33" stroke="#9b7bff" stroke-width="1.5"/>
+    <text x="400" y="218" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cfd6e0" text-anchor="middle">Role</text>
+    <rect x="320" y="253" width="160" height="55" rx="8" fill="#211b33" stroke="#9b7bff" stroke-width="1.5"/>
+    <text x="400" y="286" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cfd6e0" text-anchor="middle">Tools</text>
+    <rect x="320" y="321" width="160" height="55" rx="8" fill="#211b33" stroke="#9b7bff" stroke-width="1.5"/>
+    <text x="400" y="354" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cfd6e0" text-anchor="middle">Boundaries</text>
+  </g>
+
+  <!-- Right: System Prompt -->
+  <g>
+    <rect x="540" y="80" width="220" height="360" rx="14" fill="#1a1710" stroke="#ffd166" stroke-width="2.5"/>
+    <text x="650" y="120" font-family="Helvetica, Arial, sans-serif" font-size="30" text-anchor="middle">&#128203;</text>
+    <text x="650" y="158" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffd166" text-anchor="middle">System Prompt =</text>
+    <text x="650" y="182" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffd166" text-anchor="middle">Job Description</text>
+    <!-- document icon -->
+    <rect x="600" y="210" width="100" height="130" rx="6" fill="#2b2616" stroke="#ffd166" stroke-width="1.5"/>
+    <line x1="618" y1="238" x2="682" y2="238" stroke="#ffd166" stroke-width="2"/>
+    <line x1="618" y1="262" x2="682" y2="262" stroke="#ffd166" stroke-width="2"/>
+    <line x1="618" y1="286" x2="682" y2="286" stroke="#ffd166" stroke-width="2"/>
+    <line x1="618" y1="310" x2="660" y2="310" stroke="#ffd166" stroke-width="2"/>
+  </g>
+
+  <text x="400" y="478" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8a94a6" text-anchor="middle" font-style="italic">They work together: the prompt frames the agent, the agent uses skills</text>
+</svg>

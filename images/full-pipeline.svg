@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#0f1419"/>
+  <text x="400" y="44" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">How an LLM Answers You</text>
+
+  <!-- INPUT -->
+  <rect x="250" y="70" width="300" height="64" rx="12" fill="#13294d" stroke="#4d9bff" stroke-width="2.5"/>
+  <text x="290" y="100" font-family="Helvetica, Arial, sans-serif" font-size="22" text-anchor="middle">&#128172;</text>
+  <text x="420" y="100" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="bold" fill="#ffffff" text-anchor="middle">INPUT: Your question</text>
+  <text x="420" y="121" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#9bb8e0" text-anchor="middle">raw text</text>
+
+  <line x1="400" y1="134" x2="400" y2="166" stroke="#8a94a6" stroke-width="3"/>
+  <polygon points="400,166 393,152 407,152" fill="#8a94a6"/>
+
+  <!-- TOKENIZE -->
+  <rect x="250" y="166" width="300" height="64" rx="12" fill="#0f3320" stroke="#3ddc84" stroke-width="2.5"/>
+  <text x="290" y="196" font-family="Helvetica, Arial, sans-serif" font-size="22" text-anchor="middle">&#9986;</text>
+  <text x="420" y="196" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="bold" fill="#ffffff" text-anchor="middle">TOKENIZE: Split into chunks</text>
+  <text x="420" y="217" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#9be0b8" text-anchor="middle">words &#8594; tokens</text>
+
+  <line x1="400" y1="230" x2="400" y2="262" stroke="#8a94a6" stroke-width="3"/>
+  <polygon points="400,262 393,248 407,248" fill="#8a94a6"/>
+
+  <!-- EMBED + ATTEND -->
+  <rect x="250" y="262" width="300" height="64" rx="12" fill="#2a1f4d" stroke="#9b7bff" stroke-width="2.5"/>
+  <text x="290" y="292" font-family="Helvetica, Arial, sans-serif" font-size="22" text-anchor="middle">&#129518;</text>
+  <text x="420" y="292" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="bold" fill="#ffffff" text-anchor="middle">EMBED + ATTEND</text>
+  <text x="420" y="313" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#c4b8e0" text-anchor="middle">numbers + focus</text>
+
+  <line x1="400" y1="326" x2="400" y2="358" stroke="#8a94a6" stroke-width="3"/>
+  <polygon points="400,358 393,344 407,344" fill="#8a94a6"/>
+
+  <!-- PREDICT with loop -->
+  <rect x="250" y="358" width="300" height="64" rx="12" fill="#3d2710" stroke="#ffa94d" stroke-width="2.5"/>
+  <text x="290" y="388" font-family="Helvetica, Arial, sans-serif" font-size="22" text-anchor="middle">&#127922;</text>
+  <text x="420" y="388" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="bold" fill="#ffffff" text-anchor="middle">PREDICT: Next token</text>
+  <text x="420" y="409" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#e0c49b" text-anchor="middle">repeat &#215; N</text>
+  <!-- loop arrow -->
+  <path d="M 560 390 C 620 390 620 330 560 330" fill="none" stroke="#ffa94d" stroke-width="2.5"/>
+  <polygon points="560,330 574,323 572,338" fill="#ffa94d"/>
+  <text x="628" y="365" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffa94d" text-anchor="middle">loop</text>
+
+  <line x1="400" y1="422" x2="400" y2="454" stroke="#8a94a6" stroke-width="3"/>
+  <polygon points="400,454 393,440 407,440" fill="#8a94a6"/>
+
+  <!-- OUTPUT -->
+  <rect x="250" y="454" width="300" height="64" rx="12" fill="#13294d" stroke="#4d9bff" stroke-width="2.5"/>
+  <text x="290" y="484" font-family="Helvetica, Arial, sans-serif" font-size="22" text-anchor="middle">&#128172;</text>
+  <text x="420" y="484" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="bold" fill="#ffffff" text-anchor="middle">OUTPUT: Response</text>
+  <text x="420" y="505" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#9bb8e0" text-anchor="middle">streamed back</text>
+
+  <text x="400" y="565" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8a94a6" text-anchor="middle" font-style="italic">One token at a time, over and over</text>
+</svg>

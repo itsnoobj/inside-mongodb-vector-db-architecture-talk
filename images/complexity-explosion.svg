@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="500" viewBox="0 0 1120 500">
+  <rect width="1120" height="500" fill="#1a1a2e"/>
+  <style>text { font-family: Arial, Helvetica, sans-serif; }</style>
+  
+  <!-- Small matrix: 2x2 -->
+  <text x="100" y="50" text-anchor="middle" fill="#66ff66" font-size="14" font-weight="bold">2 × 2</text>
+  <text x="100" y="68" text-anchor="middle" fill="#88cc88" font-size="10">(x, y coordinates)</text>
+  <rect x="75" y="78" width="22" height="22" fill="#1e5a1e" stroke="#66ff66" stroke-width="1.5"/>
+  <rect x="97" y="78" width="22" height="22" fill="#1e5a1e" stroke="#66ff66" stroke-width="1.5"/>
+  <rect x="75" y="100" width="22" height="22" fill="#1e5a1e" stroke="#66ff66" stroke-width="1.5"/>
+  <rect x="97" y="100" width="22" height="22" fill="#1e5a1e" stroke="#66ff66" stroke-width="1.5"/>
+  <text x="100" y="145" text-anchor="middle" fill="#66ff66" font-size="11">4 ops</text>
+  <text x="100" y="162" text-anchor="middle" fill="#aaa" font-size="10">(GPS location)</text>
+
+  <!-- Arrow -->
+  <line x1="145" y1="95" x2="195" y2="95" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#666"/></marker></defs>
+
+  <!-- Medium matrix -->
+  <text x="280" y="30" text-anchor="middle" fill="#ffaa00" font-size="14" font-weight="bold">100 × 100</text>
+  <text x="280" y="48" text-anchor="middle" fill="#ddaa55" font-size="10">(word embeddings)</text>
+  <rect x="215" y="55" width="130" height="130" fill="#3a2e1a" stroke="#ffaa00" stroke-width="1.5" rx="2"/>
+  <g stroke="#ffaa00" stroke-width="0.3">
+    <line x1="228" y1="55" x2="228" y2="185"/><line x1="241" y1="55" x2="241" y2="185"/>
+    <line x1="254" y1="55" x2="254" y2="185"/><line x1="267" y1="55" x2="267" y2="185"/>
+    <line x1="280" y1="55" x2="280" y2="185"/><line x1="293" y1="55" x2="293" y2="185"/>
+    <line x1="306" y1="55" x2="306" y2="185"/><line x1="319" y1="55" x2="319" y2="185"/>
+    <line x1="332" y1="55" x2="332" y2="185"/>
+    <line x1="215" y1="68" x2="345" y2="68"/><line x1="215" y1="81" x2="345" y2="81"/>
+    <line x1="215" y1="94" x2="345" y2="94"/><line x1="215" y1="107" x2="345" y2="107"/>
+    <line x1="215" y1="120" x2="345" y2="120"/><line x1="215" y1="133" x2="345" y2="133"/>
+    <line x1="215" y1="146" x2="345" y2="146"/><line x1="215" y1="159" x2="345" y2="159"/>
+    <line x1="215" y1="172" x2="345" y2="172"/>
+  </g>
+  <text x="280" y="205" text-anchor="middle" fill="#ffaa00" font-size="11">10,000 ops</text>
+  <text x="280" y="222" text-anchor="middle" fill="#aaa" font-size="10">(laptop can handle)</text>
+
+  <!-- Arrow -->
+  <line x1="360" y1="120" x2="400" y2="120" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Large matrix with AXIS LABELS -->
+  <text x="560" y="20" text-anchor="middle" fill="#ff4444" font-size="14" font-weight="bold">1536 × 1536 (one layer's weights)</text>
+  
+  <!-- Column label (top) -->
+  <text x="560" y="50" text-anchor="middle" fill="#ffaaaa" font-size="11">← output features (what the layer produces) →</text>
+  
+  <!-- The matrix block -->
+  <rect x="430" y="58" width="260" height="260" fill="#3a1a1a" stroke="#ff4444" stroke-width="2" rx="3"/>
+  <g opacity="0.4">
+    <rect x="432" y="60" width="256" height="256" fill="url(#dense)"/>
+  </g>
+  <defs>
+    <pattern id="dense" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="3" height="3" fill="#ff4444" opacity="0.3"/>
+    </pattern>
+  </defs>
+  
+  <!-- Row label (left side, rotated) -->
+  <text x="415" y="188" text-anchor="middle" fill="#ffaaaa" font-size="11" transform="rotate(-90, 415, 188)">← input features (meaning dims in) →</text>
+  
+  <!-- Center label -->
+  <text x="560" y="180" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">2.3 MILLION</text>
+  <text x="560" y="200" text-anchor="middle" fill="#ffdddd" font-size="11">learned weights</text>
+  <text x="560" y="225" text-anchor="middle" fill="#ff8888" font-size="10">each cell = "how much does</text>
+  <text x="560" y="240" text-anchor="middle" fill="#ff8888" font-size="10">input dim X affect output dim Y"</text>
+
+  <!-- Layers stacking -->
+  <text x="870" y="30" text-anchor="middle" fill="#bb88ff" font-size="14" font-weight="bold">× 96 layers</text>
+  <text x="870" y="48" text-anchor="middle" fill="#9977cc" font-size="10">(each refines understanding)</text>
+  
+  <!-- Stacked matrices -->
+  <g opacity="0.12"><rect x="790" y="60" width="140" height="140" fill="#bb88ff" stroke="#bb88ff" stroke-width="1" rx="2"/></g>
+  <g opacity="0.17"><rect x="782" y="68" width="140" height="140" fill="#bb88ff" stroke="#bb88ff" stroke-width="1" rx="2"/></g>
+  <g opacity="0.22"><rect x="774" y="76" width="140" height="140" fill="#bb88ff" stroke="#bb88ff" stroke-width="1" rx="2"/></g>
+  <g opacity="0.30"><rect x="766" y="84" width="140" height="140" fill="#bb88ff" stroke="#bb88ff" stroke-width="1" rx="2"/></g>
+  <g opacity="0.38"><rect x="758" y="92" width="140" height="140" fill="#bb88ff" stroke="#bb88ff" stroke-width="1" rx="2"/></g>
+  <g opacity="0.46"><rect x="750" y="100" width="140" height="140" fill="#bb88ff" stroke="#bb88ff" stroke-width="1" rx="2"/></g>
+  <g opacity="0.55"><rect x="742" y="108" width="140" height="140" fill="#bb88ff" stroke="#bb88ff" stroke-width="1" rx="2"/></g>
+  <g opacity="0.65"><rect x="734" y="116" width="140" height="140" fill="#bb88ff" stroke="#bb88ff" stroke-width="1" rx="2"/></g>
+  <g opacity="0.80"><rect x="726" y="124" width="140" height="140" fill="#3a1a3a" stroke="#bb88ff" stroke-width="1.5" rx="2"/></g>
+  
+  <!-- Layer labels -->
+  <text x="796" y="175" text-anchor="middle" fill="#ddbbff" font-size="10">Layer 1: grammar</text>
+  <text x="796" y="190" text-anchor="middle" fill="#ddbbff" font-size="10">Layer 12: relationships</text>
+  <text x="796" y="205" text-anchor="middle" fill="#ddbbff" font-size="10">Layer 40: reasoning</text>
+  <text x="796" y="220" text-anchor="middle" fill="#ddbbff" font-size="10">Layer 96: task output</text>
+
+  <!-- Bottom: total -->
+  <rect x="80" y="350" width="960" height="120" rx="8" fill="#0d0d1a" stroke="#555" stroke-width="1"/>
+  
+  <!-- Scale bar -->
+  <rect x="120" y="375" width="5" height="18" fill="#66ff66"/>
+  <text x="135" y="389" fill="#88cc88" font-size="11">2×2</text>
+  
+  <rect x="200" y="372" width="35" height="24" fill="#ffaa00" opacity="0.5"/>
+  <text x="245" y="389" fill="#ddaa55" font-size="11">100×100</text>
+  
+  <rect x="340" y="365" width="580" height="38" fill="#ff4444" opacity="0.15" rx="3"/>
+  <rect x="340" y="365" width="580" height="38" fill="none" stroke="#ff4444" stroke-width="1" rx="3"/>
+  <text x="630" y="389" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">1536×1536 × 96 layers × 500 words ≈ billions of ops per prompt</text>
+  
+  <text x="960" y="385" text-anchor="middle" fill="#66ff66" font-size="12" font-weight="bold">GPU: milliseconds ⚡</text>
+  <text x="960" y="402" text-anchor="middle" fill="#ff4444" font-size="11">CPU: minutes 🐌</text>
+  
+  <text x="540" y="438" text-anchor="middle" fill="#777" font-size="11">bigger model = bigger matrices = more layers = more GPUs needed</text>
+  <text x="540" y="456" text-anchor="middle" fill="#666" font-size="10">GPT-4 has ~120 layers with dimensions up to 12,288 — that's why it costs $100M to train</text>
+</svg>

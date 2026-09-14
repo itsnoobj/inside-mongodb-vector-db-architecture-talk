@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1200" viewBox="0 0 2400 1200">
+  <rect width="2400" height="1200" fill="#1e1e2e"/>
+  
+  <text x="1200" y="300" text-anchor="middle" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="64" fill="#cdd6f4" letter-spacing="2">Inside pgvector</text>
+  
+  <text x="1200" y="480" text-anchor="middle" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="88" font-weight="bold" fill="#f9e2af">How PostgreSQL Stores,</text>
+  <text x="1200" y="590" text-anchor="middle" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="88" font-weight="bold" fill="#f9e2af">Indexes &amp; Manages</text>
+  <text x="1200" y="700" text-anchor="middle" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="88" font-weight="bold" fill="#f9e2af">High-Dimensional Data</text>
+  
+  <line x1="700" y1="780" x2="1700" y2="780" stroke="#585b70" stroke-width="1.5"/>
+  
+  <text x="1200" y="880" text-anchor="middle" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="48" fill="#89b4fa">Narrated by: Jeevan</text>
+  <text x="1200" y="950" text-anchor="middle" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="38" fill="#a6adc8">April 2026</text>
+</svg>

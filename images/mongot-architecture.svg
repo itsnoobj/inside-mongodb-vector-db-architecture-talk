@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1010 520" font-family="monospace">
+  <rect width="1010" height="520" fill="#1e1e2e"/>
+
+  <!-- app -->
+  <rect x="230" y="30" width="200" height="76" fill="#313244" rx="10" stroke="#89b4fa" stroke-width="2"/>
+  <text x="330" y="78" fill="#89b4fa" font-size="26" text-anchor="middle" font-weight="bold">app</text>
+
+  <!-- query arrow down -->
+  <line x1="312" y1="106" x2="312" y2="200" stroke="#89b4fa" stroke-width="3"/>
+  <polygon points="312,210 305,197 319,197" fill="#89b4fa"/>
+  <text x="302" y="162" fill="#585b70" font-size="17" text-anchor="end">$vectorSearch</text>
+
+  <!-- results back up -->
+  <line x1="348" y1="200" x2="348" y2="106" stroke="#a6e3a1" stroke-width="3"/>
+  <polygon points="348,96 341,109 355,109" fill="#a6e3a1"/>
+  <text x="358" y="162" fill="#585b70" font-size="17" text-anchor="start">results</text>
+
+  <!-- mongod box -->
+  <rect x="140" y="210" width="380" height="262" fill="#313244" rx="12" stroke="#a6e3a1" stroke-width="2.5"/>
+  <text x="330" y="272" fill="#a6e3a1" font-size="30" text-anchor="middle" font-weight="bold">mongod</text>
+  <text x="330" y="312" fill="#a6adc8" font-size="18" text-anchor="middle">data · transactions</text>
+  <rect x="185" y="358" width="290" height="72" fill="#45475a" rx="6"/>
+  <text x="330" y="402" fill="#f9e2af" font-size="19" text-anchor="middle">query proxy</text>
+
+  <!-- change stream arrow to mongot -->
+  <line x1="528" y1="292" x2="712" y2="292" stroke="#f9e2af" stroke-width="3"/>
+  <polygon points="722,292 708,285 708,299" fill="#f9e2af"/>
+  <text x="620" y="270" fill="#f9e2af" font-size="17" text-anchor="middle">oplog →</text>
+  <text x="620" y="320" fill="#f9e2af" font-size="17" text-anchor="middle">change stream</text>
+
+  <!-- proxy dashed link -->
+  <line x1="528" y1="372" x2="722" y2="372" stroke="#585b70" stroke-width="2" stroke-dasharray="4,4"/>
+  <text x="624" y="396" fill="#585b70" font-size="15" text-anchor="middle">forward / results</text>
+
+  <!-- mongot box -->
+  <rect x="722" y="210" width="248" height="262" fill="#313244" rx="12" stroke="#4EC9B0" stroke-width="2.5"/>
+  <text x="846" y="272" fill="#4EC9B0" font-size="30" text-anchor="middle" font-weight="bold">mongot</text>
+  <text x="846" y="312" fill="#a6adc8" font-size="17" text-anchor="middle">Apache Lucene</text>
+  <rect x="747" y="358" width="198" height="72" fill="#45475a" rx="6" stroke="#4EC9B0" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="846" y="402" fill="#4EC9B0" font-size="19" text-anchor="middle">HNSW index</text>
+
+  <!-- captions -->
+  <text x="330" y="504" fill="#585b70" font-size="16" text-anchor="middle">owns the data</text>
+  <text x="846" y="504" fill="#585b70" font-size="16" text-anchor="middle">owns the index</text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <rect width="1200" height="600" fill="#1e1e2e"/>
+  <text x="600" y="298" text-anchor="middle" font-family="monospace" font-size="54" font-weight="bold" fill="#cdd6f4">One query.</text>
+  <text x="600" y="372" text-anchor="middle" font-family="monospace" font-size="54" font-weight="bold" fill="#a6e3a1">All three bets.</text>
+</svg>

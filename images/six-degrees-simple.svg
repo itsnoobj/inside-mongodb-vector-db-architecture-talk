@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" font-family="Inter, -apple-system, sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="500" fill="#2d2b3d"/>
+  
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" fill="#cdd6f4" font-size="20" font-weight="bold">Six Degrees of Separation</text>
+  <text x="600" y="65" text-anchor="middle" fill="#8a8699" font-size="14">Any person on Earth reachable through ~6 connections</text>
+  
+  <!-- Globe hint - subtle circle -->
+  <circle cx="600" cy="270" r="180" fill="none" stroke="#3a3750" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <ellipse cx="600" cy="270" rx="180" ry="60" fill="none" stroke="#3a3750" stroke-width="1" stroke-dasharray="4,4"/>
+  
+  <!-- Person nodes scattered around the globe -->
+  <!-- Person 1 - You (left) -->
+  <circle cx="150" cy="250" r="22" fill="#a6e3a1"/>
+  <text x="150" y="255" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="bold">YOU</text>
+  <text x="150" y="295" text-anchor="middle" fill="#a6e3a1" font-size="10">Seoul</text>
+  
+  <!-- Person 2 -->
+  <circle cx="320" cy="160" r="18" fill="#89b4fa"/>
+  <text x="320" y="165" text-anchor="middle" fill="#1e1e2e" font-size="16">👤</text>
+  <text x="320" y="200" text-anchor="middle" fill="#6c7086" font-size="9">hop 1</text>
+  
+  <!-- Person 3 -->
+  <circle cx="480" cy="320" r="18" fill="#89b4fa"/>
+  <text x="480" y="325" text-anchor="middle" fill="#1e1e2e" font-size="16">👤</text>
+  <text x="480" y="360" text-anchor="middle" fill="#6c7086" font-size="9">hop 2</text>
+  
+  <!-- Person 4 -->
+  <circle cx="620" cy="140" r="18" fill="#89b4fa"/>
+  <text x="620" y="145" text-anchor="middle" fill="#1e1e2e" font-size="16">👤</text>
+  <text x="620" y="178" text-anchor="middle" fill="#6c7086" font-size="9">hop 3</text>
+  
+  <!-- Person 5 -->
+  <circle cx="780" cy="310" r="18" fill="#89b4fa"/>
+  <text x="780" y="315" text-anchor="middle" fill="#1e1e2e" font-size="16">👤</text>
+  <text x="780" y="348" text-anchor="middle" fill="#6c7086" font-size="9">hop 4</text>
+  
+  <!-- Person 6 -->
+  <circle cx="920" cy="180" r="18" fill="#89b4fa"/>
+  <text x="920" y="185" text-anchor="middle" fill="#1e1e2e" font-size="16">👤</text>
+  <text x="920" y="218" text-anchor="middle" fill="#6c7086" font-size="9">hop 5</text>
+  
+  <!-- Person 7 - Target (right) -->
+  <circle cx="1050" cy="260" r="22" fill="#f9e2af"/>
+  <text x="1050" y="265" text-anchor="middle" fill="#1e1e2e" font-size="11" font-weight="bold">TARGET</text>
+  <text x="1050" y="305" text-anchor="middle" fill="#f9e2af" font-size="10">São Paulo</text>
+  
+  <!-- Connections (hops) -->
+  <line x1="172" y1="250" x2="302" y2="162" stroke="#a6e3a1" stroke-width="2.5"/>
+  <line x1="338" y1="160" x2="462" y2="318" stroke="#89b4fa" stroke-width="2"/>
+  <line x1="498" y1="318" x2="602" y2="142" stroke="#89b4fa" stroke-width="2"/>
+  <line x1="638" y1="142" x2="762" y2="308" stroke="#89b4fa" stroke-width="2"/>
+  <line x1="798" y1="308" x2="902" y2="182" stroke="#89b4fa" stroke-width="2"/>
+  <line x1="938" y1="182" x2="1028" y2="258" stroke="#f9e2af" stroke-width="2.5"/>
+  
+  <!-- Divider -->
+  <line x1="0" y1="390" x2="1200" y2="390" stroke="#3a3750" stroke-width="1"/>
+  
+  <!-- Bottom: the analogy -->
+  <text x="600" y="425" text-anchor="middle" fill="#cdd6f4" font-size="16" font-weight="bold">DiskANN: same idea, for vectors on disk</text>
+  <text x="600" y="455" text-anchor="middle" fill="#a6adc8" font-size="13">Any vector reachable in ~10-20 hops. Graph lives on SSD, not RAM.</text>
+  <text x="600" y="480" text-anchor="middle" fill="#f9e2af" font-size="13">Trade: +5-10ms latency for 30x less RAM.</text>
+</svg>

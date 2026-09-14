@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <rect width="1200" height="600" fill="#1e1e2e"/>
+  <text x="600" y="290" text-anchor="middle" font-family="monospace" font-size="42" font-weight="bold" fill="#cdd6f4">How do you make</text>
+  <text x="600" y="350" text-anchor="middle" font-family="monospace" font-size="42" font-weight="bold" fill="#cdd6f4">the right trade-off?</text>
+</svg>

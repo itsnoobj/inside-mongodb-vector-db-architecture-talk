@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <rect width="1200" height="600" fill="#1e1e2e"/>
+  <text x="600" y="150" text-anchor="middle" font-family="monospace" font-size="26" font-weight="bold" fill="#585b70" letter-spacing="6">ACT II · COMPRESSION</text>
+  <text x="600" y="320" text-anchor="middle" font-family="monospace" font-size="46" font-weight="bold" fill="#cdd6f4">What happens when your</text>
+  <text x="600" y="384" text-anchor="middle" font-family="monospace" font-size="46" font-weight="bold" fill="#cdd6f4">index outgrows RAM?</text>
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <rect width="800" height="400" fill="#0f1419"/>
+  <text x="400" y="42" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">Testing Traditional Code vs AI Features</text>
+
+  <!-- Divider -->
+  <line x1="400" y1="70" x2="400" y2="380" stroke="#2a3340" stroke-width="2" stroke-dasharray="4,6"/>
+
+  <!-- LEFT: Traditional -->
+  <text x="200" y="100" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#3ddc84" text-anchor="middle">Traditional</text>
+
+  <rect x="40" y="150" width="90" height="60" rx="8" fill="#161d26" stroke="#8a94a6" stroke-width="2"/>
+  <text x="85" y="186" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cfd6e0" text-anchor="middle">Input</text>
+
+  <line x1="130" y1="180" x2="158" y2="180" stroke="#8a94a6" stroke-width="2.5"/>
+  <polygon points="158,180 146,174 146,186" fill="#8a94a6"/>
+
+  <rect x="160" y="150" width="100" height="60" rx="8" fill="#101a14" stroke="#3ddc84" stroke-width="2"/>
+  <text x="210" y="180" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#cfd6e0" text-anchor="middle">Fixed</text>
+  <text x="210" y="197" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#cfd6e0" text-anchor="middle">Code</text>
+
+  <line x1="260" y1="180" x2="288" y2="180" stroke="#8a94a6" stroke-width="2.5"/>
+  <polygon points="288,180 276,174 276,186" fill="#8a94a6"/>
+
+  <rect x="290" y="150" width="90" height="60" rx="8" fill="#161d26" stroke="#3ddc84" stroke-width="2"/>
+  <text x="335" y="186" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#cfd6e0" text-anchor="middle">Same out</text>
+
+  <text x="200" y="270" font-family="Helvetica, Arial, sans-serif" font-size="44" fill="#3ddc84" text-anchor="middle">&#10003;</text>
+  <text x="200" y="320" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#cfd6e0" text-anchor="middle">Same input &#8594; same output</text>
+  <text x="200" y="345" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8a94a6" text-anchor="middle">Assert exact match</text>
+
+  <!-- RIGHT: AI Features -->
+  <text x="600" y="100" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffd166" text-anchor="middle">AI Features</text>
+
+  <rect x="440" y="150" width="90" height="60" rx="8" fill="#161d26" stroke="#8a94a6" stroke-width="2"/>
+  <text x="485" y="186" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cfd6e0" text-anchor="middle">Input</text>
+
+  <line x1="530" y1="180" x2="558" y2="180" stroke="#8a94a6" stroke-width="2.5"/>
+  <polygon points="558,180 546,174 546,186" fill="#8a94a6"/>
+
+  <rect x="560" y="150" width="100" height="60" rx="8" fill="#1a1710" stroke="#ffd166" stroke-width="2"/>
+  <text x="610" y="186" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cfd6e0" text-anchor="middle">Model</text>
+
+  <line x1="660" y1="180" x2="688" y2="180" stroke="#8a94a6" stroke-width="2.5"/>
+  <polygon points="688,180 676,174 676,186" fill="#8a94a6"/>
+
+  <rect x="690" y="150" width="90" height="60" rx="8" fill="#161d26" stroke="#ffd166" stroke-width="2"/>
+  <text x="735" y="180" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#cfd6e0" text-anchor="middle">Different</text>
+  <text x="735" y="197" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#cfd6e0" text-anchor="middle">out</text>
+
+  <text x="600" y="272" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="bold" fill="#ffd166" text-anchor="middle">? ? ?</text>
+  <text x="600" y="320" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#cfd6e0" text-anchor="middle">Same input &#8594; varies each time</text>
+  <text x="600" y="345" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8a94a6" text-anchor="middle">Test quality, not exact text</text>
+</svg>

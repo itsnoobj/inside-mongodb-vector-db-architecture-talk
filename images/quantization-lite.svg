@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 420" font-family="monospace">
+  <rect width="400" height="420" fill="#1e1e2e"/>
+
+  <!-- FP32: 32 boxes (4x8) -->
+  <text x="200" y="30" fill="#cdd6f4" font-size="15" font-weight="bold" text-anchor="middle">FP32 — 32 boxes per value</text>
+  
+  <rect x="70" y="45" width="24" height="24" fill="#f38ba8" rx="2"/>
+  <rect x="96" y="45" width="24" height="24" fill="#f9e2af" rx="2"/>
+  <rect x="122" y="45" width="24" height="24" fill="#a6e3a1" rx="2"/>
+  <rect x="148" y="45" width="24" height="24" fill="#89b4fa" rx="2"/>
+  <rect x="174" y="45" width="24" height="24" fill="#cba6f7" rx="2"/>
+  <rect x="200" y="45" width="24" height="24" fill="#fab387" rx="2"/>
+  <rect x="226" y="45" width="24" height="24" fill="#94e2d5" rx="2"/>
+  <rect x="252" y="45" width="24" height="24" fill="#f5c2e7" rx="2"/>
+  <rect x="70" y="71" width="24" height="24" fill="#74c7ec" rx="2"/>
+  <rect x="96" y="71" width="24" height="24" fill="#eba0ac" rx="2"/>
+  <rect x="122" y="71" width="24" height="24" fill="#b4befe" rx="2"/>
+  <rect x="148" y="71" width="24" height="24" fill="#a6e3a1" rx="2"/>
+  <rect x="174" y="71" width="24" height="24" fill="#f38ba8" rx="2"/>
+  <rect x="200" y="71" width="24" height="24" fill="#89b4fa" rx="2"/>
+  <rect x="226" y="71" width="24" height="24" fill="#f9e2af" rx="2"/>
+  <rect x="252" y="71" width="24" height="24" fill="#cba6f7" rx="2"/>
+  <rect x="70" y="97" width="24" height="24" fill="#fab387" rx="2"/>
+  <rect x="96" y="97" width="24" height="24" fill="#94e2d5" rx="2"/>
+  <rect x="122" y="97" width="24" height="24" fill="#f5c2e7" rx="2"/>
+  <rect x="148" y="97" width="24" height="24" fill="#74c7ec" rx="2"/>
+  <rect x="174" y="97" width="24" height="24" fill="#eba0ac" rx="2"/>
+  <rect x="200" y="97" width="24" height="24" fill="#b4befe" rx="2"/>
+  <rect x="226" y="97" width="24" height="24" fill="#a6e3a1" rx="2"/>
+  <rect x="252" y="97" width="24" height="24" fill="#f38ba8" rx="2"/>
+  <rect x="70" y="123" width="24" height="24" fill="#89b4fa" rx="2"/>
+  <rect x="96" y="123" width="24" height="24" fill="#f9e2af" rx="2"/>
+  <rect x="122" y="123" width="24" height="24" fill="#cba6f7" rx="2"/>
+  <rect x="148" y="123" width="24" height="24" fill="#fab387" rx="2"/>
+  <rect x="174" y="123" width="24" height="24" fill="#94e2d5" rx="2"/>
+  <rect x="200" y="123" width="24" height="24" fill="#f5c2e7" rx="2"/>
+  <rect x="226" y="123" width="24" height="24" fill="#74c7ec" rx="2"/>
+  <rect x="252" y="123" width="24" height="24" fill="#eba0ac" rx="2"/>
+
+  <!-- Arrow -->
+  <text x="200" y="175" fill="#6c7086" font-size="20" text-anchor="middle">↓</text>
+
+  <!-- INT8: 8 boxes -->
+  <text x="200" y="205" fill="#cdd6f4" font-size="15" font-weight="bold" text-anchor="middle">INT8 — 8 boxes per value</text>
+
+  <rect x="120" y="218" width="30" height="30" fill="#c06070" rx="2"/>
+  <rect x="154" y="218" width="30" height="30" fill="#c0a050" rx="2"/>
+  <rect x="188" y="218" width="30" height="30" fill="#70a070" rx="2"/>
+  <rect x="222" y="218" width="30" height="30" fill="#5080b0" rx="2"/>
+  <rect x="120" y="252" width="30" height="30" fill="#907090" rx="2"/>
+  <rect x="154" y="252" width="30" height="30" fill="#b08050" rx="2"/>
+  <rect x="188" y="252" width="30" height="30" fill="#609080" rx="2"/>
+  <rect x="222" y="252" width="30" height="30" fill="#c080a0" rx="2"/>
+
+  <!-- Arrow -->
+  <text x="200" y="315" fill="#6c7086" font-size="20" text-anchor="middle">↓</text>
+
+  <!-- Binary: 1 box -->
+  <text x="200" y="345" fill="#cdd6f4" font-size="15" font-weight="bold" text-anchor="middle">Binary — 1 box per value</text>
+
+  <rect x="180" y="360" width="40" height="40" fill="#cdd6f4" rx="3"/>
+  <text x="200" y="387" fill="#1e1e2e" font-size="18" text-anchor="middle" font-weight="bold">1</text>
+</svg>
