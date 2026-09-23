@@ -7,18 +7,18 @@
   <polygon points="336,289 358,300 336,311" fill="#6c7086"/>
 
   <!-- outer mongod box -->
-  <rect x="368" y="150" width="712" height="300" rx="18" fill="#181825" stroke="#4EC9B0" stroke-width="4"/>
+  <rect x="368" y="150" width="712" height="300" fill="#181825" stroke="#4EC9B0" stroke-width="4"/>
   <text x="724" y="205" text-anchor="middle" font-family="monospace" font-size="34" font-weight="bold" fill="#4EC9B0">mongod</text>
 
   <!-- inner data box -->
-  <rect x="438" y="250" width="220" height="128" rx="12" fill="#1e1e2e" stroke="#89b4fa" stroke-width="3"/>
+  <rect x="438" y="250" width="220" height="128" fill="#1e1e2e" stroke="#89b4fa" stroke-width="3"/>
   <text x="548" y="322" text-anchor="middle" font-family="monospace" font-size="30" fill="#cdd6f4">data</text>
 
   <!-- plus -->
   <text x="724" y="330" text-anchor="middle" font-family="monospace" font-size="46" font-weight="bold" fill="#f9e2af">+</text>
 
   <!-- inner index box -->
-  <rect x="790" y="250" width="220" height="128" rx="12" fill="#1e1e2e" stroke="#f38ba8" stroke-width="3"/>
+  <rect x="790" y="250" width="220" height="128" fill="#1e1e2e" stroke="#f38ba8" stroke-width="3"/>
   <text x="900" y="312" text-anchor="middle" font-family="monospace" font-size="26" fill="#cdd6f4">vector</text>
   <text x="900" y="346" text-anchor="middle" font-family="monospace" font-size="26" fill="#cdd6f4">index</text>
 

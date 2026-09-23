@@ -2,19 +2,19 @@
   <rect width="1000" height="560" fill="#1e1e2e"/>
 
   <!-- ① fewer numbers (green) -->
-  <rect x="60" y="30" width="880" height="150" rx="14" fill="#313244" stroke="#a6e3a1" stroke-width="3"/>
+  <rect x="60" y="30" width="880" height="150" fill="#313244" stroke="#a6e3a1" stroke-width="3"/>
   <text x="500" y="85" text-anchor="middle" font-size="26" font-weight="bold" fill="#a6e3a1">①  FEWER NUMBERS</text>
   <text x="500" y="120" text-anchor="middle" font-size="18" fill="#a6adc8">dimensions · Matryoshka (MRL)</text>
   <text x="500" y="152" text-anchor="middle" font-size="20" fill="#cdd6f4">1024 → 256 dims · ~4× smaller</text>
 
   <!-- ② not all in RAM (teal) -->
-  <rect x="60" y="205" width="880" height="150" rx="14" fill="#313244" stroke="#4EC9B0" stroke-width="3"/>
+  <rect x="60" y="205" width="880" height="150" fill="#313244" stroke="#4EC9B0" stroke-width="3"/>
   <text x="500" y="260" text-anchor="middle" font-size="26" font-weight="bold" fill="#4EC9B0">②  NOT ALL IN RAM</text>
   <text x="500" y="295" text-anchor="middle" font-size="18" fill="#a6adc8">mmap · OS page cache</text>
   <text x="500" y="327" text-anchor="middle" font-size="20" fill="#cdd6f4">hot set resident · rest on disk</text>
 
   <!-- ③ fewer bits (yellow) -->
-  <rect x="60" y="380" width="880" height="150" rx="14" fill="#313244" stroke="#f9e2af" stroke-width="3"/>
+  <rect x="60" y="380" width="880" height="150" fill="#313244" stroke="#f9e2af" stroke-width="3"/>
   <text x="500" y="435" text-anchor="middle" font-size="26" font-weight="bold" fill="#f9e2af">③  FEWER BITS</text>
   <text x="500" y="470" text-anchor="middle" font-size="18" fill="#a6adc8">quantization · scalar / binary</text>
   <text x="500" y="502" text-anchor="middle" font-size="20" fill="#cdd6f4">float32 → 1-bit · up to 24× less RAM</text>

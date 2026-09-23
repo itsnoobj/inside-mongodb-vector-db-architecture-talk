@@ -121,6 +121,12 @@ db.docs.aggregate([
 
 <!-- end_slide -->
 
+# &nbsp;
+
+![](images/transition-why-index.png)
+
+<!-- end_slide -->
+
 # Recap: Why a Normal Index Can't Do This
 
 <!-- column_layout: [1, 1] -->
@@ -150,6 +156,12 @@ B = [0.93, 0.12, ..., 0.71]
 
 <!-- end_slide -->
 
+# &nbsp;
+
+![](images/transition-into-mongodb.png)
+
+<!-- end_slide -->
+
 # Recap: In MongoDB, a Vector Is Just a Field
 
 ```js
@@ -171,28 +183,16 @@ A normal document. A normal array.
 
 # A Stored Vector Is Inert
 
-<!-- column_layout: [1, 1] -->
-
-<!-- column: 0 -->
-
-A vector saved in a document is just **data** — no `<` to sort on,
-no `WHERE` clause that finds "nearest."
+![image:width:62%](images/hnsw.png)
 
 <!-- pause -->
 
-**HNSW** links vectors into a navigable graph. Search **hops greedily**
-toward the nearest neighbours — visiting a slice, not all N.
+A vector saved in a document is just **data** — no `<` to sort on, no `WHERE` that finds "nearest." **HNSW** links vectors into a navigable graph; search **hops greedily** toward the nearest neighbours, visiting a slice, not all N.
 
 <!-- pause -->
 
 - **ANN** — approximate: fast, ~99% as good as scanning everything
 - `numCandidates` — how many nodes the walk visits (recall ↔ latency)
-
-<!-- column: 1 -->
-
-![image:width:100%](images/hnsw.png)
-
-<!-- reset_layout -->
 
 <!-- pause -->
 
@@ -227,6 +227,19 @@ toward the nearest neighbours — visiting a slice, not all N.
 <!-- pause -->
 
 <span style="color: #a6e3a1">Two processes. One connection string.</span> <span style="color: #6c7086">The split is invisible to the app.</span>
+
+<!-- pause -->
+
+<span style="color: #f9e2af">The pattern under everything: **never work on the write path.**</span>
+
+<!--
+speaker_note: |
+  This is the spine of the whole talk. MongoDB refuses to do search's expensive
+  indexing work synchronously with the write. It records the change and derives
+  the index elsewhere, asynchronously. "Defer and derive." Every choice in this half
+  - the second process, the change-stream sync, the staleness, the proxy - falls
+  out of this one refusal.
+-->
 
 <!-- end_slide -->
 
@@ -268,6 +281,20 @@ Share one process and a search OOM takes down the database; a GC pause stalls wr
 
 <span style="color: #6c7086">And MongoDB didn't *write* a vector index — it reuses **Lucene** (20+ yrs of search, now with HNSW). One engine, two query types: `$search` (text) and `$vectorSearch`.</span>
 
+<!-- pause -->
+
+<span style="color: #f9e2af">And Lucene *fits*, structurally —</span> <span style="color: #6c7086">immutable segments ≈ how HNSW wants to live.</span>
+
+<!--
+speaker_note: |
+  Not just "Lucene is 20 years mature." The deeper reason: an HNSW graph is
+  expensive to build and can't be edited in place. Lucene's core model is
+  immutable segments plus background merges - deletes are tombstones, an update
+  writes a whole new segment, the graph is only ever built, never mutated. Same
+  shape as an LSM-tree. A 20-year-old search design happens to be perfect for
+  vector indexes. Reuse over rewrite, for a real structural reason.
+-->
+
 <!-- end_slide -->
 
 # How `mongot` Stays in Sync
@@ -286,7 +313,20 @@ Share one process and a search OOM takes down the database; a GC pause stalls wr
 
 <!-- pause -->
 
-<span style="color: #f9e2af">Search indexing is a **subscriber**, not a **passenger**.</span> <span style="color: #6c7086">Freshness = how far behind the stream `mongot` is.</span>
+<span style="color: #a6e3a1">Mental model: `mongot` is a **read replica that speaks Lucene**.</span>
+
+<!--
+speaker_note: |
+  The two phases are exactly a replica's lifecycle: initial sync (a full scan to
+  build the first index) then tail the change stream to stay caught up. MongoDB
+  didn't invent a sync pipeline for search - it reused the replication machinery
+  it already had. That's why it feels robust: it's battle-tested plumbing, not
+  new code on the write path.
+-->
+
+<!-- pause -->
+
+<span style="color: #f9e2af">A **subscriber**, not a **passenger**.</span> <span style="color: #6c7086">Freshness = stream lag.</span>
 
 <!-- end_slide -->
 
@@ -303,6 +343,45 @@ Share one process and a search OOM takes down the database; a GC pause stalls wr
 <span style="color: #a6e3a1">Why IDs, not documents? No wholesale data duplication · `mongod` stays authoritative · results still flow into `$project` / `$lookup` after search.</span>
 
 <span style="color: #6c7086">The cost: one id-lookup round trip. One connection string. (Sharded: `mongos` fans out and merges.)</span>
+
+<!-- end_slide -->
+
+# The Index Is a Materialized View
+
+**Search reads a *derived, lagging view* — not the collection.**
+
+<!-- pause -->
+
+<!-- column_layout: [1, 1] -->
+
+<!-- column: 0 -->
+
+<span style="color: #f38ba8">**Catch**</span>
+No read-your-writes for search.
+
+<!-- column: 1 -->
+
+<span style="color: #a6e3a1">**Subtlety**</span>
+Stale = which docs *match*, never the body.
+
+<!-- reset_layout -->
+
+<!-- pause -->
+
+<span style="color: #f9e2af">Eventually-consistent results · strongly-consistent documents.</span>
+
+<!--
+speaker_note: |
+  Put the last two slides together. The search index is a materialized view of
+  the collection, kept up to date by a background process. Consequence 1, the
+  catch: no read-your-writes for search - write a doc, search a millisecond
+  later, it may not be indexed yet. Consequence 2, the subtlety people miss:
+  staleness only affects WHICH documents match, never the freshness of the
+  content, because mongod rehydrates every hit from the source of truth. So one
+  query spans two consistency models: an eventually-consistent result set made
+  of strongly-consistent documents. Pattern names, if the room is technical:
+  this is CQRS (write model vs read model) and a classic Materialized View.
+-->
 
 <!-- end_slide -->
 
@@ -323,7 +402,23 @@ db.docs.aggregate([
 
 <!-- pause -->
 
-<span style="color: #f9e2af">But mind pre vs post:</span> <span style="color: #6c7086">a doc's *own* fields → pre-filter **inside** `$vectorSearch` (the `filter` field — next slide), or results get starved. A pipeline `$match` runs *after* search — right only for joined/derived data like `user.plan`.</span>
+<span style="color: #a6e3a1">`$vectorSearch` must be the **first** stage — it's a *source*, not a filter.</span>
+
+<!-- pause -->
+
+<span style="color: #f9e2af">So every later stage runs *after* the ANN walk.</span> <span style="color: #6c7086">Pre-vs-post is a consequence, not a rule.</span>
+
+<!--
+speaker_note: |
+  $vectorSearch has to be the first stage because it isn't a filter running in
+  mongod - it's a document SOURCE. mongod hands the search to mongot, gets back
+  ranked {_id, score}, then streams those into the rest of the pipeline. So
+  everything after $vectorSearch runs after the ANN walk has already finished.
+  That's why pre-vs-post isn't a rule to memorize, it's a consequence: a doc's
+  OWN fields must be pre-filtered inside $vectorSearch (the filter field, next
+  slide) or the walk starves. A pipeline $match only makes sense for joined or
+  derived data like user.plan that doesn't exist until after the join.
+-->
 
 <!-- end_slide -->
 
@@ -386,9 +481,21 @@ db.docs.aggregate([
 
 <!-- pause -->
 
-<span style="color: #a6e3a1">Reciprocal Rank Fusion blends the two rankings — keyword precision + semantic recall.</span>
+<span style="color: #a6e3a1">Reciprocal Rank Fusion blends the two — keyword precision + semantic recall.</span>
 
-<span style="color: #6c7086">No second system, no sync: one Lucene engine serves both `$search` and `$vectorSearch`.</span>
+<!-- pause -->
+
+<span style="color: #6c7086">Fuses by **rank**, not score. One engine, no second system.</span>
+
+<!--
+speaker_note: |
+  Why fuse by rank and not score? The two scores aren't comparable - cosine is
+  0 to 1, BM25 is unbounded - so adding them is meaningless. RRF throws the raw
+  scores away and uses only position: sum of 1/(k + rank), default k = 60. Rank
+  is the common currency across both rankings. And it's all one Lucene engine:
+  the same mongot serves $search and $vectorSearch, so no second system to run,
+  nothing extra to sync.
+-->
 
 <!-- end_slide -->
 
@@ -399,37 +506,6 @@ db.docs.aggregate([
 <!-- pause -->
 
 <span style="color: #f9e2af">The prep kitchen can lag — but the line keeps serving at full speed.</span>
-
-<!-- end_slide -->
-
-# The Trade-off Is the Feature
-
-**Because indexing is asynchronous, search can be *slightly* stale.**
-
-```
-  write committed ──▶ ...milliseconds... ──▶ searchable
-                       (replication lag)
-```
-
-<!-- pause -->
-
-<!-- column_layout: [1, 1] -->
-
-<!-- column: 0 -->
-
-<span style="color: #f38ba8">**The cost**</span>
-Index freshness = f(replication lag)
-
-<!-- column: 1 -->
-
-<span style="color: #a6e3a1">**What it buys**</span>
-Writes don't wait on indexing · search scales on its own
-
-<!-- reset_layout -->
-
-<!-- pause -->
-
-<span style="color: #f9e2af">Eventual consistency for the index is a **choice**, not a bug — and usually the right one for search.</span>
 
 <!-- end_slide -->
 
@@ -467,7 +543,7 @@ last processed change → resume token
 
 <!-- end_slide -->
 
-# Act I — The Mental Model
+# Architecture — The Mental Model
 
 <!-- pause -->
 
@@ -487,7 +563,24 @@ last processed change → resume token
 
 <!-- pause -->
 
-<span style="color: #f9e2af">That one bet — two processes — shapes freshness, deployment, and scale.</span>
+<span style="color: #f9e2af">One pattern under all four: **defer and derive.**</span>
+
+<span style="color: #6c7086">CQRS · Materialized View · Event-log projection · Proxy · Bulkhead</span>
+
+<!--
+speaker_note: |
+  One line to tie it together: MongoDB never does search's work on the write
+  path - it defers and derives. Lag, resume tokens, rehydration all fall out of
+  that. If the room is technical, name the patterns:
+  - CQRS: mongod is the write model, mongot the read model, async projection between.
+  - Materialized View: the index is a derived view refreshed from the change stream.
+  - Event-log projection: the oplog is the append-only log; resume token = cursor; rebuild = replay.
+  - Proxy (GoF remote proxy): mongod stands in front of mongot and reassembles results.
+  - Bulkhead: separate processes = separate failure domains; a search OOM or GC pause can't sink the DB.
+  Non-obvious tradeoff to drop: this is PACELC, not CAP - no partition, so the
+  axis is Latency vs Consistency, and MongoDB picks latency (writes never wait)
+  at the cost of a slightly stale index.
+-->
 
 <!-- end_slide -->
 
@@ -572,7 +665,7 @@ No hard "the whole index must fit in RAM" wall — size for the **working set**,
 
 # Lever ③ — Fewer *Bits* per Number
 
-![image:width:30%](images/quantization-lite.png)
+![image:width:55%](images/quantization-lite.png)
 
 <!-- pause -->
 

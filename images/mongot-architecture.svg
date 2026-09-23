@@ -2,7 +2,7 @@
   <rect width="1010" height="520" fill="#1e1e2e"/>
 
   <!-- app -->
-  <rect x="230" y="30" width="200" height="76" fill="#313244" rx="10" stroke="#89b4fa" stroke-width="2"/>
+  <rect x="230" y="30" width="200" height="76" fill="#313244" stroke="#89b4fa" stroke-width="2"/>
   <text x="330" y="78" fill="#89b4fa" font-size="26" text-anchor="middle" font-weight="bold">app</text>
 
   <!-- query arrow down -->
@@ -16,10 +16,10 @@
   <text x="358" y="162" fill="#585b70" font-size="17" text-anchor="start">results</text>
 
   <!-- mongod box -->
-  <rect x="140" y="210" width="380" height="262" fill="#313244" rx="12" stroke="#a6e3a1" stroke-width="2.5"/>
+  <rect x="140" y="210" width="380" height="262" fill="#313244" stroke="#a6e3a1" stroke-width="2.5"/>
   <text x="330" y="272" fill="#a6e3a1" font-size="30" text-anchor="middle" font-weight="bold">mongod</text>
   <text x="330" y="312" fill="#a6adc8" font-size="18" text-anchor="middle">data · transactions</text>
-  <rect x="185" y="358" width="290" height="72" fill="#45475a" rx="6"/>
+  <rect x="185" y="358" width="290" height="72" fill="#45475a"/>
   <text x="330" y="402" fill="#f9e2af" font-size="19" text-anchor="middle">query proxy</text>
 
   <!-- change stream arrow to mongot -->
@@ -33,10 +33,10 @@
   <text x="624" y="396" fill="#585b70" font-size="15" text-anchor="middle">forward / results</text>
 
   <!-- mongot box -->
-  <rect x="722" y="210" width="248" height="262" fill="#313244" rx="12" stroke="#4EC9B0" stroke-width="2.5"/>
+  <rect x="722" y="210" width="248" height="262" fill="#313244" stroke="#4EC9B0" stroke-width="2.5"/>
   <text x="846" y="272" fill="#4EC9B0" font-size="30" text-anchor="middle" font-weight="bold">mongot</text>
   <text x="846" y="312" fill="#a6adc8" font-size="17" text-anchor="middle">Apache Lucene</text>
-  <rect x="747" y="358" width="198" height="72" fill="#45475a" rx="6" stroke="#4EC9B0" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <rect x="747" y="358" width="198" height="72" fill="#45475a" stroke="#4EC9B0" stroke-width="1.5" stroke-dasharray="5,4"/>
   <text x="846" y="402" fill="#4EC9B0" font-size="19" text-anchor="middle">HNSW index</text>
 
   <!-- captions -->
