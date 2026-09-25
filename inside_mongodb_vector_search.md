@@ -615,13 +615,29 @@ last processed change → resume token
 
 # Architecture — The Mental Model
 
-![image:width:60%](images/gifs/architecture-mental-model.gif)
+<!-- column_layout: [1, 1] -->
+
+<!-- column: 0 -->
+
+![](images/gifs/architecture-mental-model.gif)
+
+<!-- column: 1 -->
+
+**1.** The index doesn't live in the database. It lives in <span style="color: #4EC9B0">`mongot`</span>.
+
+**2.** It syncs by **subscribing to the change stream** — off the write path.
+
+**3.** `mongod` is just the **proxy**. The app never sees the split.
+
+**4.** Slight staleness is the deliberate price for **isolation + independent scaling**.
+
+<!-- reset_layout -->
 
 <!-- pause -->
 
 <span style="color: #f9e2af">One pattern under all four: **defer and derive.**</span>
 
-<span style="color: #6c7086">CQRS (write model / read model) · Materialized View (derived, lagging) · Event-log projection (oplog replay) · Proxy (mongod fronts mongot) · Bulkhead (separate failure domains) · Sidecar (mongot rides alongside mongod, same lifecycle)</span>
+<span style="color: #6c7086">CQRS · Materialized View · Event-log projection · Proxy · Bulkhead · Sidecar</span>
 
 <!-- pause -->
 
