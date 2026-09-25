@@ -1,7 +1,3 @@
-/* Demo 1 — load once, then drive live from the mongosh prompt.
- * Run: mongosh "mongodb://localhost:27017/?directConnection=true"
- * > load("01-filter-trap/live.js")
- */
 const target = db.getSiblingDB('vsdemo');
 const QUERY_VECTOR = [1, 0, 0, 0, 0, 0, 0, 0];   // points straight at the "popular" cluster
 const TENANT_ID = 42;

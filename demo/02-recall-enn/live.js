@@ -1,6 +1,3 @@
-/* Demo 2 — load once, then drive live from the mongosh prompt.
- * Run: mongosh "mongodb://localhost:27017/?directConnection=true" --file 02-recall-enn/live.js
- */
 const target = db.getSiblingDB('vsdemo');
 const QUERY_VECTOR = target.meta.findOne({ _id: "q" }).q;
 const TOP_K = 10;

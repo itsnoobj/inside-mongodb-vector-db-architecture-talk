@@ -1,6 +1,3 @@
-/* Demo 3 — load once, then drive live from the mongosh prompt.
- * Run: mongosh "mongodb://localhost:27017/?directConnection=true" --file 03-rank-fusion/live.js
- */
 const vsdemo = db.getSiblingDB("vsdemo");
 const meta = vsdemo.meta.findOne({ _id: "rankfusion-query" });
 

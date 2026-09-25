@@ -1,6 +1,3 @@
-// Demo 2 — Recall, Measured
-// Open this file in the IDE during the talk.
-
 const QUERY_VECTOR = /* loaded from db at runtime */ [];
 const TOP_K        = 10;
 

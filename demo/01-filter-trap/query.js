@@ -1,6 +1,3 @@
-// Demo 1 — The Filter Trap
-// Open this file in the IDE during the talk.
-
 const QUERY_VECTOR = [1, 0, 0, 0, 0, 0, 0, 0];
 const TENANT_ID    = 42;
 

@@ -1,6 +1,3 @@
-// Demo 3 — Vector Misses, BM25 Catches
-// Open this file in the IDE during the talk.
-
 const QUERY_VECTOR = /* loaded from db at runtime */ [];
 const QUERY_TEXT   = "ERR-4521 connection refused";
 
