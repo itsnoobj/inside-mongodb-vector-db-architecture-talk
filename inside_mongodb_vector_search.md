@@ -879,13 +879,13 @@ ANN numCandidates=5000  →  recall@10 = 100%
 
 **Questions?**
 
-<span style="color: #6c7086">MongoDB 8.2+ · Community & Enterprise · self-managed on supported Linux (Docker/tarball) or Atlas.</span>
+<span style="color: #6c7086">📧 hello@noobj.me · 🌐 noobj.me</span>
 
 <!-- column: 1 -->
 
 ![](images/qr-repo.png)
 
-<span style="color: #6c7086">github.com/itsnoobj/inside-mongodb-vector-db-architecture-talk</span>
+<span style="color: #6c7086">🔗 github.com/itsnoobj/inside-mongodb-vector-db-architecture-talk</span>
 
 <!-- reset_layout -->
 
