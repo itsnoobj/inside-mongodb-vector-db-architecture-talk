@@ -5,7 +5,7 @@ theme:
   override:
     footer:
       style: template
-      left: "Jeevan | MongoDB HYD"
+      left: ""
       right: "{current_slide} / {total_slides}"
 ---
 
@@ -311,6 +311,10 @@ db.docs.aggregate([
 
 <!-- pause -->
 
+![image:width:40%](images/gifs/two-engines-opposite-physics.gif)
+
+<!-- pause -->
+
 <!-- column_layout: [1, 1] -->
 
 <!-- column: 0 -->
@@ -397,7 +401,7 @@ Share one process and a search OOM takes down the database; a GC pause stalls wr
 
 **Search reads a *derived, lagging view* — not the collection.**
 
-![](images/gifs/this-is-fine.gif)
+![image:width:60%](images/gifs/this-is-fine.gif)
 
 <!-- pause -->
 
@@ -502,6 +506,10 @@ $vectorSearch:{ filter:{tenant:42} }
 
 # Bonus: Text + Vector, One Engine
 
+<!-- column_layout: [2, 1] -->
+
+<!-- column: 0 -->
+
 **Vector search misses exact terms. Keyword search misses meaning.**
 
 ```text
@@ -511,6 +519,12 @@ Query: "error code ERR-4521"
 ├─ BM25    → matches "ERR-4521" exactly              (precise)
 └─ Combined → best of both
 ```
+
+<!-- column: 1 -->
+
+![](images/gifs/text-vector-one-engine.gif)
+
+<!-- reset_layout -->
 
 <!-- pause -->
 
@@ -555,6 +569,14 @@ db.docs.aggregate([
 
 # Surviving a Crash: Resume Tokens
 
+<!-- column_layout: [1, 2] -->
+
+<!-- column: 0 -->
+
+![](images/gifs/resume-tokens.gif)
+
+<!-- column: 1 -->
+
 **What if `mongot` restarts mid-stream?**
 
 <!-- pause -->
@@ -566,6 +588,8 @@ last processed change → resume token
         │
         └─ history gone / lost state → re-sync (full rebuild)
 ```
+
+<!-- reset_layout -->
 
 <!-- pause -->
 
@@ -595,6 +619,10 @@ last processed change → resume token
 
 <!-- column: 0 -->
 
+![image:width:100%](images/gifs/architecture-mental-model.gif)
+
+<!-- column: 1 -->
+
 **1.** The index doesn't live in the database. It lives in <span style="color: #4EC9B0">`mongot`</span>.
 
 **2.** It syncs by **subscribing to the change stream** — off the write path.
@@ -603,17 +631,13 @@ last processed change → resume token
 
 **4.** Slight staleness is the deliberate price for **isolation + independent scaling**.
 
-<!-- column: 1 -->
-
-![image:width:95%](images/mongot-architecture.png)
-
 <!-- reset_layout -->
 
 <!-- pause -->
 
 <span style="color: #f9e2af">One pattern under all four: **defer and derive.**</span>
 
-<span style="color: #6c7086">CQRS (write model / read model) · Materialized View (derived, lagging) · Event-log projection (oplog replay) · Proxy (mongod fronts mongot) · Bulkhead (separate failure domains) · Sidecar (mongot rides alongside mongod, same lifecycle)</span>
+<span style="color: #6c7086">CQRS · Materialized View · Event-log projection · Proxy · Bulkhead · Sidecar</span>
 
 <!-- pause -->
 
@@ -663,7 +687,11 @@ one vector:  1024 dims × 4 bytes ≈ 4 KB
 
 <!-- column: 1 -->
 
-![](images/gifs/math-lady.gif)
+![](images/gifs/compression-not-optional-1.gif)
+
+<!-- pause -->
+
+![](images/gifs/compression-not-optional-2.gif)
 
 <!-- reset_layout -->
 
@@ -762,7 +790,7 @@ working set ≈ quantized vectors + HNSW graph
 
 # Lever ③ — Fewer *Bits* per Number
 
-![image:width:38%](images/quantization-lite.png)
+![image:width:70%](images/quantization-lite.png)
 
 <!-- pause -->
 
