@@ -311,7 +311,11 @@ db.docs.aggregate([
 
 <!-- pause -->
 
-<!-- column_layout: [1, 1, 1] -->
+![image:width:40%](images/gifs/two-engines-opposite-physics.gif)
+
+<!-- pause -->
+
+<!-- column_layout: [1, 1] -->
 
 <!-- column: 0 -->
 
@@ -323,10 +327,6 @@ db.docs.aggregate([
 **Memory** · low-latency, steady
 
 <!-- column: 1 -->
-
-![](images/gifs/two-engines-opposite-physics.gif)
-
-<!-- column: 2 -->
 
 <span style="color: #4EC9B0">**Lucene (`mongot`)**</span>
 
