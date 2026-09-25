@@ -2,26 +2,28 @@
  * Run: mongosh "mongodb://localhost:27017/?directConnection=true" --file 02-recall-enn/live.js
  */
 const target = db.getSiblingDB('vsdemo');
-const QUERY = target.meta.findOne({ _id: "q" }).q;
-const K = 10;
+const QUERY_VECTOR = target.meta.findOne({ _id: "q" }).q;
+const TOP_K = 10;
 
-const ids = (pipe) => target.items.aggregate(pipe).toArray().map(d => d.n);
-
-const truth = ids([
-  { $vectorSearch: { index: "vsindex", path: "embedding", queryVector: QUERY, exact: true, limit: K } },
-  { $project: { _id: 0, n: 1 } }
-]);
-
-function recallAt(numCandidates){
-  const got = ids([
-    { $vectorSearch: { index: "vsindex", path: "embedding", queryVector: QUERY, numCandidates, limit: K } },
-    { $project: { _id: 0, n: 1 } }
-  ]);
-  const hit = got.filter(n => truth.includes(n)).length;
-  const bar = "█".repeat(hit * 2).padEnd(20, "░");
-  print(`numCandidates=${numCandidates}  ${bar}  recall@10=${hit * 10}%`);
-  return got;
+function runAggregationAndExtractIds(aggregationPipeline) {
+  return target.items.aggregate(aggregationPipeline).toArray().map(doc => doc.docIndex);
 }
 
-print("truth (exact, ENN):"); printjson(truth);
+const exactNeighbors = runAggregationAndExtractIds([
+  { $vectorSearch: { index: "vsindex", path: "embedding", queryVector: QUERY_VECTOR, exact: true, limit: TOP_K } },
+  { $project: { _id: 0, docIndex: 1 } }
+]);
+
+function recallAt(numCandidates) {
+  const approximateResults = runAggregationAndExtractIds([
+    { $vectorSearch: { index: "vsindex", path: "embedding", queryVector: QUERY_VECTOR, numCandidates, limit: TOP_K } },
+    { $project: { _id: 0, docIndex: 1 } }
+  ]);
+  const matchCount = approximateResults.filter(id => exactNeighbors.includes(id)).length;
+  const recallBar = "█".repeat(matchCount * 2).padEnd(20, "░");
+  print(`numCandidates=${numCandidates}  ${recallBar}  recall@10=${matchCount * 10}%`);
+  return approximateResults;
+}
+
+print("truth (exact, ENN):"); printjson(exactNeighbors);
 print("\nready — call recallAt(10), recallAt(150), recallAt(500), recallAt(5000), ...\n");

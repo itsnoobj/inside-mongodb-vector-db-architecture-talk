@@ -11,7 +11,7 @@ const EXACT_TITLE = "Connection timeout troubleshooting";
 const vectorOnly = vsdemo.errors.aggregate([
   { $vectorSearch: { index: "vsindex", path: "embedding", queryVector: meta.q, numCandidates: 20, limit: 5 } },
   { $project: { _id: 0, title: 1 } },
-]).toArray().map(d => d.title);
+]).toArray().map(doc => doc.title);
 
 const fused = vsdemo.errors.aggregate([
   { $rankFusion: { input: { pipelines: {
@@ -20,7 +20,7 @@ const fused = vsdemo.errors.aggregate([
   }}}},
   { $limit: 5 },
   { $project: { _id: 0, title: 1 } },
-]).toArray().map(d => d.title);
+]).toArray().map(doc => doc.title);
 
 assert(vectorOnly.indexOf(EXACT_TITLE) >= 3, `expected "${EXACT_TITLE}" to rank near the bottom in vector-only, got position ${vectorOnly.indexOf(EXACT_TITLE) + 1} of ${vectorOnly.length}`);
 assert(fused[0] === EXACT_TITLE, `expected "${EXACT_TITLE}" to rank #1 after rankFusion, got "${fused[0]}"`);

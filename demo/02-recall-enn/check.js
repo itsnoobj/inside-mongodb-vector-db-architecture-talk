@@ -10,25 +10,29 @@
  * Run after seed.js: mongosh "mongodb://localhost:27017/?directConnection=true" --file check.js
  */
 const target = db.getSiblingDB('vsdemo');
-const QUERY = target.meta.findOne({ _id: "q" }).q;
-const K = 10;
+const QUERY_VECTOR = target.meta.findOne({ _id: "q" }).q;
+const TOP_K = 10;
 
-const ids = (pipe) => target.items.aggregate(pipe).toArray().map(d => d.n);
-const truth = ids([
-  { $vectorSearch: { index: "vsindex", path: "embedding", queryVector: QUERY, exact: true, limit: K } },
-  { $project: { _id: 0, n: 1 } }
-]);
-function recallAt(numCandidates){
-  const got = ids([
-    { $vectorSearch: { index: "vsindex", path: "embedding", queryVector: QUERY, numCandidates, limit: K } },
-    { $project: { _id: 0, n: 1 } }
-  ]);
-  return got.filter(n => truth.includes(n)).length / K;
+function runAggregationAndExtractIds(aggregationPipeline) {
+  return target.items.aggregate(aggregationPipeline).toArray().map(doc => doc.docIndex);
 }
 
-const low = recallAt(10);
-const high = recallAt(5000);
+const exactNeighbors = runAggregationAndExtractIds([
+  { $vectorSearch: { index: "vsindex", path: "embedding", queryVector: QUERY_VECTOR, exact: true, limit: TOP_K } },
+  { $project: { _id: 0, docIndex: 1 } }
+]);
 
-assert(low < 1, `expected low numCandidates=10 recall < 100% (demo would be flat/boring), got ${low * 100}%`);
-assert(high === 1, `expected numCandidates=5000 recall = 100% (ground truth reachable), got ${high * 100}%`);
-print(`check passed: recall@10 climbs from ${(low * 100).toFixed(0)}% (numCandidates=10) to ${(high * 100).toFixed(0)}% (numCandidates=5000)`);
+function recallAt(numCandidates) {
+  const approximateResults = runAggregationAndExtractIds([
+    { $vectorSearch: { index: "vsindex", path: "embedding", queryVector: QUERY_VECTOR, numCandidates, limit: TOP_K } },
+    { $project: { _id: 0, docIndex: 1 } }
+  ]);
+  return approximateResults.filter(id => exactNeighbors.includes(id)).length / TOP_K;
+}
+
+const recallAtLowCandidates = recallAt(10);
+const recallAtHighCandidates = recallAt(5000);
+
+assert(recallAtLowCandidates < 1, `expected low numCandidates=10 recall < 100% (demo would be flat/boring), got ${recallAtLowCandidates * 100}%`);
+assert(recallAtHighCandidates === 1, `expected numCandidates=5000 recall = 100% (ground truth reachable), got ${recallAtHighCandidates * 100}%`);
+print(`check passed: recall@10 climbs from ${(recallAtLowCandidates * 100).toFixed(0)}% (numCandidates=10) to ${(recallAtHighCandidates * 100).toFixed(0)}% (numCandidates=5000)`);
