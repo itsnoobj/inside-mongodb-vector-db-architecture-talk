@@ -11,8 +11,6 @@
   ```bash
   presenterm --export-pdf inside_mongodb_vector_search.md -o deck.pdf
   ```
-- [`talk_study_notes.md`](talk_study_notes.md) — slide-by-slide presenter depth notes,
-  fact-checked against MongoDB/Voyage AI docs.
 - [`demo/`](demo/) — three live, interactive demos on open-source MongoDB (Docker, no
   embedding API, no npm). Start with [`demo/demo.md`](demo/demo.md) for the run-of-show,
   or [`demo/README.md`](demo/README.md) for the technical reference.
