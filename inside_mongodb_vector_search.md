@@ -5,7 +5,7 @@ theme:
   override:
     footer:
       style: template
-      left: "Jeevan | MongoDB HYD"
+      left: ""
       right: "{current_slide} / {total_slides}"
 ---
 
