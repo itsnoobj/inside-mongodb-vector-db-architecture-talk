@@ -10,7 +10,6 @@ cd demo && docker compose up -d
 
 ```bash
 mongosh "mongodb://localhost:27017/?directConnection=true" --file 01-filter-trap/seed.js
-mongosh "mongodb://localhost:27017/?directConnection=true"
 ```
 ```js
 load("01-filter-trap/live.js")
@@ -22,7 +21,6 @@ showFix()    // Got: 10
 
 ```bash
 mongosh "mongodb://localhost:27017/?directConnection=true" --file 02-recall-enn/seed.js
-mongosh "mongodb://localhost:27017/?directConnection=true"
 ```
 ```js
 load("02-recall-enn/live.js")
@@ -36,7 +34,6 @@ recallAt(5000)
 
 ```bash
 mongosh "mongodb://localhost:27017/?directConnection=true" --file 03-rank-fusion/seed.js
-mongosh "mongodb://localhost:27017/?directConnection=true"
 ```
 ```js
 load("03-rank-fusion/live.js")
