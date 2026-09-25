@@ -187,7 +187,8 @@ Verified against mongodb.com / voyageai.com docs (2026-09-14). MongoDB 8.2+, Com
 
 ## 36. Demo — Recall, Measured
 - Exact (ENN) → true top-10 = the **answer key**.
-- ANN `numCandidates=10` → recall@10 = 90%; `numCandidates=200` → 100%.
+- ANN sweep on a clustered dataset, called live from the mongosh prompt (`recallAt(n)`):
+  `numCandidates=10` → recall@10 = 20%, climbing through 150/500 up to `numCandidates=5000` → 100%.
 - Key idea: ANN and ENN live in the **same `$vectorSearch` stage** (`exact: true` for ENN) → grade the index **natively**, no external tool.
 - **How to pick `numCandidates`:**
   - Start at **10–20 × `limit`**; over-request candidates. It must be **≥ `limit`** and **≤ 10,000** (hard cap).

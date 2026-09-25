@@ -28,11 +28,15 @@ function mulberry32(seed) {
 const rng = mulberry32(11);
 const noise = () => (rng() - 0.5) * 0.1;
 
-// All docs here are semantically close (same axis) — that's the point: an embedding
-// alone can't separate "the right code" from "a similar-sounding wrong code."
-function vectorNearAxis(axis) {
+// All docs sit near the same axis (same general topic) — that's the point: an embedding
+// alone can't separate "the right code" from "a similar-sounding wrong code." The exact
+// doc gets an extra deliberate nudge AWAY from the query on axis 1: same topic, but
+// measurably the worst vector match of the five — so vector-only demonstrably buries it,
+// not just "might rank it lower by noise."
+function vectorNearAxis(axis, drift = 0) {
   const vector = Array.from({ length: DIM }, () => noise());
   vector[axis] += 1;
+  vector[1] += drift;
   return vector;
 }
 
@@ -43,7 +47,7 @@ const docs = [
   {
     title: "Connection timeout troubleshooting",
     content: `If you see ${EXACT_CODE}, the connection pool exhausted its retries. Increase the timeout or pool size.`,
-    embedding: vectorNearAxis(0),
+    embedding: vectorNearAxis(0, 0.4),   // exact-code doc: deliberately the worst vector match
   },
   {
     title: "Retry logic for network errors",

@@ -8,11 +8,11 @@
   <text x="600" y="270" text-anchor="middle" font-size="30" fill="#cdd6f4">Inside</text>
   <text x="600" y="330" text-anchor="middle" font-size="52" font-weight="bold" fill="#00ED64">MongoDB Vector Search</text>
 
-  <text x="600" y="392" text-anchor="middle" font-size="26" font-weight="bold" fill="#f9e2af">Architecture · Quantization · Smarter Embeddings</text>
+  <text x="600" y="386" text-anchor="middle" font-size="24" font-weight="bold" fill="#f9e2af">Architecture, Quantization &amp; Embeddings</text>
 
   <line x1="300" y1="430" x2="900" y2="430" stroke="#585b70" stroke-width="1"/>
 
-  <text x="600" y="472" text-anchor="middle" font-size="18" fill="#6c7086">what actually happens beneath a $vectorSearch query</text>
+  <text x="600" y="472" text-anchor="middle" font-size="18" fill="#6c7086">Two Processes, Fewer Bits, Smarter Vectors</text>
 
   <text x="600" y="536" text-anchor="middle" font-size="20" fill="#89b4fa">Jeevan · MongoDB HYD User Group</text>
 </svg>

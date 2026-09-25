@@ -837,10 +837,12 @@ working set ≈ quantized vectors + HNSW graph
 <!-- pause -->
 
 ```
-exact (ENN)            →  true top-10   (the answer key)
+exact (ENN)             →  true top-10   (the answer key)
 
-ANN numCandidates=10   →  recall@10 = 90%
-ANN numCandidates=200  →  recall@10 = 100%
+ANN numCandidates=10    →  recall@10 =  20%
+ANN numCandidates=150   →  recall@10 =  50%
+ANN numCandidates=500   →  recall@10 =  80%
+ANN numCandidates=5000  →  recall@10 = 100%
 ```
 
 <!-- pause -->
@@ -883,7 +885,7 @@ ANN numCandidates=200  →  recall@10 = 100%
 
 ![](images/qr-repo.png)
 
-<span style="color: #6c7086">Slides & notes</span>
+<span style="color: #6c7086">github.com/itsnoobj/inside-mongodb-vector-db-architecture-talk</span>
 
 <!-- reset_layout -->
 
