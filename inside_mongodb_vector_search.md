@@ -401,7 +401,7 @@ Share one process and a search OOM takes down the database; a GC pause stalls wr
 
 **Search reads a *derived, lagging view* — not the collection.**
 
-![](images/gifs/this-is-fine.gif)
+![image:width:60%](images/gifs/this-is-fine.gif)
 
 <!-- pause -->
 
