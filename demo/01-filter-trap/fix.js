@@ -8,11 +8,10 @@ const res = target.products.aggregate([
   { $vectorSearch: {
       index: "vsindex", path: "embedding", queryVector: QUERY,
       filter: { tenant: { $eq: 42 } },                                 // <-- pre-filter, inside the index
-      numCandidates: 150, limit: 10
+      numCandidates: 15, limit: 10
   }},
   { $project: { _id: 0, title: 1, tenant: 1, score: { $meta: "vectorSearchScore" } } }
 ]).toArray();
 
-print(`\nSame query, filter pushed into $vectorSearch. Got: ${res.length}`);
+print(`\nfilter pushed into $vectorSearch. Got: ${res.length}`);
 printjson(res);
-print("\nPre-filter beats post-filter: mongot searches only tenant 42 and returns a full 10.\n");

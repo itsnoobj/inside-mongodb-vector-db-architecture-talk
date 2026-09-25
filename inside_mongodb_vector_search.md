@@ -47,13 +47,13 @@ db.docs.aggregate([
 
 <!-- column: 0 -->
 
-## 🏗️ Architecture
-*Where the index lives — and why it's not where it seems*
+## 🏗️ Where does the index live?
+*Architecture — `mongot` and the change stream*
 
 <!-- column: 1 -->
 
-## 🗜️ Compression
-*How billions of numbers fit in memory*
+## 🗜️ How do billions fit in RAM?
+*Compression — quantization and its levers*
 
 <!-- reset_layout -->
 
@@ -76,10 +76,12 @@ db.docs.aggregate([
 <!-- column: 0 -->
 
 ```
-"I love fries"     → [0.2, 0.8, 0.1, ...]
-"Fries are great"  → [0.3, 0.7, 0.2, ...]
-"The sky is blue"  → [0.9, 0.1, 0.8, ...]
+"I love biryani"     → [0.2, 0.8, 0.1, ...]
+"Biryanis are awesome" → [0.3, 0.7, 0.2, ...]
+"The sky is blue"     → [0.9, 0.1, 0.8, ...]
 ```
+
+<!-- pause -->
 
 <span style="color: #a6e3a1">Similar meaning → similar numbers.</span>
 
@@ -109,7 +111,7 @@ db.docs.aggregate([
 
 <!-- column: 1 -->
 
-**Many dims → cosine** (direction, not length)
+**Many dims → cosine**
 
 ![image:width:90%](images/cosine-similarity-angle.png)
 
@@ -156,6 +158,24 @@ B = [0.93, 0.12, ..., 0.71]
 
 <!-- end_slide -->
 
+# How ANN (Approximate Nearest Neighbor) Indexes Work
+
+**Close enough — without checking every vector.**
+
+![image:width:75%](images/hnsw.png)
+
+**<span style="color: #4EC9B0">HNSW</span>** — Hierarchical Navigable Small World · multi-layer graph · ~95-99% recall · <span style="color: #f38ba8">must stay in RAM</span>
+
+<!-- pause -->
+
+*Like driving city → suburb → street: expressway (top layer, big hops) → regional road → local street to the door (precise).*
+
+<!-- pause -->
+
+<span style="color: #a6e3a1">ANN = Approximate Nearest Neighbor: ~99% as good as exact scan, 100x faster.</span>
+
+<!-- end_slide -->
+
 # &nbsp;
 
 ![](images/transition-into-mongodb.png)
@@ -173,8 +193,6 @@ B = [0.93, 0.12, ..., 0.71]
 }
 ```
 
-<!-- pause -->
-
 A normal document. A normal array.
 
 <span style="color: #a6e3a1">**That's the input. Now — where does the *index* live?**</span>
@@ -183,20 +201,61 @@ A normal document. A normal array.
 
 # A Stored Vector Is Inert
 
-![image:width:62%](images/hnsw.png)
+<!-- column_layout: [1, 1] -->
+
+<!-- column: 0 -->
+
+```js
+// Index creation — the key parameters
+db.createSearchIndex("vsindex", "vectorSearch", {
+  fields: [{
+    type: "vector",
+    path: "embedding",
+    numDimensions: 1024,
+    similarity: "cosine",
+    quantization: "binary"   // scalar | binary
+  }]
+})
+```
+
+<!-- column: 1 -->
+
+```js
+// Query — the key parameters
+db.docs.aggregate([
+  { $vectorSearch: {
+      index: "vsindex",
+      path: "embedding",
+      queryVector: [0.21, 0.87, ...],
+      numCandidates: 200,   // ← recall ↔ latency dial
+      limit: 10
+  }}
+])
+```
+
+<!-- reset_layout -->
 
 <!-- pause -->
 
-A vector saved in a document is just **data** — no `<` to sort on, no `WHERE` that finds "nearest." **HNSW** links vectors into a navigable graph; search **hops greedily** toward the nearest neighbours, visiting a slice, not all N.
+<span style="color: #6c7086">Both sides matter: how the index is *built* (left) and how it's *queried* (right).</span>
+
+<!-- end_slide -->
+
+# `numCandidates`: The Recall ↔ Latency Dial
+
+![image:width:55%](images/numcandidates-bucket.png)
 
 <!-- pause -->
 
-- **ANN** — approximate: fast, ~99% as good as scanning everything
-- `numCandidates` — how many nodes the walk visits (recall ↔ latency)
+<span style="color: #f9e2af">`numCandidates` = how many nodes the HNSW walk visits.</span>
 
 <!-- pause -->
 
-<span style="color: #f9e2af">Storing the vector is trivial. The **index** is the hard part — and it's what `mongot` exists to build.</span>
+**So how do you pick that number?**
+
+<span style="color: #6c7086">Rule of thumb: start at 10–20 × `limit`. Hard cap: 10,000.</span>
+
+<span style="color: #a6e3a1">Then don't guess — measure. Coming up: ENN as a free ground truth.</span>
 
 <!-- end_slide -->
 
@@ -232,14 +291,7 @@ A vector saved in a document is just **data** — no `<` to sort on, no `WHERE` 
 
 <span style="color: #f9e2af">The pattern under everything: **never work on the write path.**</span>
 
-<!--
-speaker_note: |
-  This is the spine of the whole talk. MongoDB refuses to do search's expensive
-  indexing work synchronously with the write. It records the change and derives
-  the index elsewhere, asynchronously. "Defer and derive." Every choice in this half
-  - the second process, the change-stream sync, the staleness, the proxy - falls
-  out of this one refusal.
--->
+
 
 <!-- end_slide -->
 
@@ -285,15 +337,7 @@ Share one process and a search OOM takes down the database; a GC pause stalls wr
 
 <span style="color: #f9e2af">And Lucene *fits*, structurally —</span> <span style="color: #6c7086">immutable segments ≈ how HNSW wants to live.</span>
 
-<!--
-speaker_note: |
-  Not just "Lucene is 20 years mature." The deeper reason: an HNSW graph is
-  expensive to build and can't be edited in place. Lucene's core model is
-  immutable segments plus background merges - deletes are tombstones, an update
-  writes a whole new segment, the graph is only ever built, never mutated. Same
-  shape as an LSM-tree. A 20-year-old search design happens to be perfect for
-  vector indexes. Reuse over rewrite, for a real structural reason.
--->
+
 
 <!-- end_slide -->
 
@@ -315,14 +359,7 @@ speaker_note: |
 
 <span style="color: #a6e3a1">Mental model: `mongot` is a **read replica that speaks Lucene**.</span>
 
-<!--
-speaker_note: |
-  The two phases are exactly a replica's lifecycle: initial sync (a full scan to
-  build the first index) then tail the change stream to stay caught up. MongoDB
-  didn't invent a sync pipeline for search - it reused the replication machinery
-  it already had. That's why it feels robust: it's battle-tested plumbing, not
-  new code on the write path.
--->
+
 
 <!-- pause -->
 
@@ -350,6 +387,8 @@ speaker_note: |
 
 **Search reads a *derived, lagging view* — not the collection.**
 
+![](images/gifs/this-is-fine.gif)
+
 <!-- pause -->
 
 <!-- column_layout: [1, 1] -->
@@ -370,18 +409,7 @@ Stale = which docs *match*, never the body.
 
 <span style="color: #f9e2af">Eventually-consistent results · strongly-consistent documents.</span>
 
-<!--
-speaker_note: |
-  Put the last two slides together. The search index is a materialized view of
-  the collection, kept up to date by a background process. Consequence 1, the
-  catch: no read-your-writes for search - write a doc, search a millisecond
-  later, it may not be indexed yet. Consequence 2, the subtlety people miss:
-  staleness only affects WHICH documents match, never the freshness of the
-  content, because mongod rehydrates every hit from the source of truth. So one
-  query spans two consistency models: an eventually-consistent result set made
-  of strongly-consistent documents. Pattern names, if the room is technical:
-  this is CQRS (write model vs read model) and a classic Materialized View.
--->
+
 
 <!-- end_slide -->
 
@@ -408,29 +436,37 @@ db.docs.aggregate([
 
 <span style="color: #f9e2af">So every later stage runs *after* the ANN walk.</span> <span style="color: #6c7086">Pre-vs-post is a consequence, not a rule.</span>
 
-<!--
-speaker_note: |
-  $vectorSearch has to be the first stage because it isn't a filter running in
-  mongod - it's a document SOURCE. mongod hands the search to mongot, gets back
-  ranked {_id, score}, then streams those into the rest of the pipeline. So
-  everything after $vectorSearch runs after the ANN walk has already finished.
-  That's why pre-vs-post isn't a rule to memorize, it's a consequence: a doc's
-  OWN fields must be pre-filtered inside $vectorSearch (the filter field, next
-  slide) or the walk starves. A pipeline $match only makes sense for joined or
-  derived data like user.plan that doesn't exist until after the join.
--->
+
 
 <!-- end_slide -->
 
 # Filtering: *Where* It Runs Decides If It Works
 
-![image:width:88%](images/filtered-search-problem-horizontal.png)
+**B-tree index:** knows every value → filter by tenant = a direct, exact lookup. Never misses.
+
+**HNSW index:** knows only *proximity*, not "tenant" — blind to any filter applied *after* the walk.
+
+<!-- pause -->
+
+**Post-filter:** graph walk finds 10 nearest (all wrong tenant) → `$match` throws away all 10 → **0 results**.
+
+![image:width:30%](images/gifs/where.gif)
+
+<!-- pause -->
+
+<span style="color: #6c7086">A B-tree can't lose rows — it points at exact values. HNSW can "lose" rows — it points at *nearest* vectors, and only sees your filter if it's built into the walk.</span>
+
+<!-- end_slide -->
+
+# Pre-Filter Fixes It
+
+**Pre-filter:** predicate declared *inside* the index → graph walk only visits matching-tenant nodes → **10 results**.
+
+![image:width:80%](images/filtered-search-problem-horizontal.png)
 
 <!-- pause -->
 
 <span style="color: #f38ba8">Filter *after* search: HNSW returns its 10 nearest, the `$match` throws most away. Asked for 10, got 1.</span>
-
-<!-- pause -->
 
 <span style="color: #a6e3a1">The `filter` field pushes the predicate *inside* HNSW — the graph walk only visits matching docs.</span>
 
@@ -468,7 +504,23 @@ $vectorSearch:{ filter:{tenant:42} }
 
 # Bonus: Text + Vector, One Engine
 
-**`mongot` already indexes both. Fuse them in a single query.**
+**Vector search misses exact terms. Keyword search misses meaning.**
+
+```text
+Query: "error code ERR-4521"
+├─ Vector  → returns docs about "connection timeout errors" (semantically close,
+│            wrong code — ERR-4521 and ERR-4522 look nearly identical as vectors)
+├─ BM25    → matches "ERR-4521" exactly              (precise)
+└─ Combined → best of both
+```
+
+<!-- pause -->
+
+<span style="color: #f38ba8">Embeddings compress exact tokens (IDs, codes, SKUs) into "nearby," not "identical." Vector search alone can't tell ERR-4521 from ERR-4522.</span>
+
+<!-- pause -->
+
+**`mongot` already indexes both. Fuse them in one query.**
 
 ```js
 db.docs.aggregate([
@@ -483,29 +535,23 @@ db.docs.aggregate([
 
 <span style="color: #a6e3a1">Reciprocal Rank Fusion blends the two — keyword precision + semantic recall.</span>
 
-<!-- pause -->
+<span style="color: #6c7086">Fuses by **rank**, not score (cosine 0–1 ≠ BM25 unbounded). One engine, no second system.</span>
 
-<span style="color: #6c7086">Fuses by **rank**, not score. One engine, no second system.</span>
 
-<!--
-speaker_note: |
-  Why fuse by rank and not score? The two scores aren't comparable - cosine is
-  0 to 1, BM25 is unbounded - so adding them is meaningless. RRF throws the raw
-  scores away and uses only position: sum of 1/(k + rank), default k = 60. Rank
-  is the common currency across both rankings. And it's all one Lucene engine:
-  the same mongot serves $search and $vectorSearch, so no second system to run,
-  nothing extra to sync.
--->
 
 <!-- end_slide -->
 
 # The Two Kitchens
 
+**One sentence to keep: the whole architecture, in an analogy.**
+
+<!-- pause -->
+
 ![image:width:88%](images/two-kitchens.png)
 
 <!-- pause -->
 
-<span style="color: #f9e2af">The prep kitchen can lag — but the line keeps serving at full speed.</span>
+<span style="color: #f9e2af">The prep kitchen can fall behind — and the front of house never even slows down.</span>
 
 <!-- end_slide -->
 
@@ -535,7 +581,9 @@ last processed change → resume token
 
 <!-- pause -->
 
-<span style="color: #6c7086">Start co-located, isolate under load, shard to scale out — same query throughout. (Isolating = `mongot` on its own host; Atlas calls these Search Nodes.)</span>
+<span style="color: #6c7086">Start co-located, isolate under load, shard to scale out — same query throughout.</span>
+
+<span style="color: #a6e3a1">Co-located = the **Sidecar pattern**: `mongot` rides alongside `mongod`, same host, same lifecycle.</span>
 
 <!-- pause -->
 
@@ -545,48 +593,55 @@ last processed change → resume token
 
 # Architecture — The Mental Model
 
-<!-- pause -->
+<!-- column_layout: [1, 1] -->
+
+<!-- column: 0 -->
 
 **1.** The index doesn't live in the database. It lives in <span style="color: #4EC9B0">`mongot`</span>.
 
-<!-- pause -->
-
 **2.** It syncs by **subscribing to the change stream** — off the write path.
-
-<!-- pause -->
 
 **3.** `mongod` is just the **proxy**. The app never sees the split.
 
-<!-- pause -->
-
 **4.** Slight staleness is the deliberate price for **isolation + independent scaling**.
+
+<!-- column: 1 -->
+
+![image:width:95%](images/mongot-architecture.png)
+
+<!-- reset_layout -->
 
 <!-- pause -->
 
 <span style="color: #f9e2af">One pattern under all four: **defer and derive.**</span>
 
-<span style="color: #6c7086">CQRS · Materialized View · Event-log projection · Proxy · Bulkhead</span>
+<span style="color: #6c7086">CQRS (write model / read model) · Materialized View (derived, lagging) · Event-log projection (oplog replay) · Proxy (mongod fronts mongot) · Bulkhead (separate failure domains) · Sidecar (mongot rides alongside mongod, same lifecycle)</span>
 
-<!--
-speaker_note: |
-  One line to tie it together: MongoDB never does search's work on the write
-  path - it defers and derives. Lag, resume tokens, rehydration all fall out of
-  that. If the room is technical, name the patterns:
-  - CQRS: mongod is the write model, mongot the read model, async projection between.
-  - Materialized View: the index is a derived view refreshed from the change stream.
-  - Event-log projection: the oplog is the append-only log; resume token = cursor; rebuild = replay.
-  - Proxy (GoF remote proxy): mongod stands in front of mongot and reassembles results.
-  - Bulkhead: separate processes = separate failure domains; a search OOM or GC pause can't sink the DB.
-  Non-obvious tradeoff to drop: this is PACELC, not CAP - no partition, so the
-  axis is Latency vs Consistency, and MongoDB picks latency (writes never wait)
-  at the cost of a slightly stale index.
--->
+<!-- pause -->
+
+<span style="color: #6c7086">And PACELC: no partition → the tradeoff is **Latency vs Consistency**. MongoDB picks latency (writes never wait) at the cost of a stale index.</span>
+
+
 
 <!-- end_slide -->
 
 # &nbsp;
 
 ![](images/transition-act2.png)
+
+<!-- end_slide -->
+
+# We Understand the Architecture — Now the Scale Problem
+
+**We've seen how MongoDB separates search from transactions.**
+
+**But when you put 100M vectors behind that architecture, the RAM bill still explodes.**
+
+![image:width:40%](images/gifs/everything-fine-fire.gif)
+
+<!-- pause -->
+
+<span style="color: #f9e2af">The index structure is elegant. The memory footprint is brutal.</span>
 
 <!-- end_slide -->
 
@@ -616,6 +671,17 @@ one vector:  1024 dims × 4 bytes ≈ 4 KB
 
 <span style="color: #f38ba8">HNSW wants those vectors in RAM.</span> <span style="color: #f9e2af">RAM is the bill.</span>
 
+<!-- pause -->
+
+**And at distributed scale:**
+
+- Sharding spreads data, but each shard still needs its HNSW in RAM
+- `numCandidates` applies **per shard** → recall shifts as you add shards
+- A search OOM on one shard can starve the others
+- Rebuilds, rebalancing, and hot-spotting all hit the same memory wall
+
+<span style="color: #6c7086">Compression isn't a nice-to-have. It's the difference between "scales" and "doesn't."</span>
+
 <!-- end_slide -->
 
 # Three Levers, Not One
@@ -628,17 +694,23 @@ one vector:  1024 dims × 4 bytes ≈ 4 KB
 
 <!-- end_slide -->
 
-# Lever ① — Fewer *Numbers*
+# Lever ① — Fewer *Numbers* (dimensions)
 
-![image:width:80%](images/dimensions-growth.png)
-
-<!-- pause -->
-
-RAM scales with dimensions. Halve them → halve the vector RAM.
+![image:width:55%](images/matryoshka-dolls.jpg)
 
 <!-- pause -->
 
-<span style="color: #6c7086">Matryoshka (MRL) training packs the meaning into the front dims — so truncating is safe.</span>
+**Matryoshka (MRL):** training packs meaning into the front dims → truncating is safe.
+
+```
+2048 dims → 1024 dims → 512 dims → 256 dims
+```
+
+<!-- pause -->
+
+<span style="color: #f9e2af">Start small, measure recall. If 256 dims works, no need to store 1024.</span>
+
+<span style="color: #6c7086">RAM scales with dimensions. Halve them → halve the vector RAM.</span>
 
 <!-- end_slide -->
 
@@ -646,56 +718,55 @@ RAM scales with dimensions. Halve them → halve the vector RAM.
 
 **`mongot` is Lucene. Lucene reads its index through `mmap`.**
 
-```
-Lucene segment files  ── on disk ──┐
-                                   ▼
-                            OS page cache
-              hot pages resident · cold pages fetched on demand
-```
+![image:width:75%](images/mmap-page-cache.png)
+
+<!-- pause -->
+
+**Why performance stays acceptable:**
+
+- HNSW graph walks are **localized** — only touch a small fraction of nodes
+- OS page cache keeps the hot paths resident
+- Cold pages fetched on demand, not loaded upfront
 
 <!-- pause -->
 
 No hard "the whole index must fit in RAM" wall — size for the **working set**, not the entire index.
 
+<span style="color: #6c7086">Not a DiskANN-style index (HNSW is the only algorithm) — just `mmap` giving graceful spill for free. RAM can sit on its own Search Nodes.</span>
+
+<!-- end_slide -->
+
+# Sizing: What Actually Needs to Be Hot
+
+```
+working set ≈ quantized vectors + HNSW graph
+              (raw float vectors stay on disk)
+```
+
 <!-- pause -->
 
-<span style="color: #6c7086">Not a DiskANN-style index (HNSW is the only algorithm) — just `mmap` giving graceful spill for free. And since it all lives in `mongot`, that RAM can sit on its own Search Nodes.</span>
+| per 1M × 1024d | size |
+|---|---|
+| raw float32 (on disk) | ~4 GB |
+| binary-quantized (hot) | ~128 MB + graph |
+
+<!-- pause -->
+
+<span style="color: #f9e2af">Raw vectors stay on disk automatically when quantization is enabled — this is default behavior, not a config flag.</span>
+
+<span style="color: #f9e2af">Size RAM for the *quantized* working set. That's the number that sets the bill.</span>
+
+<span style="color: #6c7086">*Graph overhead varies — validate on the target corpus.*</span>
 
 <!-- end_slide -->
 
 # Lever ③ — Fewer *Bits* per Number
 
-![image:width:55%](images/quantization-lite.png)
+![image:width:38%](images/quantization-lite.png)
 
 <!-- pause -->
 
 <span style="color: #6c7086">Full precision is overkill for *finding* candidates. Keep it only for the final ranking.</span>
-
-<!-- end_slide -->
-
-# `mongot` Quantizes Automatically
-
-**Raw float vectors go in as-is — add one field to the index.**
-
-```js
-{ "fields": [{
-    "type": "vector",
-    "path": "embedding",
-    "numDimensions": 1024,
-    "similarity": "cosine",
-    "quantization": "binary"   // or "scalar"
-}]}
-```
-
-<!-- pause -->
-
-- Done at **index-build time**, inside `mongot`
-- **No change** to the ingestion pipeline
-- Works on **existing** collections
-
-<!-- pause -->
-
-<span style="color: #a6e3a1">Raw vectors stay on disk. The compressed copy does the searching.</span>
 
 <!-- end_slide -->
 
@@ -729,29 +800,41 @@ No hard "the whole index must fit in RAM" wall — size for the **working set**,
 
 <!-- end_slide -->
 
-# Sizing: What Actually Needs to Be Hot
+# `mongot` Quantizes Automatically
 
-```
-working set ≈ quantized vectors + HNSW graph
-              (raw float vectors stay on disk)
+**Raw float vectors go in as-is — add one field to the index.**
+
+```js
+{ "fields": [{
+    "type": "vector",
+    "path": "embedding",
+    "numDimensions": 1024,
+    "similarity": "cosine",
+    "quantization": "binary"   // or "scalar"
+}]}
 ```
 
 <!-- pause -->
 
-| per 1M × 1024d | size |
-|---|---|
-| raw float32 (on disk) | ~4 GB |
-| binary-quantized (hot) | ~128 MB + graph |
+- Done at **index-build time**, inside `mongot`
+- **No change** to the ingestion pipeline
+- Works on **existing** collections
 
 <!-- pause -->
 
-<span style="color: #f9e2af">Size RAM for the *quantized* working set — not the raw vectors. That's the number that sets the bill.</span>
-
-<span style="color: #6c7086">*Graph overhead varies — validate on the target corpus.*</span>
+<span style="color: #a6e3a1">Raw vectors stay on disk. The compressed copy does the searching.</span>
 
 <!-- end_slide -->
 
 # Demo — Recall, Measured
+
+**How do we write evals for a search system? We need a golden dataset — ground truth to grade against.**
+
+<!-- pause -->
+
+<span style="color: #f9e2af">MongoDB gives a way to generate one synthetically: exact search (ENN) *is* the answer key.</span>
+
+<!-- pause -->
 
 ```
 exact (ENN)            →  true top-10   (the answer key)
@@ -764,29 +847,29 @@ ANN numCandidates=200  →  recall@10 = 100%
 
 <span style="color: #a6e3a1">ANN and ENN live in the *same* `$vectorSearch` stage — grade the index natively, no external tool.</span>
 
-<span style="color: #6c7086">Live on local MongoDB.</span>
+<!-- pause -->
+
+**Golden dataset pattern:**
+
+1. Collect 100–500 representative queries
+2. Run ENN (`exact: true`) to get ground-truth top-k for each
+3. Store as golden eval set
+4. Run weekly: compare ANN results against golden, compute recall
+5. Alert if recall drops below threshold
+
+<span style="color: #6c7086">No embedding API, no external service — MongoDB generates its own answer key.</span>
+
+<!-- pause -->
+
+<span style="color: #6c7086">Start `numCandidates` at **10–20 × `limit`**; raise it until measured recall plateaus. Hard cap: 10,000.</span>
+
+
 
 <!-- end_slide -->
 
 # &nbsp;
 
 ![](images/transition-synthesis.png)
-
-<!-- end_slide -->
-
-# What's Now Clear
-
-<!-- pause -->
-
-**🏗️** The index lives in <span style="color: #4EC9B0">`mongot`</span>, fed by the change stream — not in the DB.
-
-<!-- pause -->
-
-**🗜️** `mongot` quantizes at build time; it searches blurry and ranks sharp.
-
-<!-- pause -->
-
-<span style="color: #f9e2af">In: the API. Out: the machine.</span>
 
 <!-- end_slide -->
 

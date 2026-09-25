@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="monospace">
+  <rect width="900" height="420" fill="#1e1e2e"/>
+
+  <!-- Disk layer -->
+  <rect x="60" y="280" width="780" height="100" fill="#313244" stroke="#6c7086" stroke-width="2"/>
+  <text x="450" y="310" fill="#6c7086" font-size="18" text-anchor="middle" font-weight="bold">Lucene segment files (disk)</text>
+  <text x="450" y="335" fill="#585b70" font-size="14" text-anchor="middle">full HNSW graph + quantized vectors, all segments</text>
+
+  <!-- individual disk blocks -->
+  <rect x="90" y="345" width="60" height="24" fill="#45475a" stroke="#585b70"/>
+  <rect x="160" y="345" width="60" height="24" fill="#45475a" stroke="#585b70"/>
+  <rect x="230" y="345" width="60" height="24" fill="#f9e2af" stroke="#f9e2af" opacity="0.85"/>
+  <rect x="300" y="345" width="60" height="24" fill="#45475a" stroke="#585b70"/>
+  <rect x="370" y="345" width="60" height="24" fill="#f9e2af" stroke="#f9e2af" opacity="0.85"/>
+  <rect x="440" y="345" width="60" height="24" fill="#45475a" stroke="#585b70"/>
+  <rect x="510" y="345" width="60" height="24" fill="#45475a" stroke="#585b70"/>
+  <rect x="580" y="345" width="60" height="24" fill="#f9e2af" stroke="#f9e2af" opacity="0.85"/>
+  <rect x="650" y="345" width="60" height="24" fill="#45475a" stroke="#585b70"/>
+  <rect x="720" y="345" width="60" height="24" fill="#45475a" stroke="#585b70"/>
+  <text x="450" y="392" fill="#6c7086" font-size="12" text-anchor="middle">cold pages (gray) · hot pages (yellow)</text>
+
+  <!-- OS page cache layer -->
+  <rect x="180" y="150" width="540" height="90" fill="#313244" stroke="#89b4fa" stroke-width="2.5"/>
+  <text x="450" y="178" fill="#89b4fa" font-size="18" text-anchor="middle" font-weight="bold">OS page cache (RAM)</text>
+  <text x="450" y="203" fill="#a6adc8" font-size="14" text-anchor="middle">only the touched pages live here</text>
+
+  <rect x="220" y="212" width="60" height="20" fill="#f9e2af" opacity="0.85"/>
+  <rect x="410" y="212" width="60" height="20" fill="#f9e2af" opacity="0.85"/>
+  <rect x="600" y="212" width="60" height="20" fill="#f9e2af" opacity="0.85"/>
+
+  <!-- arrows disk -> page cache -->
+  <path d="M260 345 L260 240" fill="none" stroke="#f9e2af" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="260,240 254,250 266,250" fill="#f9e2af"/>
+
+  <path d="M400 345 L440 240" fill="none" stroke="#f9e2af" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="440,240 431,248 442,251" fill="#f9e2af"/>
+
+  <path d="M610 345 L630 240" fill="none" stroke="#f9e2af" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="630,240 621,247 633,250" fill="#f9e2af"/>
+
+  <text x="760" y="200" fill="#585b70" font-size="12" text-anchor="start">fetched</text>
+  <text x="760" y="216" fill="#585b70" font-size="12" text-anchor="start">on demand</text>
+
+  <!-- HNSW walk layer -->
+  <rect x="300" y="40" width="300" height="70" fill="#45475a" stroke="#a6e3a1" stroke-width="2.5"/>
+  <text x="450" y="68" fill="#a6e3a1" font-size="18" text-anchor="middle" font-weight="bold">HNSW graph walk</text>
+  <text x="450" y="92" fill="#a6adc8" font-size="13" text-anchor="middle">localized — touches a small node slice</text>
+
+  <!-- arrow page cache -> walk -->
+  <line x1="450" y1="150" x2="450" y2="112" stroke="#a6e3a1" stroke-width="2"/>
+  <polygon points="450,110 443,122 457,122" fill="#a6e3a1"/>
+
+  <!-- caption -->
+  <text x="450" y="20" fill="#f9e2af" font-size="15" text-anchor="middle" font-weight="bold">Size RAM for the working set, not the whole index</text>
+</svg>
