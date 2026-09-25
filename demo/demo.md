@@ -8,8 +8,6 @@ cd demo && docker compose up -d
 
 ## Demo 1 — The Filter Trap
 
-IDE: `01-filter-trap/query.js`
-
 ```js
 load("01-filter-trap/live.js")
 showTrap()   // Got: 0
@@ -17,8 +15,6 @@ showFix()    // Got: 10
 ```
 
 ## Demo 2 — Recall, Measured
-
-IDE: `02-recall-enn/query.js`
 
 ```js
 load("02-recall-enn/live.js")
@@ -29,8 +25,6 @@ recallAt(5000)
 ```
 
 ## Demo 3 — Vector Misses, BM25 Catches
-
-IDE: `03-rank-fusion/query.js`
 
 ```js
 load("03-rank-fusion/live.js")
