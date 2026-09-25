@@ -615,7 +615,7 @@ last processed change → resume token
 
 # Architecture — The Mental Model
 
-<!-- column_layout: [1, 1] -->
+<!-- column_layout: [2, 1] -->
 
 <!-- column: 0 -->
 
