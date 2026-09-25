@@ -71,14 +71,24 @@ db.docs.aggregate([
 
 # Recap: An Embedding Is Meaning as Numbers
 
+```
+┌──────────────────────────┐        ┌──────────────────────────┐
+│     "I love biryani"     │   vs   │  "Biryanis are awesome"  │
+└──────────────────────────┘        └──────────────────────────┘
+```
+
+**How do we teach a computer these two are saying the same thing?**
+
+<!-- pause -->
+
 <!-- column_layout: [3, 2] -->
 
 <!-- column: 0 -->
 
 ```
-"I love biryani"     → [0.2, 0.8, 0.1, ...]
-"Biryanis are awesome" → [0.3, 0.7, 0.2, ...]
-"The sky is blue"     → [0.9, 0.1, 0.8, ...]
+"I love biryani"        → [0.2, 0.8, 0.1, ...]
+"Biryanis are awesome"  → [0.3, 0.7, 0.2, ...]
+"The sky is blue"       → [0.9, 0.1, 0.8, ...]
 ```
 
 <!-- pause -->
@@ -458,20 +468,6 @@ db.docs.aggregate([
 
 <!-- end_slide -->
 
-# Pre-Filter Fixes It
-
-**Pre-filter:** predicate declared *inside* the index → graph walk only visits matching-tenant nodes → **10 results**.
-
-![image:width:80%](images/filtered-search-problem-horizontal.png)
-
-<!-- pause -->
-
-<span style="color: #f38ba8">Filter *after* search: HNSW returns its 10 nearest, the `$match` throws most away. Asked for 10, got 1.</span>
-
-<span style="color: #a6e3a1">The `filter` field pushes the predicate *inside* HNSW — the graph walk only visits matching docs.</span>
-
-<!-- end_slide -->
-
 # Demo — The Filter Trap
 
 <!-- column_layout: [1, 1] -->
@@ -497,6 +493,8 @@ $vectorSearch:{ filter:{tenant:42} }
 <!-- pause -->
 
 <span style="color: #f9e2af">Same query, same data — the only change is *where* the filter runs.</span>
+
+<span style="color: #a6e3a1">Pre-filter fixes it: the predicate runs *inside* the HNSW walk, not after.</span>
 
 <span style="color: #6c7086">Live on local MongoDB: `mongod` + `mongot` in one container.</span>
 
@@ -537,15 +535,15 @@ db.docs.aggregate([
 
 <span style="color: #6c7086">Fuses by **rank**, not score (cosine 0–1 ≠ BM25 unbounded). One engine, no second system.</span>
 
+<!-- pause -->
+
+<span style="color: #6c7086">Live on local MongoDB: `demo/03-rank-fusion` — same exact-code example, real `$rankFusion`.</span>
+
 
 
 <!-- end_slide -->
 
 # The Two Kitchens
-
-**One sentence to keep: the whole architecture, in an analogy.**
-
-<!-- pause -->
 
 ![image:width:88%](images/two-kitchens.png)
 
@@ -636,6 +634,8 @@ last processed change → resume token
 **We've seen how MongoDB separates search from transactions.**
 
 **But when you put 100M vectors behind that architecture, the RAM bill still explodes.**
+
+<!-- pause -->
 
 ![image:width:40%](images/gifs/everything-fine-fire.gif)
 
@@ -864,12 +864,6 @@ ANN numCandidates=200  →  recall@10 = 100%
 <span style="color: #6c7086">Start `numCandidates` at **10–20 × `limit`**; raise it until measured recall plateaus. Hard cap: 10,000.</span>
 
 
-
-<!-- end_slide -->
-
-# &nbsp;
-
-![](images/transition-synthesis.png)
 
 <!-- end_slide -->
 

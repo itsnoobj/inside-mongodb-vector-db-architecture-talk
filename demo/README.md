@@ -56,6 +56,25 @@ mongosh "mongodb://localhost:27017/?directConnection=true" --file 02-recall-enn/
 Expect recall@10 to climb as `numCandidates` grows (10 → 200). Same index, same query —
 `numCandidates` is the recall/latency dial, measured natively.
 
+## Demo 3 — Vector Misses the Exact Code, BM25 Catches It
+
+**Point:** embeddings compress exact tokens (error codes, IDs, SKUs) into "nearby," not
+"identical." Vector search alone can't tell `ERR-4521` from `ERR-4522`. `$rankFusion`
+blends vector (semantic) with `$search` (BM25 keyword) in one query — no second system.
+
+**Requires MongoDB 8.0+** for `$rankFusion`.
+
+```bash
+mongosh "mongodb://localhost:27017/?directConnection=true" --file 03-rank-fusion/seed.js
+mongosh "mongodb://localhost:27017/?directConnection=true" --file 03-rank-fusion/vector-only.js   # misses the exact code
+mongosh "mongodb://localhost:27017/?directConnection=true" --file 03-rank-fusion/rank-fusion.js   # BM25 pulls it to rank 1
+```
+
+All 5 seeded docs are semantically close (same "timeout/connection error" topic) — that's
+deliberate. It means vector search alone can't distinguish "the doc with the exact code
+you asked for" from "a similar-sounding decoy." BM25 can, because it matches the literal
+token `ERR-4521`. `$rankFusion` combines both rankings via Reciprocal Rank Fusion.
+
 ---
 
 ## Stop / reset
