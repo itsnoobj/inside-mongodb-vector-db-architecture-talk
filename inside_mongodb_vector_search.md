@@ -790,7 +790,7 @@ working set ≈ quantized vectors + HNSW graph
 
 # Lever ③ — Fewer *Bits* per Number
 
-![image:width:38%](images/quantization-lite.png)
+![image:width:70%](images/quantization-lite.png)
 
 <!-- pause -->
 
