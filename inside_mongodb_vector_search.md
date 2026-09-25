@@ -311,7 +311,7 @@ db.docs.aggregate([
 
 <!-- pause -->
 
-<!-- column_layout: [1, 1] -->
+<!-- column_layout: [1, 1, 1] -->
 
 <!-- column: 0 -->
 
@@ -323,6 +323,10 @@ db.docs.aggregate([
 **Memory** · low-latency, steady
 
 <!-- column: 1 -->
+
+![](images/gifs/two-engines-opposite-physics.gif)
+
+<!-- column: 2 -->
 
 <span style="color: #4EC9B0">**Lucene (`mongot`)**</span>
 
@@ -502,6 +506,10 @@ $vectorSearch:{ filter:{tenant:42} }
 
 # Bonus: Text + Vector, One Engine
 
+<!-- column_layout: [2, 1] -->
+
+<!-- column: 0 -->
+
 **Vector search misses exact terms. Keyword search misses meaning.**
 
 ```text
@@ -511,6 +519,12 @@ Query: "error code ERR-4521"
 ├─ BM25    → matches "ERR-4521" exactly              (precise)
 └─ Combined → best of both
 ```
+
+<!-- column: 1 -->
+
+![](images/gifs/text-vector-one-engine.gif)
+
+<!-- reset_layout -->
 
 <!-- pause -->
 
@@ -555,6 +569,14 @@ db.docs.aggregate([
 
 # Surviving a Crash: Resume Tokens
 
+<!-- column_layout: [1, 2] -->
+
+<!-- column: 0 -->
+
+![](images/gifs/resume-tokens.gif)
+
+<!-- column: 1 -->
+
 **What if `mongot` restarts mid-stream?**
 
 <!-- pause -->
@@ -566,6 +588,8 @@ last processed change → resume token
         │
         └─ history gone / lost state → re-sync (full rebuild)
 ```
+
+<!-- reset_layout -->
 
 <!-- pause -->
 
@@ -591,23 +615,7 @@ last processed change → resume token
 
 # Architecture — The Mental Model
 
-<!-- column_layout: [1, 1] -->
-
-<!-- column: 0 -->
-
-**1.** The index doesn't live in the database. It lives in <span style="color: #4EC9B0">`mongot`</span>.
-
-**2.** It syncs by **subscribing to the change stream** — off the write path.
-
-**3.** `mongod` is just the **proxy**. The app never sees the split.
-
-**4.** Slight staleness is the deliberate price for **isolation + independent scaling**.
-
-<!-- column: 1 -->
-
-![image:width:95%](images/mongot-architecture.png)
-
-<!-- reset_layout -->
+![image:width:60%](images/gifs/architecture-mental-model.gif)
 
 <!-- pause -->
 
@@ -663,7 +671,11 @@ one vector:  1024 dims × 4 bytes ≈ 4 KB
 
 <!-- column: 1 -->
 
-![](images/gifs/math-lady.gif)
+![](images/gifs/compression-not-optional-1.gif)
+
+<!-- pause -->
+
+![](images/gifs/compression-not-optional-2.gif)
 
 <!-- reset_layout -->
 

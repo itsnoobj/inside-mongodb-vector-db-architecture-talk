@@ -5,14 +5,13 @@
   <path d="M600 70 C 578 110, 566 150, 600 190 C 634 150, 622 110, 600 70 Z" fill="#00ED64"/>
   <line x1="600" y1="150" x2="600" y2="196" stroke="#00ED64" stroke-width="3"/>
 
-  <text x="600" y="270" text-anchor="middle" font-size="30" fill="#cdd6f4">Inside</text>
-  <text x="600" y="330" text-anchor="middle" font-size="52" font-weight="bold" fill="#00ED64">MongoDB Vector Search</text>
+  <text x="600" y="278" text-anchor="middle" font-size="44" font-weight="bold" fill="#00ED64">Inside MongoDB Vector Search</text>
 
-  <text x="600" y="386" text-anchor="middle" font-size="24" font-weight="bold" fill="#f9e2af">Architecture, Quantization &amp; Embeddings</text>
+  <text x="600" y="330" text-anchor="middle" font-size="24" font-weight="bold" fill="#f9e2af">Architecture, Quantization &amp; Embeddings</text>
 
-  <line x1="300" y1="430" x2="900" y2="430" stroke="#585b70" stroke-width="1"/>
+  <line x1="300" y1="378" x2="900" y2="378" stroke="#585b70" stroke-width="1"/>
 
-  <text x="600" y="472" text-anchor="middle" font-size="18" fill="#6c7086">Two Processes, Fewer Bits, Smarter Vectors</text>
+  <text x="600" y="422" text-anchor="middle" font-size="20" fill="#6c7086">Two Processes, Fewer Bits, Smarter Vectors</text>
 
   <text x="600" y="536" text-anchor="middle" font-size="20" fill="#89b4fa">Jeevan · MongoDB HYD User Group</text>
 </svg>
