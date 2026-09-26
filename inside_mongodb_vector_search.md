@@ -401,10 +401,6 @@ Share one process and a search OOM takes down the database; a GC pause stalls wr
 
 **Search reads a *derived, lagging view* — not the collection.**
 
-![image:width:60%](images/gifs/this-is-fine.gif)
-
-<!-- pause -->
-
 <!-- column_layout: [1, 1] -->
 
 <!-- column: 0 -->
@@ -418,6 +414,10 @@ No read-your-writes for search.
 Stale = which docs *match*, never the body.
 
 <!-- reset_layout -->
+
+<!-- pause -->
+
+![image:width:60%](images/gifs/not-great-not-terrible.gif)
 
 <!-- pause -->
 
